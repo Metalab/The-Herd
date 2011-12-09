@@ -31,6 +31,8 @@ namespace Engine {
 
 	void ObjectTextDisplayComponent::setText(const std::string& text) {
 		gameObject()->props().Set("objectText_text", text);
+		
+		m_overlay->SetInnerRML(text.c_str());
 	}
 
 	void ObjectTextDisplayComponent::tick() {
