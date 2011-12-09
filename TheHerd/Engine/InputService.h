@@ -12,6 +12,7 @@
 #include "Service.h"
 #include <OIS/OIS.h>
 #include <vector>
+#include <map>
 
 namespace Engine {
 	class InputService : public Service, public OIS::KeyListener, public OIS::MouseListener {
@@ -20,6 +21,13 @@ namespace Engine {
 		void shutdown();
 		
 		void tick();
+		
+		typedef void(^Listener)(const OIS::KeyEvent &arg);
+		typedef std::map<OIS::KeyCode, Listener> ListenerList;
+		typedef ListenerList::iterator ListenerListHandle;
+		
+		ListenerListHandle registerKeyDownListener(OIS::KeyCode keyCode, Listener listener);
+		ListenerListHandle registerKeyUpListener(OIS::KeyCode keyCode, Listener listener);
 		
 		void registerMouseListener(OIS::MouseListener *listener) {
 			m_mouseListeners.push_back(listener);
@@ -33,6 +41,8 @@ namespace Engine {
 		bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID bid);
 	private:
 		std::vector<OIS::MouseListener*> m_mouseListeners;
+		ListenerList m_keyDownListenerList;
+		ListenerList m_keyUpListenerList;
 	};
 }
 
