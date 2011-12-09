@@ -15,7 +15,7 @@
 namespace Engine {
 	class GameObject;
 	class GameComponent {
-	protected:
+	public:
 		GameComponent(GameObject *gameObject) : m_gameObject(gameObject) {}
 		virtual ~GameComponent() {}
 		
@@ -25,9 +25,7 @@ namespace Engine {
 		
 		virtual void tick() = 0;
 	private:
-		
 		GameObject *m_gameObject;
-		friend class GameObject;
 	};
 	
 	class GameObject {

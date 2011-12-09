@@ -11,7 +11,9 @@
 
 namespace Engine {
 	void GameObjectService::shutdown() {
-		
+		for(std::set<GameObject*>::iterator iter = m_gameObjects.begin(); iter != m_gameObjects.end(); ++iter) {
+			delete *iter;
+		}
 	}
 	
 	void GameObjectService::tick() {

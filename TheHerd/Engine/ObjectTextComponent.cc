@@ -9,66 +9,28 @@
 #include "ObjectTextComponent.h"
 #include "OgrePlatform.h"
 #include "OgreFramework.h"
+#include <sstream>
+#include "ServiceManager.h"
+#include "RocketService.h"
+#include <Rocket/Core.h>
 
 namespace Engine {
 	ObjectTextDisplayComponent::ObjectTextDisplayComponent(GameObject *gameObject) : GameComponent(gameObject) {
 		gameObject->props().Set("objectText_text", "");
 		
-		// create an overlay that we can use for later
-		Ogre::Overlay *pOverlay = Ogre::OverlayManager::getSingleton().create("shapeName");
-		gameObject->props().Set("objectText_overlay", pOverlay);
-		Ogre::OverlayContainer *pContainer = static_cast<Ogre::OverlayContainer*>(Ogre::OverlayManager::getSingleton().createOverlayElement("Panel", "container1"));
-		gameObject->props().Set("objectText_container", pContainer);
+		RocketService *rocketService = (RocketService*)ServiceManager::getSingletonPtr()->getService("rocket");
 		
-		pOverlay->add2D(pContainer);
-		
-		Ogre::OverlayElement *pText = Ogre::OverlayManager::getSingleton().createOverlayElement("TextArea", "shapeNameText");
-		gameObject->props().Set("objectText_textElement", pText);
-		pText->setDimensions(1.0, 1.0);
-		pText->setMetricsMode(Ogre::GMM_PIXELS);
-		pText->setPosition(0, 0);
-		
-		pText->setParameter("font_name", "blue16");
-		pText->setParameter("char_height", "16");
-		pText->setParameter("horz_align", "center");
-		pText->setColour(Ogre::ColourValue(1.0, 1.0, 1.0));
-		
-		pContainer->addChild(pText);
-		pOverlay->show();
+		m_overlay = rocketService->loadDocument("infooverlay.rml");
+		m_overlay->Show();
 	}
 
 	ObjectTextDisplayComponent::~ObjectTextDisplayComponent() {
-		Ogre::Overlay *pOverlay;
-		Ogre::OverlayContainer *pContainer;
-		Ogre::OverlayElement *pText;
-		
-		gameObject()->props().Get("objectText_overlay", &pOverlay);
-		gameObject()->props().Get("objectText_container", &pContainer);
-		gameObject()->props().Get("objectText_textElement", &pText);
-		
-		// overlay cleanup -- Ogre would clean this up at app exit but if your app 
-		// tends to create and delete these objects often it's a good idea to do it here.
-		
-		pOverlay->hide();
-		Ogre::OverlayManager *overlayManager = Ogre::OverlayManager::getSingletonPtr();
-		pContainer->removeChild("shapeNameText");
-		pOverlay->remove2D(pContainer);
-		overlayManager->destroyOverlayElement(pText);
-		overlayManager->destroyOverlayElement(pContainer);
-		overlayManager->destroy(pOverlay);
-		
-		gameObject()->props().Delete("objectText_overlay");
-		gameObject()->props().Delete("objectText_container");
-		gameObject()->props().Delete("objectText_textElement");
 		gameObject()->props().Delete("objectText_text");
+		m_overlay->RemoveReference();
 	}
 
 	void ObjectTextDisplayComponent::setText(const std::string& text) {
-		Ogre::OverlayElement *pText;
-		gameObject()->props().Get("objectText_textElement", &pText);
-		
 		gameObject()->props().Set("objectText_text", text);
-		pText->setCaption(text);
 	}
 
 	void ObjectTextDisplayComponent::tick() {
@@ -116,12 +78,11 @@ namespace Engine {
 		// we now have relative screen-space coords for the object's bounding box; here
 		// we need to center the text above the BB on the top edge. The line that defines
 		// this top edge is (min_x, min_y) to (max_x, min_y)
-
-		Ogre::OverlayContainer *pContainer;
-		gameObject()->props().Get("objectText_container", &pContainer);
-
-		//m_pContainer->setPosition(min_x, min_y);
-		pContainer->setPosition(1-max_x, min_y);  // Edited by alberts: This code works for me
-		pContainer->setDimensions(max_x - min_x, 0.1); // 0.1, just "because"
+		
+		const Rocket::Core::Box &box = m_overlay->GetBox();
+		
+		
+		Ogre::RenderWindow *window = OgreFramework::getSingletonPtr()->m_pRenderWnd;
+		m_overlay->SetOffset(Rocket::Core::Vector2f((max_x + min_x) * .5 * window->getWidth() - box.GetSize().x * .5, min_y * window->getHeight()), NULL);
 	}
 }

@@ -20,6 +20,14 @@ namespace Engine {
 		void startup() {}
 		void shutdown();
 		void tick();
+		
+		void addGameObject(GameObject *gameObject) {
+			m_gameObjects.insert(gameObject);
+		}
+		
+		void removeGameObject(GameObject *gameObject) {
+			m_gameObjects.erase(gameObject);
+		}
 	private:
 		std::set<GameObject*> m_gameObjects;
 	};

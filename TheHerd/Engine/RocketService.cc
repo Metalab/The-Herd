@@ -57,6 +57,10 @@ namespace Engine {
 		static_cast<InputService*>(ServiceManager::getSingletonPtr()->getService("input"))->registerMouseListener(this);
 	}
 	
+	Rocket::Core::ElementDocument *RocketService::loadDocument(const std::string &name) {
+		return m_context->LoadDocument((m_path + "/" + name).c_str());
+	}
+	
 	void RocketService::shutdown() {
 		OgreFramework::getSingletonPtr()->m_pSceneMgr->removeRenderQueueListener(this);
 		m_context->RemoveReference();

@@ -16,6 +16,7 @@
 namespace Rocket {
 	namespace Core {
 		class Context;
+		class ElementDocument;
 	}
 }
 
@@ -38,6 +39,8 @@ namespace Engine {
 		bool mouseMoved(const OIS::MouseEvent& e);
 		bool mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id);
 		bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);
+		
+		Rocket::Core::ElementDocument *loadDocument(const std::string &name);
 
 	private:
 		int GetKeyModifierState();

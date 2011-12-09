@@ -12,9 +12,11 @@
 #include "Engine/OgreService.h"
 #include "Engine/AudioService.h"
 #include "Engine/RocketService.h"
+#include "Engine/GameObjectService.h"
 #include "Engine/Clock.h"
 #include "Engine/GameObject.h"
 #include "Engine/Placeable.h"
+#include "Engine/ObjectTextComponent.h"
 
 #include "OgreFramework.h"
 
@@ -38,11 +40,13 @@
 	Engine::InputService *inputService = new Engine::InputService();
 	Engine::AudioService *audioService = new Engine::AudioService([[resources stringByAppendingPathComponent:@"audio"] fileSystemRepresentation]);
 	gameClock = new Engine::Clock();
+	Engine::GameObjectService *gameObjectService = new Engine::GameObjectService();
 	
-	sm->registerService("input", inputService);
+	sm->registerService("input", inputService, -1);
 	sm->registerService("ogre", new Engine::OgreService(inputService, gameClock));
 	sm->registerService("audio", audioService);
 	sm->registerService("rocket", new Engine::RocketService([[resources stringByAppendingPathComponent:@"media/ui"] fileSystemRepresentation]), 1);
+	sm->registerService("gameObject", gameObjectService, -1);
 	
 	sm->startup();
 	
@@ -52,11 +56,18 @@
 	OgreFramework::getSingletonPtr()->m_pSceneMgr->createLight("Light")->setPosition(75,75,75);
 	Ogre::Entity *pCubeEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("Cube", "ogrehead.mesh");
 	Ogre::SceneNode *pCubeNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("CubeNode");
+	pCubeNode->setScale(0.5, 0.5, 0.5);
 	pCubeNode->attachObject(pCubeEntity);
 	
 	head = new Engine::GameObject();
 	Engine::Placeable *placeable = head->addComponent<Engine::Placeable>();
 	placeable->setSceneNode(pCubeNode);
+	
+	Engine::ObjectTextDisplayComponent *textDisplay = head->addComponent<Engine::ObjectTextDisplayComponent>();
+	textDisplay->setText("Hello World");
+	
+	head->setWantsUpdate(true);
+	gameObjectService->addGameObject(head);
 }
 
 - (void)tick {

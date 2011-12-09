@@ -19,6 +19,9 @@ namespace Engine {
 	class Placeable : public GameComponent {
 	public:
 		Placeable(GameObject *gameObject) : GameComponent(gameObject) {}
+		virtual ~Placeable() {
+			gameObject()->props().Delete("sceneNode");
+		}
 		
 		void setSceneNode(Ogre::SceneNode *sceneNode) {
 			gameObject()->props().Set("sceneNode", sceneNode);

@@ -11,14 +11,22 @@
 
 #include "GameObject.h"
 
+namespace Rocket {
+	namespace Core {
+		class ElementDocument;
+	}
+}
+
 namespace Engine {
 	class ObjectTextDisplayComponent: public GameComponent {
 	public:
 		void setText(const std::string &text);
 		void tick();
-	protected:
+		
 		ObjectTextDisplayComponent(GameObject *gameObject);
 		~ObjectTextDisplayComponent();
+	private:
+		Rocket::Core::ElementDocument *m_overlay;
 	};
 }
 
