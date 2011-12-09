@@ -9,15 +9,6 @@
 #include "GameObject.h"
 
 namespace Engine {
-	template<typename T> T *GameObject::getComponent() {
-		for(std::set<GameComponent*>::iterator iter = m_components.begin(); iter != m_components.end(); ++iter) {
-			T *component = dynamic_cast<T*>(*iter);
-			if(component)
-				return component;
-		}
-		return NULL;
-	}
-	
 	GameObject::~GameObject() {
 		for(std::set<GameComponent*>::iterator iter = m_components.begin(); iter != m_components.end(); ++iter) {
 			delete *iter;

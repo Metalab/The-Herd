@@ -16,14 +16,15 @@ namespace Engine {
 	class GameObject;
 	class GameComponent {
 	protected:
+		GameComponent(GameObject *gameObject) : m_gameObject(gameObject) {}
+		virtual ~GameComponent() {}
+		
 		GameObject *gameObject() {
 			return m_gameObject;
 		}
 		
 		virtual void tick() = 0;
 	private:
-		GameComponent(GameObject *gameObject) : m_gameObject(gameObject) {}
-		virtual ~GameComponent() {}
 		
 		GameObject *m_gameObject;
 		friend class GameObject;
@@ -45,9 +46,16 @@ namespace Engine {
 		}
 		
 		template<typename T> T *addComponent() {
-			return &(*m_components.insert(new T(this)).first);
+			return static_cast<T*>(*m_components.insert(new T(this)).first);
 		}
-		template<typename T> T *getComponent();
+		template<typename T> T *getComponent() {
+			for(std::set<GameComponent*>::iterator iter = m_components.begin(); iter != m_components.end(); ++iter) {
+				T *component = dynamic_cast<T*>(*iter);
+				if(component)
+					return component;
+			}
+			return NULL;
+		}
 	private:
 		bool m_wantsUpdate;
 		std::set<GameComponent*> m_components;

@@ -10,10 +10,12 @@
 
 namespace Engine {
 	class Clock;
+	class GameObject;
 }
 
 @interface EngineAppDelegate : NSObject <NSApplicationDelegate> {
 	Engine::Clock *gameClock;
+	Engine::GameObject *head;
 }
 
 @end

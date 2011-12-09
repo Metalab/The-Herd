@@ -13,6 +13,8 @@
 #include "Engine/AudioService.h"
 #include "Engine/RocketService.h"
 #include "Engine/Clock.h"
+#include "Engine/GameObject.h"
+#include "Engine/Placeable.h"
 
 #include "OgreFramework.h"
 
@@ -51,9 +53,17 @@
 	Ogre::Entity *pCubeEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("Cube", "ogrehead.mesh");
 	Ogre::SceneNode *pCubeNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("CubeNode");
 	pCubeNode->attachObject(pCubeEntity);
+	
+	head = new Engine::GameObject();
+	Engine::Placeable *placeable = head->addComponent<Engine::Placeable>();
+	placeable->setSceneNode(pCubeNode);
 }
 
 - (void)tick {
+	Engine::Placeable *placeable = head->getComponent<Engine::Placeable>();
+	Ogre::SceneNode *sceneNode = placeable->sceneNode();
+	sceneNode->yaw(Ogre::Degree(1.0));
+	
 	Engine::ServiceManager::getSingletonPtr()->tick();
 	if(!Engine::ServiceManager::getSingletonPtr()->shouldTerminate())
 		[self performSelector:_cmd withObject:nil afterDelay:0.0];

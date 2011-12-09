@@ -16,16 +16,19 @@ namespace Ogre {
 }
 
 namespace Engine {
-	class Placeable : public Component {
+	class Placeable : public GameComponent {
 	public:
+		Placeable(GameObject *gameObject) : GameComponent(gameObject) {}
+		
 		void setSceneNode(Ogre::SceneNode *sceneNode) {
-			m_sceneNode = sceneNode;
+			gameObject()->props().Set("sceneNode", sceneNode);
 		}
 		Ogre::SceneNode *sceneNode() {
-			return m_sceneNode;
+			Ogre::SceneNode *sceneNode;
+			gameObject()->props().Get("sceneNode", &sceneNode);
+			return sceneNode;
 		}
-	private:
-		Ogre::SceneNode *m_sceneNode;
+		void tick() {}
 	};
 }
 
