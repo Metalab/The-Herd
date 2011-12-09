@@ -45,13 +45,6 @@ namespace Engine {
 		if (cursor)
 			cursor->RemoveReference();
 		
-		Rocket::Core::ElementDocument* document = m_context->LoadDocument((m_path + "/demo.rml").c_str());
-		if (document)
-		{
-			document->Show();
-			document->RemoveReference();
-		}
-
 		OgreFramework::getSingletonPtr()->m_pSceneMgr->addRenderQueueListener(this);
 		
 		static_cast<InputService*>(ServiceManager::getSingletonPtr()->getService("input"))->registerMouseListener(this);
