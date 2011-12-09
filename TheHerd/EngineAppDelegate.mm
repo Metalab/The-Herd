@@ -17,6 +17,7 @@
 #include "Engine/GameObject.h"
 #include "Engine/Placeable.h"
 #include "Engine/ObjectTextComponent.h"
+#include "GameService.h"
 
 #include "OgreFramework.h"
 
@@ -47,6 +48,7 @@
 	sm->registerService("audio", audioService);
 	sm->registerService("rocket", new Engine::RocketService([[resources stringByAppendingPathComponent:@"media/ui"] fileSystemRepresentation]), 1);
 	sm->registerService("gameObject", gameObjectService, -1);
+	sm->registerService("game", new Game::GameService(), 100);
 	
 	sm->startup();
 	

@@ -38,6 +38,7 @@
 		8148DDF314928CFD00AADF66 /* libfmodevent.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8148DDC71492652800AADF66 /* libfmodevent.dylib */; };
 		8148DDF414928CFD00AADF66 /* libfmodex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8148DDC21492637D00AADF66 /* libfmodex.dylib */; };
 		8148DDFF1492B1C700AADF66 /* ObjectTextComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DDFE1492B1C700AADF66 /* ObjectTextComponent.cc */; };
+		8148DE021492CC8500AADF66 /* GameService.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE011492CC8500AADF66 /* GameService.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -126,6 +127,8 @@
 		8148DDF0149285BF00AADF66 /* RocketService.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RocketService.cc; sourceTree = "<group>"; };
 		8148DDFD1492B19B00AADF66 /* ObjectTextComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTextComponent.h; sourceTree = "<group>"; };
 		8148DDFE1492B1C700AADF66 /* ObjectTextComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectTextComponent.cc; sourceTree = "<group>"; };
+		8148DE001492CC3A00AADF66 /* GameService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameService.h; sourceTree = "<group>"; };
+		8148DE011492CC8500AADF66 /* GameService.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameService.cc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +222,8 @@
 				8148DD901492363200AADF66 /* OgreFramework.cpp */,
 				8148DDB51492517300AADF66 /* EngineAppDelegate.h */,
 				8148DDB61492517300AADF66 /* EngineAppDelegate.mm */,
+				8148DE001492CC3A00AADF66 /* GameService.h */,
+				8148DE011492CC8500AADF66 /* GameService.cc */,
 			);
 			name = "Basic Ogre Framework";
 			sourceTree = "<group>";
@@ -403,6 +408,7 @@
 				8148DDEE149281F000AADF66 /* SystemInterfaceOgre3D.cpp in Sources */,
 				8148DDF1149285C000AADF66 /* RocketService.cc in Sources */,
 				8148DDFF1492B1C700AADF66 /* ObjectTextComponent.cc in Sources */,
+				8148DE021492CC8500AADF66 /* GameService.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
