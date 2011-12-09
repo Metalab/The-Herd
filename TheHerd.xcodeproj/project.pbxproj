@@ -37,6 +37,7 @@
 		8148DDF1149285C000AADF66 /* RocketService.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DDF0149285BF00AADF66 /* RocketService.cc */; };
 		8148DDF314928CFD00AADF66 /* libfmodevent.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8148DDC71492652800AADF66 /* libfmodevent.dylib */; };
 		8148DDF414928CFD00AADF66 /* libfmodex.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8148DDC21492637D00AADF66 /* libfmodex.dylib */; };
+		8148DDFF1492B1C700AADF66 /* ObjectTextComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DDFE1492B1C700AADF66 /* ObjectTextComponent.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -123,6 +124,8 @@
 		8148DDEA149281F000AADF66 /* SystemInterfaceOgre3D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemInterfaceOgre3D.h; sourceTree = "<group>"; };
 		8148DDEF1492859F00AADF66 /* RocketService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RocketService.h; sourceTree = "<group>"; };
 		8148DDF0149285BF00AADF66 /* RocketService.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RocketService.cc; sourceTree = "<group>"; };
+		8148DDFD1492B19B00AADF66 /* ObjectTextComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectTextComponent.h; sourceTree = "<group>"; };
+		8148DDFE1492B1C700AADF66 /* ObjectTextComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectTextComponent.cc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +303,8 @@
 				8148DDCD149270F600AADF66 /* GameObjectService.h */,
 				8148DDCE149271AA00AADF66 /* GameObjectService.cc */,
 				8148DDCC14926F6000AADF66 /* Placeable.h */,
+				8148DDFD1492B19B00AADF66 /* ObjectTextComponent.h */,
+				8148DDFE1492B1C700AADF66 /* ObjectTextComponent.cc */,
 			);
 			path = Engine;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				8148DDEB149281F000AADF66 /* RenderInterfaceOgre3D.cpp in Sources */,
 				8148DDEE149281F000AADF66 /* SystemInterfaceOgre3D.cpp in Sources */,
 				8148DDF1149285C000AADF66 /* RocketService.cc in Sources */,
+				8148DDFF1492B1C700AADF66 /* ObjectTextComponent.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
