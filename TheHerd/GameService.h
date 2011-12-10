@@ -13,14 +13,27 @@
 #include "Engine/GameObject.h"
 #include <vector>
 
+namespace Engine {
+	class Clock;
+}
+
 namespace Game {
 	class GameService : public Engine::Service {
 	public:
+		GameService(Engine::Clock *clock) : m_clock(clock) {}
+		
 		void startup();
 		void shutdown();
 		void tick();
 	protected:
 		std::vector<Engine::GameObject*> m_minions;
+		Engine::GameObject *m_player;
+		Engine::Clock *m_clock;
+		
+		bool m_moveUp;
+		bool m_moveDown;
+		bool m_moveLeft;
+		bool m_moveRight;
 	};
 }
 

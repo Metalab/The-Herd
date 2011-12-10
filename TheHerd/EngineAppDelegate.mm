@@ -49,7 +49,7 @@
 	sm->registerService("audio", audioService);
 	sm->registerService("rocket", new Engine::RocketService([[resources stringByAppendingPathComponent:@"media/ui"] fileSystemRepresentation]), 1);
 	sm->registerService("gameObject", gameObjectService, -1);
-	sm->registerService("game", new Game::GameService(), 100);
+	sm->registerService("game", new Game::GameService(gameClock), 100);
 	
 	sm->startup();
 	
