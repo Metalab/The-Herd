@@ -87,6 +87,7 @@ namespace Game {
 		m_player = new Engine::GameObject();
 		Engine::Placeable *placeable = m_player->addComponent<Engine::Placeable>();
 		placeable->setSceneNode(pCubeNode);
+		m_player->addComponent<Game::MinionComponent>();
 		
 		Engine::ObjectTextDisplayComponent *textDisplay = m_player->addComponent<Engine::ObjectTextDisplayComponent>();
 		
@@ -172,5 +173,20 @@ namespace Game {
 			
 			OgreFramework::getSingletonPtr()->m_pCamera->setPosition(position + Ogre::Vector3(0.0, 40.0, 40.0));
 		}
+		
+		// update HUD
+		float life = m_player->getComponent<MinionComponent>()->life();
+		Rocket::Core::Element *lifeBar = m_playerHud->GetElementById("life");
+		
+		std::ostringstream S;
+		S << life*100.0 << "%";
+		lifeBar->SetProperty("height", S.str().c_str());
+		lifeBar->SetProperty("background-color", (life<.3)?"#f00a":(life<.6)?"#ff0a":"#0f0a");
+		
+		int money = m_player->getComponent<MinionComponent>()->money();
+		
+		S.str("");
+		S << "$" << money;
+		m_playerHud->GetElementById("money")->SetInnerRML(S.str().c_str());
 	}
 }

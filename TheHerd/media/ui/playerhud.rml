@@ -13,7 +13,7 @@
 		}
 		#stats {
 			position: absolute;
-			left: 0;
+			left: 20px;
 			bottom: 0;
 			width: 100px;
 			height: 50px;
@@ -28,12 +28,19 @@
 			background-color: #ff0a;
 			border: 5px;
 		}
+		#life {
+			position: absolute;
+			bottom: 0px;
+			left: 0px;
+			height: 100%;
+			background-color: #f00a;
+			width: 20px;
+		}
 		</style>
 	</head>
 	<body>
 	<div id="stats">
 	Money: <span id="money"></span><br/>
-	Life: <span id="life"></span>
 	</div>
 	<div id="log">
 	<span id="log-3">Abc has traded with Def</span><br/>
@@ -41,5 +48,6 @@
 	<span id="log-1">Ghi has attacked You</span><br/>
 	<span id="log-0">Jkl has occupied Xyz</span>
 	</div>
+	<div id="life"></div>
 	</body>
 </rml>

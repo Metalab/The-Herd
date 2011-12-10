@@ -21,18 +21,6 @@ namespace Game {
 	}
 	
 	void MinionComponent::tick() {
-		Engine::ObjectOverlayComponent *objectOverlayComponent = gameObject()->getComponent<Engine::ObjectOverlayComponent>();
-		if(!objectOverlayComponent)
-			return;
-		
-		Rocket::Core::ElementDocument *doc = objectOverlayComponent->document();
-		if(!doc)
-			return;
-
-		std::ostringstream S;
-		S << "$" << money();
-		doc->GetElementById("money")->SetInnerRML(S.str().c_str());
-		
 		float l = life();
 		
 		// reduce due to hunger
@@ -42,9 +30,20 @@ namespace Game {
 			// ### die
 		}
 		gameObject()->props().Set("life", l);
+
+		Engine::ObjectOverlayComponent *objectOverlayComponent = gameObject()->getComponent<Engine::ObjectOverlayComponent>();
+		if(!objectOverlayComponent)
+			return;
+		Rocket::Core::ElementDocument *doc = objectOverlayComponent->document();
+		if(!doc)
+			return;
+
+		std::ostringstream S;
+		S << "$" << money();
+		doc->GetElementById("money")->SetInnerRML(S.str().c_str());
 		
 		S.str("");
-		S << (int)(l * 100.0) << "%";
+		S << l * 100.0 << "%";
 		Rocket::Core::Element *lifeBar = doc->GetElementById("life");
 		
 		lifeBar->SetProperty("width", S.str().c_str());
