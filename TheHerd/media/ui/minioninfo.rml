@@ -1,0 +1,20 @@
+<rml>
+	<head>
+		<style>
+		body {
+			font-family: Delicious;
+			font-weight: normal;
+			font-style: normal;
+			font-size: 15;
+			color: white;
+			
+			width: 100px;
+			text-align: center;
+		}
+		</style>
+	</head>
+	<body><span id="name"></span><br/>
+	Money: <span id="money"></span><br/>
+	Life: <span id="life"></span>
+	</body>
+</rml>

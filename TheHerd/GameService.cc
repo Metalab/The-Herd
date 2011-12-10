@@ -11,6 +11,7 @@
 #include "OgreFramework.h"
 #include <Ogre/OgreEntity.h>
 #include "Engine/ObjectTextComponent.h"
+#include "Engine/ObjectOverlayComponent.h"
 #include "Engine/Placeable.h"
 #include "Engine/ServiceManager.h"
 #include "Engine/GameObjectService.h"
@@ -44,8 +45,13 @@ namespace Game {
 			std::string name = m_nameGenerator();
 			minion->setName(name);
 			
-			Engine::ObjectTextDisplayComponent *textDisplay = minion->addComponent<Engine::ObjectTextDisplayComponent>();
-			textDisplay->setText(name);
+			Engine::ObjectOverlayComponent *overlayComponent = minion->addComponent<Engine::ObjectOverlayComponent>();
+			overlayComponent->setDocumentName("minioninfo.rml");
+			
+			Rocket::Core::ElementDocument *doc = overlayComponent->document();
+			doc->GetElementById("name")->SetInnerRML(name.c_str());
+			doc->GetElementById("life")->SetInnerRML("100%");
+			doc->GetElementById("money")->SetInnerRML("$100");
 			
 			minion->setWantsUpdate(true);
 			gameObjectService->addGameObject(minion);
