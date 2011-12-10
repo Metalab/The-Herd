@@ -17,7 +17,12 @@ namespace Game {
 		InteractionComponent(Engine::GameObject *gameObject) : GameComponent(gameObject) {}
 		virtual ~InteractionComponent() {}
 		
-		void interactWith(Engine::GameObject *minion);
+		void trade(Engine::GameObject *minion);
+		void attack(Engine::GameObject *minion);
+		void occupy(Engine::GameObject *minion);
+		void repay(Engine::GameObject *minion);
+		void police(Engine::GameObject *minion);
+		
 		void tick() {}
 	};
 }

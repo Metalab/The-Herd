@@ -46,6 +46,7 @@
 		8148DE111493C4E800AADF66 /* ObjectOverlayComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE101493C4E700AADF66 /* ObjectOverlayComponent.cc */; };
 		8148DE141493DCC400AADF66 /* EventLogService.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE131493DCC400AADF66 /* EventLogService.cc */; };
 		8148DE171493F6A800AADF66 /* SelectionService.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE161493F6A800AADF66 /* SelectionService.cc */; };
+		8148DE1A14940BA200AADF66 /* NPCComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE1914940BA100AADF66 /* NPCComponent.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -150,6 +151,8 @@
 		8148DE131493DCC400AADF66 /* EventLogService.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventLogService.cc; sourceTree = "<group>"; };
 		8148DE151493F5F800AADF66 /* SelectionService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionService.h; sourceTree = "<group>"; };
 		8148DE161493F6A800AADF66 /* SelectionService.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SelectionService.cc; sourceTree = "<group>"; };
+		8148DE1814940B4200AADF66 /* NPCComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPCComponent.h; sourceTree = "<group>"; };
+		8148DE1914940BA100AADF66 /* NPCComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NPCComponent.cc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +259,8 @@
 				8148DE131493DCC400AADF66 /* EventLogService.cc */,
 				8148DE151493F5F800AADF66 /* SelectionService.h */,
 				8148DE161493F6A800AADF66 /* SelectionService.cc */,
+				8148DE1814940B4200AADF66 /* NPCComponent.h */,
+				8148DE1914940BA100AADF66 /* NPCComponent.cc */,
 			);
 			name = "Basic Ogre Framework";
 			sourceTree = "<group>";
@@ -451,6 +456,7 @@
 				8148DE111493C4E800AADF66 /* ObjectOverlayComponent.cc in Sources */,
 				8148DE141493DCC400AADF66 /* EventLogService.cc in Sources */,
 				8148DE171493F6A800AADF66 /* SelectionService.cc in Sources */,
+				8148DE1A14940BA200AADF66 /* NPCComponent.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

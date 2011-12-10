@@ -23,6 +23,7 @@
 #include "RandomWalkComponent.h"
 #include "InteractionComponent.h"
 #include "MinionComponent.h"
+#include "NPCComponent.h"
 #include <Rocket/Core.h>
 
 namespace Game {
@@ -75,6 +76,7 @@ namespace Game {
 			minion->addComponent<Game::RandomWalkComponent>()->setClock(m_clock);
 			minion->addComponent<Game::InteractionComponent>();
 			minion->addComponent<Game::MinionComponent>();
+			minion->addComponent<Game::NPCComponent>();
 			
 			m_minions.push_back(minion);
 		}
