@@ -98,8 +98,11 @@ namespace Engine {
 		
 		NotificationList &nl = m_map[ hashKey ].notifications;
 		nl.push_back( newNote );
-		*handle = nl.end();
-		--(*handle);
+		
+		if(handle) {
+			*handle = nl.end();
+			--(*handle);
+		}
 
 		return kOK;
 	}
