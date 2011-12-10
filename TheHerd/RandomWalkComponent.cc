@@ -13,7 +13,7 @@
 #include "Engine/OgreService.h"
 #include "OgreFramework.h"
 #include "Engine/Clock.h"
-#include "InteractionComponent.h"
+#include "NPCComponent.h"
 
 namespace Game {
 	RandomWalkComponent::RandomWalkComponent(Engine::GameObject *gameObject) : GameComponent(gameObject) {
@@ -50,11 +50,10 @@ namespace Game {
 			return; // nothing to do
 		
 		// defer interaction to another component
-		InteractionComponent *interactionComponent = gameObject()->getComponent<InteractionComponent>();
-		if(interactionComponent) {
+		NPCComponent *npcComponent = gameObject()->getComponent<NPCComponent>();
+		if(npcComponent)
 			for(std::vector<Engine::GameObject*>::iterator iter = colliders.begin(); iter != colliders.end(); ++iter)
-				interactionComponent->interactWith(*iter);
-		}
+				npcComponent->interactWith(*iter);
 		
 		std::vector<Ogre::Vector2> resultDirections;
 		for(std::vector<Engine::GameObject*>::iterator iter = colliders.begin(); iter != colliders.end(); ++iter) {
