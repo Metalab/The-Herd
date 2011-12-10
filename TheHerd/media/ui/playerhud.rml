@@ -43,10 +43,10 @@
 	Money: <span id="money"></span><br/>
 	</div>
 	<div id="log">
-	<span id="log-3">Abc has traded with Def</span><br/>
-	<span id="log-2">You have attacked Ghi</span><br/>
-	<span id="log-1">Ghi has attacked You</span><br/>
-	<span id="log-0">Jkl has occupied Xyz</span>
+	<span id="log-3"></span><br/>
+	<span id="log-2"></span><br/>
+	<span id="log-1"></span><br/>
+	<span id="log-0"></span>
 	</div>
 	<div id="life"></div>
 	</body>
