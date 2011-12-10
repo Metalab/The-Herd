@@ -24,6 +24,7 @@ namespace Game {
 		void changeMoney(int amount);
 		
 		void addStake(Engine::GameObject *stakeholder);
+		Engine::GameObject *stakeHolder();
 		void buyOutStake();
 	};
 }

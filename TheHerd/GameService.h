@@ -21,9 +21,13 @@ namespace Engine {
 namespace Game {
 	class GameService : public Engine::Service {
 	public:
-		GameService(Engine::Clock *clock, const std::string &playerName, std::string(^nameGenerator)(void)) : m_clock(clock), m_playerName(playerName), m_nameGenerator(Block_copy(nameGenerator)) {}
+		GameService(Engine::Clock *clock, const std::string &playerName, std::string(^nameGenerator)(void)) : m_clock(clock), m_playerName(playerName), m_nameGenerator(Block_copy(nameGenerator)), m_exchangeRate(0.4) {}
 		virtual ~GameService() {
 			Block_release(m_nameGenerator);
+		}
+		
+		float exchangeRate() {
+			return m_exchangeRate;
 		}
 		
 		void startup();
@@ -35,6 +39,7 @@ namespace Game {
 		Engine::Clock *m_clock;
 		std::string m_playerName;
 		std::string(^m_nameGenerator)(void);
+		float m_exchangeRate;
 		
 		bool m_moveUp;
 		bool m_moveDown;
