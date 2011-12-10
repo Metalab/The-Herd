@@ -118,8 +118,7 @@ bool OgreFramework::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListen
 	m_pTimer->reset();
 	
 	m_pTrayMgr = new OgreBites::SdkTrayManager("TrayMgr", m_pRenderWnd, m_pMouse, this);
-    m_pTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
-    m_pTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
+    m_pTrayMgr->showFrameStats(OgreBites::TL_BOTTOMRIGHT);
     m_pTrayMgr->hideCursor();
     
 	m_pRenderWnd->setActive(true);
