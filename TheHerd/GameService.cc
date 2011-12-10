@@ -107,18 +107,35 @@ namespace Game {
 	}
 	
 	void GameService::tick() {
-		Engine::Placeable *placeable = m_player->getComponent<Engine::Placeable>();
-		Ogre::Vector3 position = placeable->position();
+		if(m_moveUp || m_moveDown || m_moveLeft || m_moveRight) {
+			Engine::Placeable *placeable = m_player->getComponent<Engine::Placeable>();
+			Ogre::Vector3 offset = Ogre::Vector3::ZERO;
 
-		if(m_moveUp)
-			position += Ogre::Vector3(0.0, 0.0, -10.0 / m_clock->lastIncrement());
-		else if(m_moveDown)
-			position += Ogre::Vector3(0.0, 0.0, 10.0 / m_clock->lastIncrement());
-		if(m_moveLeft)
-			position += Ogre::Vector3(-10.0 / m_clock->lastIncrement(), 0.0, 0.0);
-		else if(m_moveRight)
-			position += Ogre::Vector3(10.0 / m_clock->lastIncrement(), 0.0, 0.0);
-		
-		placeable->setPosition(position);
+			if(m_moveUp)
+				offset = Ogre::Vector3(0.0, 0.0, -10.0 / m_clock->lastIncrement());
+			else if(m_moveDown)
+				offset = Ogre::Vector3(0.0, 0.0, 10.0 / m_clock->lastIncrement());
+			if(m_moveLeft)
+				offset += Ogre::Vector3(-10.0 / m_clock->lastIncrement(), 0.0, 0.0);
+			else if(m_moveRight)
+				offset += Ogre::Vector3(10.0 / m_clock->lastIncrement(), 0.0, 0.0);
+			
+			placeable->sceneNode()->setOrientation(Ogre::Quaternion::IDENTITY);
+			Ogre::Vector3 position = placeable->position() + offset;
+
+			if(position.x < -(kFieldWidth * .5))
+				position.x = -(kFieldWidth * .5);
+			else if(position.x > (kFieldWidth * .5))
+				position.x = (kFieldWidth * .5);
+			if(position.z < -(kFieldHeight * .5))
+				position.z = -(kFieldHeight * .5);
+			else if(position.z > (kFieldHeight * .5))
+				position.z = (kFieldHeight * .5);
+			
+			placeable->setPosition(position);
+			placeable->sceneNode()->setDirection(-offset);
+			
+			OgreFramework::getSingletonPtr()->m_pCamera->setPosition(position + Ogre::Vector3(0.0, 40.0, 40.0));
+		}
 	}
 }
