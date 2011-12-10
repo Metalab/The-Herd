@@ -56,27 +56,9 @@
 	
 	OgreFramework::getSingletonPtr()->m_pSceneMgr->setSkyBox(true, "Examples/SpaceSkyBox");
 	OgreFramework::getSingletonPtr()->m_pSceneMgr->createLight("Light")->setPosition(75,75,75);
-	Ogre::Entity *pCubeEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("Cube", "ogrehead.mesh");
-	Ogre::SceneNode *pCubeNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("CubeNode");
-	pCubeNode->setScale(0.5, 0.5, 0.5);
-	pCubeNode->attachObject(pCubeEntity);
-	
-	head = new Engine::GameObject();
-	Engine::Placeable *placeable = head->addComponent<Engine::Placeable>();
-	placeable->setSceneNode(pCubeNode);
-	
-	Engine::ObjectTextDisplayComponent *textDisplay = head->addComponent<Engine::ObjectTextDisplayComponent>();
-	textDisplay->setText("Hello World");
-	
-	head->setWantsUpdate(true);
-	gameObjectService->addGameObject(head);
 }
 
 - (void)tick {
-	Engine::Placeable *placeable = head->getComponent<Engine::Placeable>();
-	Ogre::SceneNode *sceneNode = placeable->sceneNode();
-	sceneNode->yaw(Ogre::Degree(1.0));
-	
 	Engine::ServiceManager::getSingletonPtr()->tick();
 	if(!Engine::ServiceManager::getSingletonPtr()->shouldTerminate())
 		[self performSelector:_cmd withObject:nil afterDelay:0.0];
