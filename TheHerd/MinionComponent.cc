@@ -14,6 +14,7 @@
 #include "Engine/ServiceManager.h"
 #include "GameService.h"
 #include "Engine/Clock.h"
+#include "InteractionComponent.h"
 
 namespace Game {
 	MinionComponent::MinionComponent(Engine::GameObject *gameObject) : GameComponent(gameObject) {
@@ -30,6 +31,16 @@ namespace Game {
 			// ### die
 		}
 		gameObject()->props().Set("life", l);
+		
+		int m = money();
+		if(m > kMoneyThresholdOccupy) {
+			Engine::GameObject *stakeholder = stakeHolder();
+			if(stakeholder) {
+				InteractionComponent *interactionComponent = gameObject()->getComponent<InteractionComponent>();
+				if(interactionComponent)
+					interactionComponent->repay(gameObject());
+			}
+		}
 
 		Engine::ObjectOverlayComponent *objectOverlayComponent = gameObject()->getComponent<Engine::ObjectOverlayComponent>();
 		if(!objectOverlayComponent)
@@ -39,7 +50,7 @@ namespace Game {
 			return;
 
 		std::ostringstream S;
-		S << "$" << money();
+		S << "$" << m;
 		doc->GetElementById("money")->SetInnerRML(S.str().c_str());
 		
 		S.str("");
