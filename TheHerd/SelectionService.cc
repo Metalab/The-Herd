@@ -24,6 +24,7 @@ namespace Game {
 		static_cast<Engine::InputService*>(Engine::ServiceManager::getSingletonPtr()->getService("input"))->registerMouseListener(this);
 		
 		m_actionMenu = static_cast<Engine::RocketService*>(Engine::ServiceManager::getSingletonPtr()->getService("rocket"))->loadDocument("actionmenu.rml");
+		target = NULL;
 	}
 	
 	void SelectionService::shutdown() {
@@ -66,6 +67,7 @@ namespace Game {
 					// yes, it's actually a minion!
 					gameService->clock()->setScale(0.5);
 					m_inMenu = true;
+					target = gameObject;
 					
 					m_actionMenu->GetElementById("name")->SetInnerRML(gameObject->name().c_str());
 					
@@ -75,8 +77,6 @@ namespace Game {
 					m_actionMenu->Show();
 					Rocket::Core::Box box = m_actionMenu->GetBox();
 					m_actionMenu->SetOffset(Rocket::Core::Vector2f(e.state.X.abs - box.GetSize().x * 0.5, e.state.Y.abs - box.GetSize().y * 0.5), NULL);
-					
-					OgreFramework::getSingletonPtr()->m_pLog->logMessage("Click on " + gameObject->name());
 				}
 			}
 		}
@@ -88,9 +88,29 @@ namespace Game {
 	bool SelectionService::mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id) {
 		if(m_inMenu) {
 			m_inMenu = false;
+			
+			Rocket::Core::Vector2f mousepos(e.state.X.abs, e.state.Y.abs);
+			
+			// determine where the player has lifted the mouse
+			if(m_actionMenu->GetElementById("trade")->IsPointWithinElement(mousepos)) {
+				// trade
+				OgreFramework::getSingletonPtr()->m_pLog->logMessage("Trade with " + target->name());
+			} else if(m_actionMenu->GetElementById("attack")->IsPointWithinElement(mousepos)) {
+				// attack
+				OgreFramework::getSingletonPtr()->m_pLog->logMessage("Attack/Police " + target->name());
+			} else if(m_actionMenu->GetElementById("occupy")->IsPointWithinElement(mousepos)) {
+				// occupy
+				OgreFramework::getSingletonPtr()->m_pLog->logMessage("Occupy " + target->name());
+			} else if(m_actionMenu->GetElementById("repay")->IsPointWithinElement(mousepos)) {
+				// repay
+				OgreFramework::getSingletonPtr()->m_pLog->logMessage("Repay " + target->name());
+			}
+			
 			m_actionMenu->Hide();
 			GameService *gameService = (GameService*)Engine::ServiceManager::getSingletonPtr()->getService("game");
 			gameService->clock()->setScale(1.0);
+			
+			target = NULL;
 		}
 		
 		return false;

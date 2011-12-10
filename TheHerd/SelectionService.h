@@ -18,6 +18,10 @@ namespace Rocket {
 	}
 }
 
+namespace Engine {
+	class GameObject;
+}
+
 namespace Game {
 	class SelectionService : public Engine::Service, public OIS::MouseListener {
 	public:
@@ -31,6 +35,7 @@ namespace Game {
 	private:
 		bool m_inMenu;
 		Rocket::Core::ElementDocument *m_actionMenu;
+		Engine::GameObject *target;
 	};
 }
 
