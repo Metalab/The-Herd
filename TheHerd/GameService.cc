@@ -43,8 +43,11 @@ namespace Game {
 			Engine::Placeable *placeable = minion->addComponent<Engine::Placeable>();
 			placeable->setSceneNode(pCubeNode);
 			
+			std::string name = m_nameGenerator();
+			minion->props().Set("name", name);
+			
 			Engine::ObjectTextDisplayComponent *textDisplay = minion->addComponent<Engine::ObjectTextDisplayComponent>();
-			textDisplay->setText(S.str());
+			textDisplay->setText(name);
 			
 			minion->setWantsUpdate(true);
 			gameObjectService->addGameObject(minion);
@@ -65,7 +68,8 @@ namespace Game {
 		placeable->setSceneNode(pCubeNode);
 		
 		Engine::ObjectTextDisplayComponent *textDisplay = m_player->addComponent<Engine::ObjectTextDisplayComponent>();
-		textDisplay->setText("Player");
+		
+		textDisplay->setText(m_playerName);
 		
 		m_player->setWantsUpdate(true);
 		gameObjectService->addGameObject(m_player);

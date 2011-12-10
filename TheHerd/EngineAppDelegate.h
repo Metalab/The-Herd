@@ -14,6 +14,7 @@ namespace Engine {
 
 @interface EngineAppDelegate : NSObject <NSApplicationDelegate> {
 	Engine::Clock *gameClock;
+	NSArray *namesList;
 }
 
 @end

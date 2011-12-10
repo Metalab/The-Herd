@@ -44,12 +44,26 @@
 	sm->registerClock(gameClock);
 	Engine::GameObjectService *gameObjectService = new Engine::GameObjectService();
 	
+	NSError *error;
+	NSString *names = [NSString stringWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"names" withExtension:@"txt" subdirectory:@"media"] encoding:NSUTF8StringEncoding error:&error];
+	if(!names)
+		NSLog(@"error reading names.txt: %@", error);
+	else
+		namesList = [names componentsSeparatedByString:@"\n"];
+	
+	srandomdev();
+	
 	sm->registerService("input", inputService, -1);
 	sm->registerService("ogre", new Engine::OgreService(inputService, gameClock));
 	sm->registerService("audio", audioService);
 	sm->registerService("rocket", new Engine::RocketService([[resources stringByAppendingPathComponent:@"media/ui"] fileSystemRepresentation]), 1);
 	sm->registerService("gameObject", gameObjectService, -1);
-	sm->registerService("game", new Game::GameService(gameClock), 100);
+	sm->registerService("game", new Game::GameService(gameClock, [NSFullUserName() UTF8String], ^{
+		if(!namesList)
+			return std::string("<names error>");
+		else
+			return std::string([[namesList objectAtIndex:random() % [namesList count]] UTF8String]);
+	}), 100);
 	
 	sm->startup();
 	

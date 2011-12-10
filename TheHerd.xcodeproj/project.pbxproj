@@ -131,6 +131,7 @@
 		8148DE001492CC3A00AADF66 /* GameService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameService.h; sourceTree = "<group>"; };
 		8148DE011492CC8500AADF66 /* GameService.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameService.cc; sourceTree = "<group>"; };
 		8148DE031492D90300AADF66 /* Placeable.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Placeable.cc; sourceTree = "<group>"; };
+		8148DE051493003200AADF66 /* MinionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinionComponent.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +227,7 @@
 				8148DDB61492517300AADF66 /* EngineAppDelegate.mm */,
 				8148DE001492CC3A00AADF66 /* GameService.h */,
 				8148DE011492CC8500AADF66 /* GameService.cc */,
+				8148DE051493003200AADF66 /* MinionComponent.h */,
 			);
 			name = "Basic Ogre Framework";
 			sourceTree = "<group>";
