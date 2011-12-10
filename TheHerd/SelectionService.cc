@@ -111,6 +111,7 @@ namespace Game {
 			gameService->clock()->setScale(1.0);
 			
 			target = NULL;
+			return true;
 		}
 		
 		return false;
