@@ -138,7 +138,7 @@ bool OgreFramework::keyPressed(const OIS::KeyEvent &keyEventRef)
 {
 	if(m_pKeyboard->isKeyDown(OIS::KC_F12))
 	{
-		m_pRenderWnd->writeContentsToTimestampedFile("Screenshot_", ".png");
+		m_pRenderWnd->writeContentsToTimestampedFile("/tmp/Screenshot_", ".png");
 		return true;
 	}
     
