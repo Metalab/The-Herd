@@ -36,6 +36,14 @@ namespace Game {
 			return m_exchangeRate;
 		}
 		
+		Engine::GameObject *player() {
+			return m_player;
+		}
+		
+		Rocket::Core::ElementDocument *playerHud() {
+			return m_playerHud;
+		}
+		
 		void startup();
 		void shutdown();
 		void tick();

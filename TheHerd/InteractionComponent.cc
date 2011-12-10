@@ -10,6 +10,7 @@
 #include "GameConstants.h"
 #include "MinionComponent.h"
 #include "GameService.h"
+#include "EventLogService.h"
 #include "ServiceManager.h"
 
 namespace Game {
@@ -25,6 +26,8 @@ namespace Game {
 		
 		minion->props().Get("money", &otherMoney);
 		
+		EventLogService *eventLogService = (EventLogService*)Engine::ServiceManager::getSingletonPtr()->getService("eventlog");
+		
 		if((myLife < kLifeAIThresholdWantMore && myMoney > kMoneyForFood) ||
 		   (myLife < kLifeAIThresholdFull && myMoney > kMoneyForFood * 10 && random() < (RAND_MAX/8))) {
 			// trade
@@ -33,6 +36,8 @@ namespace Game {
 			minionComponent->changeMoney(kMoneyForFood);
 			gameObject()->props().Set("money", myMoney - kMoneyForFood);
 			gameObject()->props().Set("life", MIN(myLife + gameService->exchangeRate(), 1.0));
+			
+			eventLogService->logInteraction(gameObject(), minion, "traded with");
 			return;
 		}
 		if(myMoney < kMoneyThresholdAttack) {
@@ -41,6 +46,8 @@ namespace Game {
 				minionComponent->changeMoney(kMoneyForAttack);
 				gameObject()->props().Set("money", myMoney + kMoneyForAttack);
 				gameObject()->props().Set("life", MAX(myLife - kLifeForAttack * (random() / (float)RAND_MAX), 0.0));
+
+				eventLogService->logInteraction(gameObject(), minion, "attacked");
 				return;
 			}
 		} else {
@@ -51,6 +58,8 @@ namespace Game {
 							// occupy
 						minionComponent->addStake(gameObject());
 						gameObject()->props().Set("money", myMoney - kMoneyForStake);
+						
+						eventLogService->logInteraction(gameObject(), minion, "increased the stake in");
 						return;
 					} else {
 						// different stakeholder, buy out?
@@ -67,6 +76,8 @@ namespace Game {
 								minionComponent->buyOutStake();
 								gameObject()->props().Set("money", myMoney - kMoneyForBuyOut);
 								stakeholderMinionComponent->changeMoney(kMoneyForBuyOut);
+								
+								eventLogService->logInteraction(gameObject(), minion, "repaid a stake of");
 								return;
 							}
 						}
@@ -77,6 +88,7 @@ namespace Game {
 				if(otherMoney > kMoneyThresholdAttack && random() < (RAND_MAX/8)) {
 					// police
 					minionComponent->changeLife(-kLifeForAttack);
+					eventLogService->logInteraction(gameObject(), minion, "victimized");
 					return;
 				}
 			}

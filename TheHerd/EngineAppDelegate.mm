@@ -18,6 +18,7 @@
 #include "Engine/Placeable.h"
 #include "Engine/ObjectTextComponent.h"
 #include "GameService.h"
+#include "EventLogService.h"
 
 #include "OgreFramework.h"
 
@@ -64,6 +65,7 @@
 		else
 			return std::string([[namesList objectAtIndex:random() % [namesList count]] UTF8String]);
 	}), 100);
+	sm->registerService("eventlog", new Game::EventLogService(), 101);
 	
 	sm->startup();
 	

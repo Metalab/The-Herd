@@ -44,6 +44,7 @@
 		8148DE0B14930C6D00AADF66 /* RandomWalkComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE0A14930C6D00AADF66 /* RandomWalkComponent.cc */; };
 		8148DE0E1493B46900AADF66 /* InteractionComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE0D1493B46900AADF66 /* InteractionComponent.cc */; };
 		8148DE111493C4E800AADF66 /* ObjectOverlayComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE101493C4E700AADF66 /* ObjectOverlayComponent.cc */; };
+		8148DE141493DCC400AADF66 /* EventLogService.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE131493DCC400AADF66 /* EventLogService.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -144,6 +145,8 @@
 		8148DE0D1493B46900AADF66 /* InteractionComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InteractionComponent.cc; sourceTree = "<group>"; };
 		8148DE0F1493C3FB00AADF66 /* ObjectOverlayComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectOverlayComponent.h; sourceTree = "<group>"; };
 		8148DE101493C4E700AADF66 /* ObjectOverlayComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ObjectOverlayComponent.cc; sourceTree = "<group>"; };
+		8148DE121493DB6000AADF66 /* EventLogService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventLogService.h; sourceTree = "<group>"; };
+		8148DE131493DCC400AADF66 /* EventLogService.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventLogService.cc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +249,8 @@
 				8148DE0A14930C6D00AADF66 /* RandomWalkComponent.cc */,
 				8148DE0C1493B3E100AADF66 /* InteractionComponent.h */,
 				8148DE0D1493B46900AADF66 /* InteractionComponent.cc */,
+				8148DE121493DB6000AADF66 /* EventLogService.h */,
+				8148DE131493DCC400AADF66 /* EventLogService.cc */,
 			);
 			name = "Basic Ogre Framework";
 			sourceTree = "<group>";
@@ -439,6 +444,7 @@
 				8148DE0B14930C6D00AADF66 /* RandomWalkComponent.cc in Sources */,
 				8148DE0E1493B46900AADF66 /* InteractionComponent.cc in Sources */,
 				8148DE111493C4E800AADF66 /* ObjectOverlayComponent.cc in Sources */,
+				8148DE141493DCC400AADF66 /* EventLogService.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
