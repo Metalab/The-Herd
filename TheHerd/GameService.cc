@@ -20,6 +20,8 @@
 #include <sstream>
 #include "GameConstants.h"
 #include "RandomWalkComponent.h"
+#include "InteractionComponent.h"
+#include <Rocket/Core.h>
 
 namespace Game {
 	void GameService::startup() {
@@ -60,6 +62,7 @@ namespace Game {
 			placeable->setPosition(pos);
 			
 			minion->addComponent<Game::RandomWalkComponent>()->setClock(m_clock);
+			minion->addComponent<Game::InteractionComponent>();
 			minion->setWantsUpdate(true);
 			
 			m_minions.push_back(minion);

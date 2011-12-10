@@ -13,6 +13,7 @@
 #include "Engine/OgreService.h"
 #include "OgreFramework.h"
 #include "Engine/Clock.h"
+#include "InteractionComponent.h"
 
 namespace Game {
 	RandomWalkComponent::RandomWalkComponent(Engine::GameObject *gameObject) : GameComponent(gameObject) {
@@ -40,14 +41,19 @@ namespace Game {
 		
 		placeable->setPosition(newPosition);
 
-		// TODO: check for colissions with the border and other entities, and turn randomly
+		// check for colissions with the border and other entities, and turn randomly
 		Engine::OgreService *ogreService = (Engine::OgreService*)Engine::ServiceManager::getSingletonPtr()->getService("ogre");
 		
 		std::vector<Engine::GameObject*> colliders = ogreService->sphereQuery(gameObject(), kMinionPrivacyRadius);
 		if(colliders.size() == 0)
 			return; // nothing to do
 		
-		// TODO: defer interaction to another component
+		// defer interaction to another component
+		InteractionComponent *interactionComponent = gameObject()->getComponent<InteractionComponent>();
+		if(interactionComponent) {
+			for(std::vector<Engine::GameObject*>::iterator iter = colliders.begin(); iter != colliders.end(); ++iter)
+				interactionComponent->interactWith(*iter);
+		}
 		
 		std::vector<Ogre::Vector2> resultDirections;
 		for(std::vector<Engine::GameObject*>::iterator iter = colliders.begin(); iter != colliders.end(); ++iter) {
