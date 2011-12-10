@@ -70,7 +70,7 @@ namespace Game {
 
 		Ogre::Entity *pMinionEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("player", "ogrehead.mesh");
 		Ogre::SceneNode *pCubeNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("player");
-		pCubeNode->setScale(0.2, 0.2, 0.2);
+		pCubeNode->setScale(0.1, 0.1, 0.1);
 		pCubeNode->attachObject(pMinionEntity);
 		
 		m_player = new Engine::GameObject();
