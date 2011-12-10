@@ -17,6 +17,7 @@ namespace Game {
 		InteractionComponent(Engine::GameObject *gameObject) : GameComponent(gameObject) {}
 		
 		void interactWith(Engine::GameObject *minion);
+		void tick() {}
 	};
 }
 
