@@ -17,6 +17,7 @@
 #include "Engine/Clock.h"
 #include <sstream>
 #include <Rocket/Core.h>
+#include "InteractionComponent.h"
 
 namespace Game {
 	void SelectionService::startup() {
@@ -91,23 +92,20 @@ namespace Game {
 			
 			Rocket::Core::Vector2f mousepos(e.state.X.abs, e.state.Y.abs);
 			
+			GameService *gameService = (GameService*)Engine::ServiceManager::getSingletonPtr()->getService("game");
+			InteractionComponent *interactionComponent = gameService->player()->getComponent<InteractionComponent>();
+			
 			// determine where the player has lifted the mouse
-			if(m_actionMenu->GetElementById("trade")->IsPointWithinElement(mousepos)) {
-				// trade
-				OgreFramework::getSingletonPtr()->m_pLog->logMessage("Trade with " + target->name());
-			} else if(m_actionMenu->GetElementById("attack")->IsPointWithinElement(mousepos)) {
-				// attack
-				OgreFramework::getSingletonPtr()->m_pLog->logMessage("Attack/Police " + target->name());
-			} else if(m_actionMenu->GetElementById("occupy")->IsPointWithinElement(mousepos)) {
-				// occupy
-				OgreFramework::getSingletonPtr()->m_pLog->logMessage("Occupy " + target->name());
-			} else if(m_actionMenu->GetElementById("repay")->IsPointWithinElement(mousepos)) {
-				// repay
-				OgreFramework::getSingletonPtr()->m_pLog->logMessage("Repay " + target->name());
-			}
+			if(m_actionMenu->GetElementById("trade")->IsPointWithinElement(mousepos))
+				interactionComponent->trade(target);
+			else if(m_actionMenu->GetElementById("attack")->IsPointWithinElement(mousepos)) {
+				interactionComponent->attack(target); // TODO: police
+			} else if(m_actionMenu->GetElementById("occupy")->IsPointWithinElement(mousepos))
+				interactionComponent->occupy(target);
+			else if(m_actionMenu->GetElementById("repay")->IsPointWithinElement(mousepos))
+				interactionComponent->repay(target);
 			
 			m_actionMenu->Hide();
-			GameService *gameService = (GameService*)Engine::ServiceManager::getSingletonPtr()->getService("game");
 			gameService->clock()->setScale(1.0);
 			
 			target = NULL;

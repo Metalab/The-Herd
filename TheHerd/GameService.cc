@@ -90,6 +90,7 @@ namespace Game {
 		Engine::Placeable *placeable = m_player->addComponent<Engine::Placeable>();
 		placeable->setSceneNode(pCubeNode);
 		m_player->addComponent<Game::MinionComponent>();
+		m_player->addComponent<Game::InteractionComponent>();
 		
 		Engine::ObjectTextDisplayComponent *textDisplay = m_player->addComponent<Engine::ObjectTextDisplayComponent>();
 		
