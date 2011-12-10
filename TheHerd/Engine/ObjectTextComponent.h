@@ -24,7 +24,7 @@ namespace Engine {
 		void tick();
 		
 		ObjectTextDisplayComponent(GameObject *gameObject);
-		~ObjectTextDisplayComponent();
+		virtual ~ObjectTextDisplayComponent();
 	private:
 		Rocket::Core::ElementDocument *m_overlay;
 	};
