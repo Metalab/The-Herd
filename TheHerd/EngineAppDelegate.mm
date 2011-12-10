@@ -57,7 +57,7 @@
 	sm->registerService("ogre", new Engine::OgreService(inputService, gameClock));
 	sm->registerService("audio", audioService);
 	sm->registerService("rocket", new Engine::RocketService([[resources stringByAppendingPathComponent:@"media/ui"] fileSystemRepresentation]), 1);
-	sm->registerService("gameObject", gameObjectService, -1);
+	sm->registerService("gameObject", gameObjectService, 2);
 	sm->registerService("game", new Game::GameService(gameClock, [NSFullUserName() UTF8String], ^{
 		if(!namesList)
 			return std::string("<names error>");

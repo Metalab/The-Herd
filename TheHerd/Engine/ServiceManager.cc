@@ -57,7 +57,7 @@ namespace Engine {
 	}
 	
 	void ServiceManager::shutdown() {
-		for(ServiceSet::iterator iter = m_services.begin(); iter != m_services.end(); ++iter) {
+		for(ServiceSet::reverse_iterator iter = m_services.rbegin(); iter != m_services.rend(); ++iter) {
 			iter->first->shutdown();
 			delete iter->first;
 		}
