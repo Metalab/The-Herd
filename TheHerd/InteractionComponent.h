@@ -15,6 +15,7 @@ namespace Game {
 	class InteractionComponent : public Engine::GameComponent {
 	public:
 		InteractionComponent(Engine::GameObject *gameObject) : GameComponent(gameObject) {}
+		virtual ~InteractionComponent() {}
 		
 		void interactWith(Engine::GameObject *minion);
 		void tick() {}
