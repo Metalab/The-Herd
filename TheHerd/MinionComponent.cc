@@ -11,6 +11,9 @@
 #include "GameConstants.h"
 #include "Engine/ObjectOverlayComponent.h"
 #include <Rocket/Core.h>
+#include "Engine/ServiceManager.h"
+#include "GameService.h"
+#include "Engine/Clock.h"
 
 namespace Game {
 	MinionComponent::MinionComponent(Engine::GameObject *gameObject) : GameComponent(gameObject) {
@@ -30,8 +33,18 @@ namespace Game {
 		S << "$" << money();
 		doc->GetElementById("money")->SetInnerRML(S.str().c_str());
 		
+		float l = life();
+		
+		// reduce due to hunger
+		GameService *gameService = (GameService*)Engine::ServiceManager::getSingletonPtr()->getService("game");
+		l -= kHunger * gameService->clock()->lastIncrement();
+		if(l <= 0.0) {
+			// ### die
+		}
+		gameObject()->props().Set("life", l);
+		
 		S.str("");
-		S << (int)(life() * 100.0) << "%";
+		S << (int)(l * 100.0) << "%";
 		doc->GetElementById("life")->SetInnerRML(S.str().c_str());
 	}
 	

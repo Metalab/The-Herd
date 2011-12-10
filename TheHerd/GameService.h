@@ -44,6 +44,10 @@ namespace Game {
 			return m_playerHud;
 		}
 		
+		Engine::Clock *clock() {
+			return m_clock;
+		}
+		
 		void startup();
 		void shutdown();
 		void tick();

@@ -35,7 +35,7 @@ namespace Game {
 			
 			minionComponent->changeMoney(kMoneyForFood);
 			gameObject()->props().Set("money", myMoney - kMoneyForFood);
-			gameObject()->props().Set("life", MIN(myLife + gameService->exchangeRate(), 1.0));
+			gameObject()->props().Set("life", (float)MIN(myLife + gameService->exchangeRate(), 1.0));
 			
 			eventLogService->logInteraction(gameObject(), minion, "traded with");
 			return;
@@ -45,7 +45,7 @@ namespace Game {
 				// attack
 				minionComponent->changeMoney(kMoneyForAttack);
 				gameObject()->props().Set("money", myMoney + kMoneyForAttack);
-				gameObject()->props().Set("life", MAX(myLife - kLifeForAttack * (random() / (float)RAND_MAX), 0.0));
+				gameObject()->props().Set("life", (float)MAX(myLife - kLifeForAttack * (random() / (float)RAND_MAX), 0.0));
 
 				eventLogService->logInteraction(gameObject(), minion, "attacked");
 				return;
