@@ -43,6 +43,14 @@ namespace Engine {
 			return m_properties;
 		}
 		
+		void setName(const std::string &name) {
+			m_name = name;
+		}
+		
+		const std::string &name() {
+			return m_name;
+		}
+		
 		template<typename T> T *addComponent() {
 			return static_cast<T*>(*m_components.insert(new T(this)).first);
 		}
@@ -58,6 +66,7 @@ namespace Engine {
 		bool m_wantsUpdate;
 		std::set<GameComponent*> m_components;
 		KeyValueDictionary m_properties;
+		std::string m_name;
 	};
 }
 
