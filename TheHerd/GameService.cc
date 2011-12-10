@@ -217,5 +217,8 @@ namespace Game {
 		S.str("");
 		S << "$" << money;
 		m_playerHud->GetElementById("money")->SetInnerRML(S.str().c_str());
+		S.str("");
+		S << MIN(100.0, 100.0 * money / kMoneyThresholdPolice) << "%";
+		m_playerHud->GetElementById("moneyBar")->SetProperty("height", S.str().c_str());
 	}
 }

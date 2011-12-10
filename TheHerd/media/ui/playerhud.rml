@@ -36,6 +36,44 @@
 			background-color: #f00a;
 			width: 20px;
 		}
+		#moneybar {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			width: 20px;
+			height: 60%;
+			background-color: #f5c600aa;
+		}
+		#hobolimit {
+			position: absolute;
+			right: 0;
+			bottom: 3.3%;
+			width: 50px;
+			padding-right: 25px;
+			text-align: right;
+			border-top-width: 2px;
+			border-top-color: #fffa;
+		}
+		#bankerlimit {
+			position: absolute;
+			right: 0;
+			padding-right: 25px;
+			bottom: 33.3%;
+			width: 50px;
+			text-align: right;
+			border-top-width: 2px;
+			border-top-color: #fffa;
+		}
+		#onepercentlimit {
+			position: absolute;
+			right: 0;
+			padding-right: 25px;
+			top: 0;
+			width: 50px;
+			text-align: right;
+			border-top-width: 2px;
+			border-top-color: #fffa;
+		}
 		</style>
 	</head>
 	<body>
@@ -49,5 +87,9 @@
 	<span id="log-0"></span>
 	</div>
 	<div id="life"></div>
+	<div id="moneybar"></div>
+	<div id="hobolimit">Hobo</div>
+	<div id="bankerlimit">Banker</div>
+	<div id="onepercentlimit">One Percent</div>
 	</body>
 </rml>
