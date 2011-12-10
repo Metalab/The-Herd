@@ -11,10 +11,16 @@
 			width: 100px;
 			text-align: center;
 		}
+		#life {
+			display: block;
+			width: 100%;
+			height: 5px;
+			background-color: #f00a;
+		}
 		</style>
 	</head>
 	<body><span id="name"></span><br/>
-	Money: <span id="money"></span><br/>
-	Life: <span id="life"></span>
+	Money: <span id="money"></span>
+	<div id="life"></div>
 	</body>
 </rml>

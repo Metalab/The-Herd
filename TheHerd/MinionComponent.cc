@@ -45,7 +45,11 @@ namespace Game {
 		
 		S.str("");
 		S << (int)(l * 100.0) << "%";
-		doc->GetElementById("life")->SetInnerRML(S.str().c_str());
+		Rocket::Core::Element *lifeBar = doc->GetElementById("life");
+		
+		lifeBar->SetProperty("width", S.str().c_str());
+		lifeBar->SetProperty("background-color", (l < .3)?"#f00a":(l < .6)?"#ff0a":"#0f0a");
+		lifeBar->SetProperty("width", S.str().c_str());
 	}
 	
 	float MinionComponent::life() {
