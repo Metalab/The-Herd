@@ -111,25 +111,49 @@ namespace Game {
 		inputService->registerKeyDownListener(OIS::KC_UP, ^(const OIS::KeyEvent &arg) {
 			m_moveUp = true;
 		});
+		inputService->registerKeyDownListener(OIS::KC_W, ^(const OIS::KeyEvent &arg) {
+			m_moveUp = true;
+		});
 		inputService->registerKeyUpListener(OIS::KC_UP, ^(const OIS::KeyEvent &arg) {
+			m_moveUp = false;
+		});
+		inputService->registerKeyUpListener(OIS::KC_W, ^(const OIS::KeyEvent &arg) {
 			m_moveUp = false;
 		});
 		inputService->registerKeyDownListener(OIS::KC_DOWN, ^(const OIS::KeyEvent &arg) {
 			m_moveDown = true;
 		});
+		inputService->registerKeyDownListener(OIS::KC_S, ^(const OIS::KeyEvent &arg) {
+			m_moveDown = true;
+		});
 		inputService->registerKeyUpListener(OIS::KC_DOWN, ^(const OIS::KeyEvent &arg) {
+			m_moveDown = false;
+		});
+		inputService->registerKeyUpListener(OIS::KC_S, ^(const OIS::KeyEvent &arg) {
 			m_moveDown = false;
 		});
 		inputService->registerKeyDownListener(OIS::KC_LEFT, ^(const OIS::KeyEvent &arg) {
 			m_moveLeft = true;
 		});
+		inputService->registerKeyDownListener(OIS::KC_A, ^(const OIS::KeyEvent &arg) {
+			m_moveLeft = true;
+		});
 		inputService->registerKeyUpListener(OIS::KC_LEFT, ^(const OIS::KeyEvent &arg) {
+			m_moveLeft = false;
+		});
+		inputService->registerKeyUpListener(OIS::KC_A, ^(const OIS::KeyEvent &arg) {
 			m_moveLeft = false;
 		});
 		inputService->registerKeyDownListener(OIS::KC_RIGHT, ^(const OIS::KeyEvent &arg) {
 			m_moveRight = true;
 		});
+		inputService->registerKeyDownListener(OIS::KC_D, ^(const OIS::KeyEvent &arg) {
+			m_moveRight = true;
+		});
 		inputService->registerKeyUpListener(OIS::KC_RIGHT, ^(const OIS::KeyEvent &arg) {
+			m_moveRight = false;
+		});
+		inputService->registerKeyUpListener(OIS::KC_D, ^(const OIS::KeyEvent &arg) {
 			m_moveRight = false;
 		});
 		
