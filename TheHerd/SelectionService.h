@@ -36,6 +36,11 @@ namespace Game {
 		void updateMenu();
 		
 		bool m_inMenu;
+		bool m_canTrade;
+		bool m_canAttack;
+		bool m_canOccupy;
+		bool m_canRepay;
+		bool m_canPolice;
 		Rocket::Core::ElementDocument *m_actionMenu;
 		Engine::GameObject *target;
 	};

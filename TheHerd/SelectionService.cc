@@ -94,27 +94,26 @@ namespace Game {
 		int myMoney = minionComponent->money();
 		int targetMoney = targetMinionComponent->money();
 		
-		m_actionMenu->GetElementById("trade")->SetProperty("background-color", (myMoney > kMoneyForFood)?"#0f0d":"#aaad");
+		m_canTrade = myMoney > kMoneyForFood;
+		m_actionMenu->GetElementById("trade")->SetProperty("background-color", m_canTrade?"#0f0d":"#aaad");
 		
 		Engine::GameObject *stakeholder = targetMinionComponent->stakeHolder();
 		
-		if(myMoney > kMoneyThresholdOccupy && targetMoney <= kMoneyThresholdOccupy &&
-		   (!stakeholder || stakeholder == gameService->player()))
-			m_actionMenu->GetElementById("occupy")->SetProperty("background-color", "#0f0d");
-		else
-			m_actionMenu->GetElementById("occupy")->SetProperty("background-color", "#aaad");
+		m_canOccupy = myMoney > kMoneyThresholdOccupy && targetMoney <= kMoneyThresholdOccupy &&
+			(!stakeholder || stakeholder == gameService->player());
+		m_actionMenu->GetElementById("occupy")->SetProperty("background-color", m_canOccupy?"#0f0d":"#aaad");
 		
-		if(myMoney > kMoneyThresholdPolice || myMoney < kMoneyThresholdAttack) {
+		m_canPolice = myMoney > kMoneyThresholdPolice;
+		m_canAttack = myMoney < kMoneyThresholdAttack;
+		if(m_canPolice || m_canAttack) {
 			Rocket::Core::Element *attackElem = m_actionMenu->GetElementById("attack");
-			attackElem->SetInnerRML((myMoney > kMoneyThresholdPolice)?"Police":"Attack");
+			attackElem->SetInnerRML(m_canPolice?"Police":"Attack");
 			attackElem->SetProperty("background-color", "#0f0d");
 		} else
 			m_actionMenu->GetElementById("attack")->SetProperty("background-color", "#aaad");
 		
-		if(stakeholder && stakeholder != gameService->player())
-			m_actionMenu->GetElementById("repay")->SetProperty("background-color", "#0f0d");
-		else
-			m_actionMenu->GetElementById("repay")->SetProperty("background-color", "#aaad");
+		m_canRepay = stakeholder && stakeholder != gameService->player();
+		m_actionMenu->GetElementById("repay")->SetProperty("background-color", m_canRepay?"#0f0d":"#aaad");
 	}
 	
 	void SelectionService::tick() {
@@ -134,13 +133,16 @@ namespace Game {
 			InteractionComponent *interactionComponent = gameService->player()->getComponent<InteractionComponent>();
 			
 			// determine where the player has lifted the mouse
-			if(m_actionMenu->GetElementById("trade")->IsPointWithinElement(mousepos))
+			if(m_canTrade && m_actionMenu->GetElementById("trade")->IsPointWithinElement(mousepos))
 				interactionComponent->trade(target);
-			else if(m_actionMenu->GetElementById("attack")->IsPointWithinElement(mousepos)) {
-				interactionComponent->attack(target); // TODO: police
-			} else if(m_actionMenu->GetElementById("occupy")->IsPointWithinElement(mousepos))
+			else if((m_canAttack || m_canPolice) && m_actionMenu->GetElementById("attack")->IsPointWithinElement(mousepos)) {
+				if(m_canAttack)
+					interactionComponent->attack(target);
+				else
+					interactionComponent->police(target);
+			} else if(m_canOccupy && m_actionMenu->GetElementById("occupy")->IsPointWithinElement(mousepos))
 				interactionComponent->occupy(target);
-			else if(m_actionMenu->GetElementById("repay")->IsPointWithinElement(mousepos))
+			else if(m_canRepay && m_actionMenu->GetElementById("repay")->IsPointWithinElement(mousepos))
 				interactionComponent->repay(target);
 			
 			m_actionMenu->Hide();
