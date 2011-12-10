@@ -13,6 +13,7 @@
 #include "Engine/AudioService.h"
 #include "Engine/RocketService.h"
 #include "Engine/GameObjectService.h"
+#include "SelectionService.h"
 #include "Engine/Clock.h"
 #include "Engine/GameObject.h"
 #include "Engine/Placeable.h"
@@ -57,8 +58,9 @@
 	sm->registerService("input", inputService, -1);
 	sm->registerService("ogre", new Engine::OgreService(inputService, gameClock));
 	sm->registerService("audio", audioService);
-	sm->registerService("rocket", new Engine::RocketService([[resources stringByAppendingPathComponent:@"media/ui"] fileSystemRepresentation]), 1);
-	sm->registerService("gameObject", gameObjectService, 2);
+	sm->registerService("selection", new Game::SelectionService(), 1);
+	sm->registerService("rocket", new Engine::RocketService([[resources stringByAppendingPathComponent:@"media/ui"] fileSystemRepresentation]), 2);
+	sm->registerService("gameObject", gameObjectService, 3);
 	sm->registerService("game", new Game::GameService(gameClock, [NSFullUserName() UTF8String], ^{
 		if(!namesList)
 			return std::string("<names error>");
