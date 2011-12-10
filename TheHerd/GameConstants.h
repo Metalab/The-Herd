@@ -38,7 +38,7 @@ namespace Game {
 	static const float kHunger = 0.0001;
 	
 	static const float kMinionPrivacyRadius = 4.0;
-	static const float kMinionWalkSpeed = 0.02;
+	static const float kMinionWalkSpeed = 0.01;
 }
 
 #endif
