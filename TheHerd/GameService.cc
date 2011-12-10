@@ -17,12 +17,9 @@
 #include "Engine/InputService.h"
 #include "Engine/Clock.h"
 #include <sstream>
+#include "GameConstants.h"
 
 namespace Game {
-	const unsigned kMinionCount = 100;
-	const unsigned kFieldWidth = 200;
-	const unsigned kFieldHeight = 300;
-	
 	void GameService::startup() {
 		unsigned rowSize = sqrt(kMinionCount);
 		Engine::GameObjectService *gameObjectService = (Engine::GameObjectService*)Engine::ServiceManager::getSingletonPtr()->getService("gameObject");

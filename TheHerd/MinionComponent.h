@@ -11,7 +11,7 @@
 
 #include "Engine/GameObject.h"
 
-namespace Engine {
+namespace Game {
 	class MinionComponent : public Engine::GameComponent {
 	public:
 		MinionComponent(Engine::GameObject *gameObject) : GameComponent(gameObject) {}
@@ -20,13 +20,11 @@ namespace Engine {
 		float life();
 		void changeLife(float amount);
 		
-		unsigned money();
-		void changeMoney(unsigned amount);
+		int money();
+		void changeMoney(int amount);
 		
 		void addStake(Engine::GameObject *stakeholder);
 		void buyOutStake();
-		
-		
 	};
 }
 
