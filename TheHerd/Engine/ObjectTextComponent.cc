@@ -44,12 +44,12 @@ namespace Engine {
 		
 		// get the projection of the object's AABB into screen space
 		const Ogre::AxisAlignedBox& bbox = p->getWorldBoundingBox(true);
-		Ogre::Matrix4 mat = cam->getViewMatrix();
+		Ogre::Matrix4 mat = cam->getProjectionMatrix() * cam->getViewMatrix();
 		
 		const Ogre::Vector3* corners = bbox.getAllCorners();
 		
-		float min_x = 1.0f, max_x = 0.0f, min_y = 1.0f, max_y = 0.0f;
-		
+		float min_x = 1.0f, max_x = -1.0f, min_y = 1.0f, max_y = -1.0f;
+
 		// expand the screen-space bounding-box so that it completely encloses 
 		// the object's AABB
 		for (int i=0; i<8; i++) {
@@ -61,8 +61,8 @@ namespace Engine {
 			
 			// make 2D relative/normalized coords from the view-space vertex
 			// by dividing out the Z (depth) factor -- this is an approximation
-			float x = corner.x / corner.z + 0.5;
-			float y = corner.y / corner.z + 0.5;
+			float x = corner.x / corner.z;
+			float y = corner.y / corner.z;
 			
 			if (x < min_x) 
 				min_x = x;
@@ -76,6 +76,8 @@ namespace Engine {
 			if (y > max_y) 
 				max_y = y;
 		}
+		float x = (max_x + min_x) * .5;
+		float y = max_y;
 		
 		// we now have relative screen-space coords for the object's bounding box; here
 		// we need to center the text above the BB on the top edge. The line that defines
@@ -84,6 +86,17 @@ namespace Engine {
 		const Rocket::Core::Box &box = m_overlay->GetBox();
 		
 		Ogre::RenderWindow *window = OgreFramework::getSingletonPtr()->m_pRenderWnd;
-		m_overlay->SetOffset(Rocket::Core::Vector2f(window->getWidth() - ((max_x + min_x) * .5 * window->getWidth() - box.GetSize().x * .5), min_y * window->getHeight()), NULL);
+		
+		min_x = (x * .5 + .5) * window->getWidth() - box.GetSize().x * .5;
+		max_x = (x * .5 + .5) * window->getWidth() + box.GetSize().x * .5;
+		min_y = (.5 - y * .5) * window->getHeight() - box.GetSize().y * .5;
+		max_y = (.5 - y * .5) * window->getHeight() + box.GetSize().y * .5;
+		
+		if(max_x < 0.0 || min_x > window->getWidth() || max_y < 0.0 || max_y > window->getHeight()) {
+			m_overlay->Hide();
+		} else {
+			m_overlay->Show();
+			m_overlay->SetOffset(Rocket::Core::Vector2f(min_x, min_y), NULL);
+		}
 	}
 }
