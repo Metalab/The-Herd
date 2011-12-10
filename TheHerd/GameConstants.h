@@ -17,6 +17,9 @@ namespace Game {
 	static const int kMoneyForBuyOut = 150;
 	static const int kMoneyForStake = 100;
 	static const int kMoneyForFood = 10;
+	
+	static const float kMinionPrivacyRadius = 4.0;
+	static const float kMinionWalkSpeed = 0.1;
 }
 
 #endif

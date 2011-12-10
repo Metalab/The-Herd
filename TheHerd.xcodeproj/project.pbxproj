@@ -41,6 +41,7 @@
 		8148DE021492CC8500AADF66 /* GameService.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE011492CC8500AADF66 /* GameService.cc */; };
 		8148DE041492D90300AADF66 /* Placeable.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE031492D90300AADF66 /* Placeable.cc */; };
 		8148DE071493079500AADF66 /* MinionComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE061493079500AADF66 /* MinionComponent.cc */; };
+		8148DE0B14930C6D00AADF66 /* RandomWalkComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE0A14930C6D00AADF66 /* RandomWalkComponent.cc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -135,6 +136,8 @@
 		8148DE051493003200AADF66 /* MinionComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MinionComponent.h; sourceTree = "<group>"; };
 		8148DE061493079500AADF66 /* MinionComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MinionComponent.cc; sourceTree = "<group>"; };
 		8148DE0814930A8600AADF66 /* GameConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameConstants.h; sourceTree = "<group>"; };
+		8148DE0914930BF700AADF66 /* RandomWalkComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomWalkComponent.h; sourceTree = "<group>"; };
+		8148DE0A14930C6D00AADF66 /* RandomWalkComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RandomWalkComponent.cc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +236,8 @@
 				8148DE011492CC8500AADF66 /* GameService.cc */,
 				8148DE051493003200AADF66 /* MinionComponent.h */,
 				8148DE061493079500AADF66 /* MinionComponent.cc */,
+				8148DE0914930BF700AADF66 /* RandomWalkComponent.h */,
+				8148DE0A14930C6D00AADF66 /* RandomWalkComponent.cc */,
 			);
 			name = "Basic Ogre Framework";
 			sourceTree = "<group>";
@@ -421,6 +426,7 @@
 				8148DE021492CC8500AADF66 /* GameService.cc in Sources */,
 				8148DE041492D90300AADF66 /* Placeable.cc in Sources */,
 				8148DE071493079500AADF66 /* MinionComponent.cc in Sources */,
+				8148DE0B14930C6D00AADF66 /* RandomWalkComponent.cc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +452,7 @@
 					"\"/Users/am/Desktop/sgw/3rd party/ogre-build/lib/release\"",
 					"\"/Users/am/Desktop/sgw/3rd party/ogre-build/Dependencies\"",
 				);
+				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
 					"\"/Users/am/Desktop/sgw/3rd party/ogre-build/include/OGRE\"",

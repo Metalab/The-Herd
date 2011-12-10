@@ -18,6 +18,7 @@
 #include "Engine/Clock.h"
 #include <sstream>
 #include "GameConstants.h"
+#include "RandomWalkComponent.h"
 
 namespace Game {
 	void GameService::startup() {
@@ -50,8 +51,11 @@ namespace Game {
 			gameObjectService->addGameObject(minion);
 
 			Ogre::Vector3 pos(Ogre::Vector3((row / (float)rowSize - 0.5) * kFieldWidth, 0.0, (col / (float)rowSize - 0.5) * kFieldHeight));
-			placeable->sceneNode()->setPosition(pos);
-
+			placeable->setPosition(pos);
+			
+			minion->addComponent<Game::RandomWalkComponent>()->setClock(m_clock);
+			minion->setWantsUpdate(true);
+			
 			m_minions.push_back(minion);
 		}
 
