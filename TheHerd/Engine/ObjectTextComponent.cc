@@ -83,8 +83,7 @@ namespace Engine {
 		
 		const Rocket::Core::Box &box = m_overlay->GetBox();
 		
-		
 		Ogre::RenderWindow *window = OgreFramework::getSingletonPtr()->m_pRenderWnd;
-		m_overlay->SetOffset(Rocket::Core::Vector2f((max_x + min_x) * .5 * window->getWidth() - box.GetSize().x * .5, min_y * window->getHeight()), NULL);
+		m_overlay->SetOffset(Rocket::Core::Vector2f(window->getWidth() - ((max_x + min_x) * .5 * window->getWidth() - box.GetSize().x * .5), min_y * window->getHeight()), NULL);
 	}
 }
