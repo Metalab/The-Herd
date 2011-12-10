@@ -41,6 +41,7 @@
 	Engine::InputService *inputService = new Engine::InputService();
 	Engine::AudioService *audioService = new Engine::AudioService([[resources stringByAppendingPathComponent:@"audio"] fileSystemRepresentation]);
 	gameClock = new Engine::Clock();
+	sm->registerClock(gameClock);
 	Engine::GameObjectService *gameObjectService = new Engine::GameObjectService();
 	
 	sm->registerService("input", inputService, -1);
