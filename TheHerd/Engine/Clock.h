@@ -22,8 +22,8 @@ namespace Engine {
 		}
 		
 		void tick(double increment) {
-			m_offset += increment * m_scale;
-			m_lastIncrement = increment;
+			m_lastIncrement = increment * m_scale;
+			m_offset += m_lastIncrement;
 		}
 		double lastIncrement() const {
 			return m_lastIncrement;
