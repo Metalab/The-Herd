@@ -33,6 +33,8 @@ namespace Game {
 		bool mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id);
 		bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);
 	private:
+		void updateMenu();
+		
 		bool m_inMenu;
 		Rocket::Core::ElementDocument *m_actionMenu;
 		Engine::GameObject *target;

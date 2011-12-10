@@ -18,6 +18,7 @@
 #include <sstream>
 #include <Rocket/Core.h>
 #include "InteractionComponent.h"
+#include "GameConstants.h"
 
 namespace Game {
 	void SelectionService::startup() {
@@ -31,9 +32,6 @@ namespace Game {
 	void SelectionService::shutdown() {
 		static_cast<Engine::InputService*>(Engine::ServiceManager::getSingletonPtr()->getService("input"))->removeMouseListener(this);
 		m_actionMenu->RemoveReference();
-	}
-	
-	void SelectionService::tick() {
 	}
 	
 	bool SelectionService::mouseMoved(const OIS::MouseEvent& e) {
@@ -71,19 +69,59 @@ namespace Game {
 					target = gameObject;
 					
 					m_actionMenu->GetElementById("name")->SetInnerRML(gameObject->name().c_str());
-					
-					std::ostringstream S;
-					S << "$" << minionComponent->money();
-					m_actionMenu->GetElementById("money")->SetInnerRML(S.str().c_str());
 					m_actionMenu->Show();
 					Rocket::Core::Box box = m_actionMenu->GetBox();
 					m_actionMenu->SetOffset(Rocket::Core::Vector2f(e.state.X.abs - box.GetSize().x * 0.5, e.state.Y.abs - box.GetSize().y * 0.5), NULL);
+					
+					updateMenu();
 				}
 			}
 		}
 		
 		of->m_pSceneMgr->destroyQuery(query);
 		return false;
+	}
+	
+	void SelectionService::updateMenu() {
+		GameService *gameService = (GameService*)Engine::ServiceManager::getSingletonPtr()->getService("game");
+		MinionComponent *minionComponent = gameService->player()->getComponent<MinionComponent>();
+		MinionComponent *targetMinionComponent = target->getComponent<MinionComponent>();
+		std::ostringstream S;
+		S << "$" << targetMinionComponent->money();
+		m_actionMenu->GetElementById("money")->SetInnerRML(S.str().c_str());
+		
+		// determine which actions are really allowed
+		int myMoney = minionComponent->money();
+		int targetMoney = targetMinionComponent->money();
+		
+		m_actionMenu->GetElementById("trade")->SetProperty("background-color", (myMoney > kMoneyForFood)?"#0f0d":"#aaad");
+		
+		Engine::GameObject *stakeholder = targetMinionComponent->stakeHolder();
+		
+		if(myMoney > kMoneyThresholdOccupy && targetMoney <= kMoneyThresholdOccupy &&
+		   (!stakeholder || stakeholder == gameService->player()))
+			m_actionMenu->GetElementById("occupy")->SetProperty("background-color", "#0f0d");
+		else
+			m_actionMenu->GetElementById("occupy")->SetProperty("background-color", "#aaad");
+		
+		if(myMoney > kMoneyThresholdPolice || myMoney < kMoneyThresholdAttack) {
+			Rocket::Core::Element *attackElem = m_actionMenu->GetElementById("attack");
+			attackElem->SetInnerRML((myMoney > kMoneyThresholdPolice)?"Police":"Attack");
+			attackElem->SetProperty("background-color", "#0f0d");
+		} else
+			m_actionMenu->GetElementById("attack")->SetProperty("background-color", "#aaad");
+		
+		if(stakeholder && stakeholder != gameService->player())
+			m_actionMenu->GetElementById("repay")->SetProperty("background-color", "#0f0d");
+		else
+			m_actionMenu->GetElementById("repay")->SetProperty("background-color", "#aaad");
+	}
+	
+	void SelectionService::tick() {
+		if(m_inMenu) {
+			// update menu
+			updateMenu();
+		}
 	}
 	
 	bool SelectionService::mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id) {
