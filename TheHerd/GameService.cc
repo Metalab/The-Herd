@@ -41,7 +41,7 @@ namespace Game {
 			placeable->setSceneNode(pCubeNode);
 			
 			std::string name = m_nameGenerator();
-			minion->props().Set("name", name);
+			minion->setName(name);
 			
 			Engine::ObjectTextDisplayComponent *textDisplay = minion->addComponent<Engine::ObjectTextDisplayComponent>();
 			textDisplay->setText(name);
