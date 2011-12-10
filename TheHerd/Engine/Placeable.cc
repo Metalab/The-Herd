@@ -23,6 +23,9 @@ namespace Engine {
 	
 	void Placeable::setSceneNode(Ogre::SceneNode *sceneNode) {
 		gameObject()->props().Set("sceneNode", sceneNode);
+		Ogre::UserObjectBindings &objectBindings = sceneNode->getUserObjectBindings();
+		Ogre::Any any(gameObject());
+		objectBindings.setUserAny("GameObject", any);
 	}
 	
 	void Placeable::setPosition(const Ogre::Vector3 &pos) {

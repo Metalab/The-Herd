@@ -11,6 +11,7 @@
 
 #include "Service.h"
 #include <OIS/OIS.h>
+#include <vector>
 
 namespace Ogre {
 	class SceneManager;
@@ -23,6 +24,7 @@ namespace Ogre {
 namespace Engine {
 	class ShaderGeneratorTechniqueResolverListener;
 	class InputService;
+	class GameObject;
 	
 	class OgreService : public Engine::Service {
 	public:
@@ -32,6 +34,9 @@ namespace Engine {
 		void startup();
 		void shutdown();
 		void tick();
+		
+		std::vector<GameObject*> sphereQuery(GameObject *gameObject, float radius);
+		
 	private:
 		InputService *m_inputService;
 		Clock *m_clock;

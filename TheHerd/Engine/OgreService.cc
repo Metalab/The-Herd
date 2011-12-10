@@ -11,6 +11,8 @@
 #include "OgreFramework.h"
 #include "Clock.h"
 #include "InputService.h"
+#include "GameObject.h"
+#include "Placeable.h"
 
 #ifdef USE_RTSHADER_SYSTEM
 #include "OgreRTShaderSystem.h"
@@ -189,4 +191,29 @@ namespace Engine {
 			OgreFramework::getSingletonPtr()->m_pRoot->renderOneFrame();
 		}
 	}
+	
+	std::vector<GameObject*> OgreService::sphereQuery(GameObject *gameObject, float radius) {
+		std::vector<GameObject*> result;
+		Ogre::Vector3 pos = gameObject->getComponent<Placeable>()->position();
+		Ogre::SceneNode *sceneNode = gameObject->getComponent<Placeable>()->sceneNode();
+		
+		Ogre::SphereSceneQuery *query = OgreFramework::getSingletonPtr()->m_pSceneMgr->createSphereQuery(Ogre::Sphere(pos, radius));
+		Ogre::SceneQueryResult &queryResult = query->execute();
+		
+		//list<MovableObject*>
+		for(Ogre::SceneQueryResultMovableList::iterator iter = queryResult.movables.begin(); iter != queryResult.movables.end(); ++iter) {
+			Ogre::SceneNode *resultSceneNode = (*iter)->getParentSceneNode();
+			if(resultSceneNode != sceneNode) {
+				Ogre::UserObjectBindings &bindings = resultSceneNode->getUserObjectBindings();
+				Ogre::Any queryGameObjectAny = bindings.getUserAny("GameObject");
+				if(!queryGameObjectAny.isEmpty())
+					result.push_back(Ogre::any_cast<GameObject*>(queryGameObjectAny));
+			}
+		}
+		
+		OgreFramework::getSingletonPtr()->m_pSceneMgr->destroyQuery(query); // can't reuse, since the gameObjects move around all of the time
+		
+		return result;
+	}
+
 }
