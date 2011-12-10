@@ -47,22 +47,20 @@
 		#hobolimit {
 			position: absolute;
 			right: 0;
-			bottom: 3.3%;
 			width: 50px;
 			padding-right: 25px;
 			text-align: right;
-			border-top-width: 2px;
-			border-top-color: #fffa;
+			border-bottom-width: 2px;
+			border-bottom-color: #fffa;
 		}
 		#bankerlimit {
 			position: absolute;
 			right: 0;
 			padding-right: 25px;
-			bottom: 33.3%;
 			width: 50px;
 			text-align: right;
-			border-top-width: 2px;
-			border-top-color: #fffa;
+			border-bottom-width: 2px;
+			border-bottom-color: #fffa;
 		}
 		#onepercentlimit {
 			position: absolute;

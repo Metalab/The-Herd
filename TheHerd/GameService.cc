@@ -161,6 +161,15 @@ namespace Game {
 		});
 		
 		m_playerHud = ((Engine::RocketService*)Engine::ServiceManager::getSingletonPtr()->getService("rocket"))->loadDocument("playerhud.rml");
+		
+		// inject constants from the code
+		std::ostringstream S;
+		S << 100.0 * kMoneyThresholdAttack / kMoneyThresholdPolice << "%";
+		m_playerHud->GetElementById("hobolimit")->SetProperty("bottom", S.str().c_str());
+		S.str("");
+		S << 100.0 * kMoneyThresholdOccupy / kMoneyThresholdPolice << "%";
+		m_playerHud->GetElementById("bankerlimit")->SetProperty("bottom", S.str().c_str());
+		
 		m_playerHud->Show();
 	}
 	
