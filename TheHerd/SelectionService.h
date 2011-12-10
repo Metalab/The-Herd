@@ -12,6 +12,12 @@
 #include "Engine/Service.h"
 #include <OIS/OIS.h>
 
+namespace Rocket {
+	namespace Core {
+		class ElementDocument;
+	}
+}
+
 namespace Game {
 	class SelectionService : public Engine::Service, public OIS::MouseListener {
 	public:
@@ -24,6 +30,7 @@ namespace Game {
 		bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);
 	private:
 		bool m_inMenu;
+		Rocket::Core::ElementDocument *m_actionMenu;
 	};
 }
 

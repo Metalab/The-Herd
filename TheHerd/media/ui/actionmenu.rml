@@ -1,0 +1,66 @@
+<rml>
+	<head>
+		<style>
+		body {
+			font-family: Delicious;
+			font-weight: normal;
+			font-style: normal;
+			font-size: 15;
+			color: white;
+			text-align: center;
+
+			width: 180px;
+			height: 180px;
+		}
+		#trade {
+			position: absolute;
+			top: 0;
+			left: 60px;
+			height: 60px;
+			width: 60px;
+			background-color: #0f0d;
+		}
+		#attack {
+			position: absolute;
+			bottom: 0;
+			left: 60px;
+			height: 60px;
+			width: 60px;
+			background-color: #aaad;
+		}
+		#occupy {
+			position: absolute;
+			left: 0;
+			top: 60px;
+			height: 60px;
+			width: 60px;
+			background-color: #0f0d;
+		}
+		#repay {
+			position: absolute;
+			right: 0;
+			top: 60px;
+			height: 60px;
+			width: 60px;
+			background-color: #0f0d;
+		}
+		#minion {
+			position: absolute;
+			right: 60px;
+			top: 60px;
+			width: 60px;
+			height: 60px;
+			background-color: #aaad;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="trade">Trade</div>
+		<div id="attack">Attack</div>
+		<div id="occupy">Occupy</div>
+		<div id="repay">Repay</div>
+		<div id="minion">
+		<span id="name"></span><br/><span id="money"></span>
+		</div>
+	</body>
+</rml>

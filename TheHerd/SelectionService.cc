@@ -9,21 +9,26 @@
 #include "SelectionService.h"
 #include "Engine/ServiceManager.h"
 #include "Engine/InputService.h"
+#include "Engine/RocketService.h"
 #include "OgreFramework.h"
 #include "GameService.h"
 #include "Engine/GameObject.h"
 #include "MinionComponent.h"
 #include "Engine/Clock.h"
 #include <sstream>
+#include <Rocket/Core.h>
 
 namespace Game {
 	void SelectionService::startup() {
 		m_inMenu = false;
 		static_cast<Engine::InputService*>(Engine::ServiceManager::getSingletonPtr()->getService("input"))->registerMouseListener(this);
+		
+		m_actionMenu = static_cast<Engine::RocketService*>(Engine::ServiceManager::getSingletonPtr()->getService("rocket"))->loadDocument("actionmenu.rml");
 	}
 	
 	void SelectionService::shutdown() {
 		static_cast<Engine::InputService*>(Engine::ServiceManager::getSingletonPtr()->getService("input"))->removeMouseListener(this);
+		m_actionMenu->RemoveReference();
 	}
 	
 	void SelectionService::tick() {
@@ -62,6 +67,15 @@ namespace Game {
 					gameService->clock()->setScale(0.5);
 					m_inMenu = true;
 					
+					m_actionMenu->GetElementById("name")->SetInnerRML(gameObject->name().c_str());
+					
+					std::ostringstream S;
+					S << "$" << minionComponent->money();
+					m_actionMenu->GetElementById("money")->SetInnerRML(S.str().c_str());
+					m_actionMenu->Show();
+					Rocket::Core::Box box = m_actionMenu->GetBox();
+					m_actionMenu->SetOffset(Rocket::Core::Vector2f(e.state.X.abs - box.GetSize().x * 0.5, e.state.Y.abs - box.GetSize().y * 0.5), NULL);
+					
 					OgreFramework::getSingletonPtr()->m_pLog->logMessage("Click on " + gameObject->name());
 				}
 			}
@@ -74,6 +88,7 @@ namespace Game {
 	bool SelectionService::mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id) {
 		if(m_inMenu) {
 			m_inMenu = false;
+			m_actionMenu->Hide();
 			GameService *gameService = (GameService*)Engine::ServiceManager::getSingletonPtr()->getService("game");
 			gameService->clock()->setScale(1.0);
 		}
