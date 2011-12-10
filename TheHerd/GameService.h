@@ -18,6 +18,12 @@ namespace Engine {
 	class Clock;
 }
 
+namespace Rocket {
+	namespace Core {
+		class ElementDocument;
+	}
+}
+
 namespace Game {
 	class GameService : public Engine::Service {
 	public:
@@ -40,6 +46,8 @@ namespace Game {
 		std::string m_playerName;
 		std::string(^m_nameGenerator)(void);
 		float m_exchangeRate;
+		
+		Rocket::Core::ElementDocument *m_playerHud;
 		
 		bool m_moveUp;
 		bool m_moveDown;

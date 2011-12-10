@@ -1,0 +1,45 @@
+<rml>
+	<head>
+		<style>
+		body {
+			font-family: Delicious;
+			font-weight: normal;
+			font-style: normal;
+			font-size: 15;
+			color: white;
+			
+			width: 100%;
+			height: 100%;
+		}
+		#stats {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100px;
+			height: 50px;
+			background-color: #00fa;
+		}
+		#log {
+			position: absolute;
+			top: 20px;
+			left: 10%;
+			width: 80%;
+			height: 90px;
+			background-color: #ff0a;
+			border: 5px;
+		}
+		</style>
+	</head>
+	<body>
+	<div id="stats">
+	Money: <span id="money"></span><br/>
+	Life: <span id="life"></span>
+	</div>
+	<div id="log">
+	<span id="log-1">Abc has traded with Def</span><br/>
+	<span id="log-2">You have attacked Ghi</span><br/>
+	<span id="log-3">Ghi has attacked You</span><br/>
+	<span id="log-4">Jkl has occupied Xyz</span>
+	</div>
+	</body>
+</rml>

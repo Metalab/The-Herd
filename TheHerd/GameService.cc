@@ -17,6 +17,7 @@
 #include "Engine/GameObjectService.h"
 #include "Engine/InputService.h"
 #include "Engine/Clock.h"
+#include "Engine/RocketService.h"
 #include <sstream>
 #include "GameConstants.h"
 #include "RandomWalkComponent.h"
@@ -135,9 +136,13 @@ namespace Game {
 		inputService->registerKeyUpListener(OIS::KC_RIGHT, ^(const OIS::KeyEvent &arg) {
 			m_moveRight = false;
 		});
+		
+		m_playerHud = ((Engine::RocketService*)Engine::ServiceManager::getSingletonPtr()->getService("rocket"))->loadDocument("playerhud.rml");
+		m_playerHud->Show();
 	}
 	
 	void GameService::shutdown() {
+		m_playerHud->RemoveReference();
 		m_minions.clear();
 	}
 	
