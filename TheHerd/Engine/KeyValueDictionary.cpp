@@ -65,7 +65,7 @@ namespace Engine {
 	//------------------------------------------------------------------------------
 
 	KeyValueDictionary::eReturnValue	
-	KeyValueDictionary::AddNotification( pNotification func, const std::string &strKey, void* pUserData, NotificationListIter *handle )
+	KeyValueDictionary::AddNotification( pNotification func, const std::string &strKey, NotificationListIter *handle )
 	{
 		int hashKey = Hash( strKey );
 		
@@ -93,7 +93,6 @@ namespace Engine {
 		Notification newNote;
 		
 		newNote.notification = Block_copy(func);
-		newNote.pUserData = pUserData;
 
 		// add notification to list
 		

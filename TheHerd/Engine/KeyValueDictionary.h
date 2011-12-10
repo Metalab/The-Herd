@@ -61,7 +61,7 @@ namespace Engine {
 
 		// Type for notification callbacks
 		
-		typedef	void(^pNotification)( void* pNewValue, void* pUserData );
+		typedef	void(^pNotification)( void* pNewValue );
 
 		// Clear all internals and reset to initialized state
 		
@@ -98,7 +98,7 @@ namespace Engine {
 					NotificationList &noteList = m_map[ hashKey ].notifications;
 					for( NotificationListIter iter = noteList.begin() ; iter != noteList.end() ; ++iter )
 					{
-						(iter->notification)( &newValue, iter->pUserData );
+						(iter->notification)( &newValue );
 					}
 					
 					// unlock
@@ -150,13 +150,12 @@ namespace Engine {
 		struct Notification {
 			~Notification();
 			pNotification	notification;
-			void*			pUserData;
 		};
 		
 		typedef std::list< Notification >	NotificationList;
 		typedef NotificationList::iterator	NotificationListIter;
 
-		eReturnValue	AddNotification( pNotification func, const std::string &strKey, void* pUserData, NotificationListIter *handle = NULL );
+		eReturnValue	AddNotification( pNotification func, const std::string &strKey, NotificationListIter *handle = NULL );
 		eReturnValue	RemoveNotification( NotificationListIter handle, const std::string &strKey );
 		
 	private:
