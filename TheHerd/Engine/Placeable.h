@@ -10,6 +10,8 @@
 #define Testing_Placeable_h
 
 #include "GameObject.h"
+#include "KeyValueDictionary.h"
+#include <Ogre/OgreVector3.h>
 
 namespace Ogre {
 	class SceneNode;
@@ -18,14 +20,13 @@ namespace Ogre {
 namespace Engine {
 	class Placeable : public GameComponent {
 	public:
-		Placeable(GameObject *gameObject) : GameComponent(gameObject) {}
-		virtual ~Placeable() {
-			gameObject()->props().Delete("sceneNode");
-		}
+		Placeable(GameObject *gameObject);
+		virtual ~Placeable();
 		
-		void setSceneNode(Ogre::SceneNode *sceneNode) {
-			gameObject()->props().Set("sceneNode", sceneNode);
-		}
+		void setPosition(const Ogre::Vector3 &pos);
+		const Ogre::Vector3 &position();
+		
+		void setSceneNode(Ogre::SceneNode *sceneNode);
 		Ogre::SceneNode *sceneNode() {
 			Ogre::SceneNode *sceneNode;
 			gameObject()->props().Get("sceneNode", &sceneNode);

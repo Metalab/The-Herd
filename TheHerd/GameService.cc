@@ -36,7 +36,6 @@ namespace Game {
 			
 			Ogre::Entity *pMinionEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity(S.str(), "ogrehead.mesh");
 			Ogre::SceneNode *pCubeNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode(S.str());
-			pCubeNode->setPosition((row / (float)rowSize - 0.5) * kFieldWidth, 0.0, (col / (float)rowSize - 0.5) * kFieldHeight);
 			pCubeNode->setScale(0.1, 0.1, 0.1);
 			pCubeNode->attachObject(pMinionEntity);
 			
@@ -49,13 +48,15 @@ namespace Game {
 			
 			minion->setWantsUpdate(true);
 			gameObjectService->addGameObject(minion);
-			
+
+			Ogre::Vector3 pos(Ogre::Vector3((row / (float)rowSize - 0.5) * kFieldWidth, 0.0, (col / (float)rowSize - 0.5) * kFieldHeight));
+			placeable->sceneNode()->setPosition(pos);
+
 			m_minions.push_back(minion);
 		}
 
 		Ogre::Entity *pMinionEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("player", "ogrehead.mesh");
 		Ogre::SceneNode *pCubeNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("player");
-		pCubeNode->setPosition(0.0, 0.0, 0.0);
 		pCubeNode->setScale(0.2, 0.2, 0.2);
 		pCubeNode->attachObject(pMinionEntity);
 		
@@ -106,13 +107,18 @@ namespace Game {
 	}
 	
 	void GameService::tick() {
+		Engine::Placeable *placeable = m_player->getComponent<Engine::Placeable>();
+		Ogre::Vector3 position = placeable->position();
+
 		if(m_moveUp)
-			m_player->getComponent<Engine::Placeable>()->sceneNode()->translate(0.0, 0.0, -10.0 / m_clock->lastIncrement());
+			position += Ogre::Vector3(0.0, 0.0, -10.0 / m_clock->lastIncrement());
 		else if(m_moveDown)
-			m_player->getComponent<Engine::Placeable>()->sceneNode()->translate(0.0, 0.0, 10.0 / m_clock->lastIncrement());
+			position += Ogre::Vector3(0.0, 0.0, 10.0 / m_clock->lastIncrement());
 		if(m_moveLeft)
-			m_player->getComponent<Engine::Placeable>()->sceneNode()->translate(-10.0 / m_clock->lastIncrement(), 0.0, 0.0);
+			position += Ogre::Vector3(-10.0 / m_clock->lastIncrement(), 0.0, 0.0);
 		else if(m_moveRight)
-			m_player->getComponent<Engine::Placeable>()->sceneNode()->translate(10.0 / m_clock->lastIncrement(), 0.0, 0.0);
+			position += Ogre::Vector3(10.0 / m_clock->lastIncrement(), 0.0, 0.0);
+		
+		placeable->setPosition(position);
 	}
 }
