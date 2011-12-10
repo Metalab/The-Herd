@@ -21,12 +21,16 @@
 #include "GameConstants.h"
 #include "RandomWalkComponent.h"
 #include "InteractionComponent.h"
+#include "MinionComponent.h"
 #include <Rocket/Core.h>
 
 namespace Game {
 	void GameService::startup() {
 		unsigned rowSize = sqrt(kMinionCount);
 		Engine::GameObjectService *gameObjectService = (Engine::GameObjectService*)Engine::ServiceManager::getSingletonPtr()->getService("gameObject");
+		
+		int totalMoney = 0;
+		float totalLife = 0.0;
 		
 		for(unsigned i = 0; i < kMinionCount; ++i) {
 			unsigned row = i % rowSize;
@@ -52,9 +56,15 @@ namespace Game {
 			
 			Rocket::Core::ElementDocument *doc = overlayComponent->document();
 			doc->GetElementById("name")->SetInnerRML(name.c_str());
-			doc->GetElementById("life")->SetInnerRML("100%");
-			doc->GetElementById("money")->SetInnerRML("$100");
 			
+			int money = random() % kMoneyMaxStartup;
+			minion->props().Set("money", money);
+			float life = kLifeMinStartup + (1.0 - kLifeMinStartup) * random() / (float)RAND_MAX;
+			minion->props().Set("life", life);
+			
+			totalMoney += money;
+			totalLife += life;
+
 			minion->setWantsUpdate(true);
 			gameObjectService->addGameObject(minion);
 
@@ -63,6 +73,7 @@ namespace Game {
 			
 			minion->addComponent<Game::RandomWalkComponent>()->setClock(m_clock);
 			minion->addComponent<Game::InteractionComponent>();
+			minion->addComponent<Game::MinionComponent>();
 			minion->setWantsUpdate(true);
 			
 			m_minions.push_back(minion);
@@ -80,6 +91,16 @@ namespace Game {
 		Engine::ObjectTextDisplayComponent *textDisplay = m_player->addComponent<Engine::ObjectTextDisplayComponent>();
 		
 		textDisplay->setText(m_playerName);
+		
+		// the player is total average
+		int money = totalMoney / kMinionCount;
+		m_player->props().Set("money", money);
+		float life = totalLife / kMinionCount;
+		m_player->props().Set("life", life);
+		
+		std::ostringstream S;
+		S << "player money = $" << money << ", life = " << (int)(life * 100.0) << "%";
+		OgreFramework::getSingletonPtr()->m_pLog->logMessage(S.str());
 		
 		m_player->setWantsUpdate(true);
 		gameObjectService->addGameObject(m_player);

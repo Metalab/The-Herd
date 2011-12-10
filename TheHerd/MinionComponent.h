@@ -14,8 +14,10 @@
 namespace Game {
 	class MinionComponent : public Engine::GameComponent {
 	public:
-		MinionComponent(Engine::GameObject *gameObject) : GameComponent(gameObject) {}
+		MinionComponent(Engine::GameObject *gameObject);
 		virtual ~MinionComponent() {}
+		
+		void tick();
 		
 		float life();
 		void changeLife(float amount);

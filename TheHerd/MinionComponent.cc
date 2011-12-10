@@ -9,8 +9,32 @@
 #include "MinionComponent.h"
 #include "OgreFramework.h"
 #include "GameConstants.h"
+#include "Engine/ObjectOverlayComponent.h"
+#include <Rocket/Core.h>
 
 namespace Game {
+	MinionComponent::MinionComponent(Engine::GameObject *gameObject) : GameComponent(gameObject) {
+		gameObject->props().Set("stakeholder", (Engine::GameObject*)NULL);
+	}
+	
+	void MinionComponent::tick() {
+		Engine::ObjectOverlayComponent *objectOverlayComponent = gameObject()->getComponent<Engine::ObjectOverlayComponent>();
+		if(!objectOverlayComponent)
+			return;
+		
+		Rocket::Core::ElementDocument *doc = objectOverlayComponent->document();
+		if(!doc)
+			return;
+
+		std::ostringstream S;
+		S << "$" << money();
+		doc->GetElementById("money")->SetInnerRML(S.str().c_str());
+		
+		S.str("");
+		S << (int)(life() * 100.0) << "%";
+		doc->GetElementById("life")->SetInnerRML(S.str().c_str());
+	}
+	
 	float MinionComponent::life() {
 		float life;
 		gameObject()->props().Get("life", &life);
@@ -51,50 +75,43 @@ namespace Game {
 	}
 	
 	void MinionComponent::addStake(Engine::GameObject *stakeholder) {
-		if(gameObject()->props().Exists("stakeholder")) {
-			Engine::GameObject *oldStakeholder;
-			gameObject()->props().Get("stakeholder", &oldStakeholder);
-			if(oldStakeholder != stakeholder) {
-				std::string name;
-				gameObject()->props().Get("name", &name);
-				OgreFramework::getSingletonPtr()->m_pLog->logMessage("Trying to add a stake with someone who is already occupied! (" + name + ")");
-			} else {
-				unsigned stakecount;
-				gameObject()->props().Get("stakecount", &stakecount);
-				gameObject()->props().Set("stakecount", stakecount + 1U);
-			}
-		} else {
+		Engine::GameObject *oldStakeholder = stakeHolder();
+		if(!oldStakeholder) {
 			gameObject()->props().Set("stakeholder", stakeholder);
 			gameObject()->props().Set("stakecount", 1U);
+			return;
+		}
+		
+		if(oldStakeholder != stakeholder) {
+			OgreFramework::getSingletonPtr()->m_pLog->logMessage("Trying to add a stake with someone who is already occupied! (" + gameObject()->name() + ")");
+		} else {
+			unsigned stakecount;
+			gameObject()->props().Get("stakecount", &stakecount);
+			gameObject()->props().Set("stakecount", stakecount + 1U);
 		}
 	}
 	
 	Engine::GameObject *MinionComponent::stakeHolder() {
-		if(!gameObject()->props().Exists("stakeholder"))
-			return NULL;
 		Engine::GameObject *stakeholder;
 		gameObject()->props().Get("stakeholder", &stakeholder);
 		return stakeholder;
 	}
 	
 	void MinionComponent::buyOutStake() {
-		if(gameObject()->props().Exists("stakeholder")) {
-			Engine::GameObject *stakeholder;
-			gameObject()->props().Get("stakeholder", &stakeholder);
-			
-			unsigned stakecount;
-			gameObject()->props().Get("stakecount", &stakecount);
-			if(stakecount == 1) {
-				gameObject()->props().Delete("stakeholder");
-				gameObject()->props().Delete("stakecount");
-			} else
-				gameObject()->props().Set("stakecount", stakecount - 1U);
-			
-			stakeholder->getComponent<MinionComponent>()->changeMoney(kMoneyForBuyOut);
-		} else {
-			std::string name;
-			gameObject()->props().Get("name", &name);
-			OgreFramework::getSingletonPtr()->m_pLog->logMessage("Trying to buy out someone who is not occupied! (" + name + ")");
+		Engine::GameObject *stakeholder = stakeHolder();
+		if(!stakeholder) {
+			OgreFramework::getSingletonPtr()->m_pLog->logMessage("Trying to buy out someone who is not occupied! (" + gameObject()->name() + ")");
+			return;
 		}
+		
+		unsigned stakecount;
+		gameObject()->props().Get("stakecount", &stakecount);
+		if(stakecount == 1) {
+			gameObject()->props().Set("stakeholder", (Engine::GameObject*)NULL);
+			gameObject()->props().Delete("stakecount");
+		} else
+			gameObject()->props().Set("stakecount", stakecount - 1U);
+		
+		stakeholder->getComponent<MinionComponent>()->changeMoney(kMoneyForBuyOut);
 	}
 }
