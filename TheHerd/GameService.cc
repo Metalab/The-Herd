@@ -75,7 +75,6 @@ namespace Game {
 			minion->addComponent<Game::RandomWalkComponent>()->setClock(m_clock);
 			minion->addComponent<Game::InteractionComponent>();
 			minion->addComponent<Game::MinionComponent>();
-			minion->setWantsUpdate(true);
 			
 			m_minions.push_back(minion);
 		}
@@ -98,10 +97,6 @@ namespace Game {
 		m_player->props().Set("money", money);
 		float life = totalLife / kMinionCount;
 		m_player->props().Set("life", life);
-		
-		std::ostringstream S;
-		S << "player money = $" << money << ", life = " << (int)(life * 100.0) << "%";
-		OgreFramework::getSingletonPtr()->m_pLog->logMessage(S.str());
 		
 		m_player->setWantsUpdate(true);
 		gameObjectService->addGameObject(m_player);
