@@ -148,16 +148,18 @@ namespace Game {
 			Ogre::Vector3 offset = Ogre::Vector3::ZERO;
 
 			if(m_moveUp)
-				offset = Ogre::Vector3(0.0, 0.0, -10.0 / m_clock->lastIncrement());
+				offset = Ogre::Vector3(0.0, 0.0, -1.0);
 			else if(m_moveDown)
-				offset = Ogre::Vector3(0.0, 0.0, 10.0 / m_clock->lastIncrement());
+				offset = Ogre::Vector3(0.0, 0.0, 1.0);
 			if(m_moveLeft)
-				offset += Ogre::Vector3(-10.0 / m_clock->lastIncrement(), 0.0, 0.0);
+				offset += Ogre::Vector3(-1.0, 0.0, 0.0);
 			else if(m_moveRight)
-				offset += Ogre::Vector3(10.0 / m_clock->lastIncrement(), 0.0, 0.0);
+				offset += Ogre::Vector3(1.0, 0.0, 0.0);
+			
+			offset.normalise();
 			
 			placeable->sceneNode()->setOrientation(Ogre::Quaternion::IDENTITY);
-			Ogre::Vector3 position = placeable->position() + offset;
+			Ogre::Vector3 position = placeable->position() + offset * kMinionWalkSpeed * m_clock->lastIncrement();
 
 			if(position.x < -(kFieldWidth * .5))
 				position.x = -(kFieldWidth * .5);
