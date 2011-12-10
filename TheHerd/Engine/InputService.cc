@@ -73,21 +73,21 @@ namespace Engine {
 	}
 	
 	bool InputService::mouseMoved(const OIS::MouseEvent &arg) {
-		for(std::vector<OIS::MouseListener*>::iterator iter = m_mouseListeners.begin(); iter != m_mouseListeners.end(); ++iter)
+		for(std::vector<OIS::MouseListener*>::reverse_iterator iter = m_mouseListeners.rbegin(); iter != m_mouseListeners.rend(); ++iter)
 			if((*iter)->mouseMoved(arg))
 				return true;
 		return false;
 	}
 	
 	bool InputService::mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID bid) {
-		for(std::vector<OIS::MouseListener*>::iterator iter = m_mouseListeners.begin(); iter != m_mouseListeners.end(); ++iter)
+		for(std::vector<OIS::MouseListener*>::reverse_iterator iter = m_mouseListeners.rbegin(); iter != m_mouseListeners.rend(); ++iter)
 			if((*iter)->mousePressed(arg, bid))
 				return true;
 		return false;
 	}
 	
 	bool InputService::mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID bid) {
-		for(std::vector<OIS::MouseListener*>::iterator iter = m_mouseListeners.begin(); iter != m_mouseListeners.end(); ++iter)
+		for(std::vector<OIS::MouseListener*>::reverse_iterator iter = m_mouseListeners.rbegin(); iter != m_mouseListeners.rend(); ++iter)
 			if((*iter)->mouseReleased(arg, bid))
 				return true;
 		return false;
