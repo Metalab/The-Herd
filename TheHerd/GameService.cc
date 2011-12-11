@@ -181,8 +181,8 @@ namespace Game {
 	}
 	
 	void GameService::tick() {
-		// ### check for player death
-		
+		if(m_end)
+			return;
 		// new exchange rate for food
 		m_exchangeRate = kFoodExchangeStartup - m_clock->offset() * kInflation;
 		
@@ -228,7 +228,19 @@ namespace Game {
 		}
 		
 		MinionComponent *playerMinionComponent = m_player->getComponent<MinionComponent>();
-		Engine::GameObjectService *gameObjectService = (Engine::GameObjectService*)Engine::ServiceManager::getSingletonPtr()->getService("gameObject");
+		Engine::GameObjectService *gameObjectService = (Engine::GameObjectService*)Engine::ServiceManager::getSingletonPtr()->getService("gameObject");		
+		if(playerMinionComponent->life() <= 0.0) {
+			// end condition reached
+			Rocket::Core::ElementDocument *enddoc = ((Engine::RocketService*)Engine::ServiceManager::getSingletonPtr()->getService("rocket"))->loadDocument("dead.rml");
+			enddoc->Show();
+			enddoc->RemoveReference();
+			m_playerHud->Hide();
+			m_clock->setScale(0.0);
+			m_end = true;
+			
+			gameObjectService->setPaused(true);
+		}
+
 		for(std::vector<std::list<Engine::GameObject*>::iterator>::iterator iter = deadMinions.begin(); iter != deadMinions.end(); ++iter) {
 			// check whether this minion is a stakeholder for someone
 			for(std::list<Engine::GameObject*>::iterator iter2 = m_minions.begin(); iter2 != m_minions.end(); ++iter2) {
@@ -310,6 +322,9 @@ namespace Game {
 			enddoc->RemoveReference();
 			m_playerHud->Hide();
 			m_clock->setScale(0.0);
+			m_end = true;
+			
+			gameObjectService->setPaused(true);
 		}
 	}
 }

@@ -21,12 +21,17 @@ namespace Engine {
 		void shutdown();
 		void tick();
 		
+		void setPaused(bool paused) {
+			m_paused = paused;
+		}
+		
 		void addGameObject(GameObject *gameObject) {
 			m_gameObjects.insert(gameObject);
 		}
 		
 		void removeGameObject(GameObject *gameObject);
 	private:
+		bool m_paused;
 		std::set<GameObject*> m_gameObjects;
 	};
 }

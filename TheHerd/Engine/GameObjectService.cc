@@ -22,6 +22,8 @@ namespace Engine {
 	}
 	
 	void GameObjectService::tick() {
+		if(m_paused)
+			return;
 		for(std::set<GameObject*>::iterator iter = m_gameObjects.begin(); iter != m_gameObjects.end(); ++iter) {
 			(*iter)->tick();
 		}
