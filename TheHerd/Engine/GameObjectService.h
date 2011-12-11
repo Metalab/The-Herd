@@ -25,9 +25,7 @@ namespace Engine {
 			m_gameObjects.insert(gameObject);
 		}
 		
-		void removeGameObject(GameObject *gameObject) {
-			m_gameObjects.erase(gameObject);
-		}
+		void removeGameObject(GameObject *gameObject);
 	private:
 		std::set<GameObject*> m_gameObjects;
 	};

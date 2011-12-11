@@ -212,6 +212,20 @@ namespace Game {
 			OgreFramework::getSingletonPtr()->m_pCamera->setPosition(position + Ogre::Vector3(0.0, 40.0, 40.0));
 		}
 		
+		// check for dead minions
+		std::vector<std::list<Engine::GameObject*>::iterator> deadMinions;
+		for(std::list<Engine::GameObject*>::iterator iter = m_minions.begin(); iter != m_minions.end(); ++iter) {
+			MinionComponent *minionComponent = (*iter)->getComponent<MinionComponent>();
+			if(minionComponent && minionComponent->life() <= 0.0)
+				deadMinions.push_back(iter);
+		}
+		
+		Engine::GameObjectService *gameObjectService = (Engine::GameObjectService*)Engine::ServiceManager::getSingletonPtr()->getService("gameObject");
+		for(std::vector<std::list<Engine::GameObject*>::iterator>::iterator iter = deadMinions.begin(); iter != deadMinions.end(); ++iter) {
+			gameObjectService->removeGameObject(**iter);
+			m_minions.erase(*iter);
+		}
+		
 		// update HUD
 		float life = m_player->getComponent<MinionComponent>()->life();
 		Rocket::Core::Element *lifeBar = m_playerHud->GetElementById("life");

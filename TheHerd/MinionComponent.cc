@@ -27,9 +27,6 @@ namespace Game {
 		// reduce due to hunger
 		GameService *gameService = (GameService*)Engine::ServiceManager::getSingletonPtr()->getService("game");
 		l -= kHunger * gameService->clock()->lastIncrement();
-		if(l <= 0.0) {
-			// ### die
-		}
 		gameObject()->props().Set("life", l);
 		
 		int m = money();

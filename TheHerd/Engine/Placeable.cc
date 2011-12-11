@@ -11,6 +11,7 @@
 #include <Ogre/OgreVector3.h>
 #include <Ogre/OgreSceneNode.h>
 #include <iostream>
+#include "OgreFramework.h"
 
 namespace Engine {
 	Placeable::Placeable(GameObject *gameObject) : GameComponent(gameObject) {
@@ -18,7 +19,11 @@ namespace Engine {
 	}
 	
 	Placeable::~Placeable() {
+		Ogre::SceneNode *node = sceneNode();
+		
 		gameObject()->props().Delete("sceneNode");
+		
+		OgreFramework::getSingletonPtr()->m_pSceneMgr->destroySceneNode(node);
 	}
 	
 	void Placeable::setSceneNode(Ogre::SceneNode *sceneNode) {
