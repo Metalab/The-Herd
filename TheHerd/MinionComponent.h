@@ -11,11 +11,15 @@
 
 #include "Engine/GameObject.h"
 
+namespace Ogre {
+	class AnimationState;
+}
+
 namespace Game {
 	class MinionComponent : public Engine::GameComponent {
 	public:
 		MinionComponent(Engine::GameObject *gameObject);
-		virtual ~MinionComponent() {}
+		virtual ~MinionComponent();
 		
 		void tick();
 		
@@ -30,6 +34,8 @@ namespace Game {
 		unsigned stakecount();
 		void buyOutStake();
 		void stakeholderDied();
+	private:
+		Ogre::AnimationState *m_walkAnimation;
 	};
 }
 

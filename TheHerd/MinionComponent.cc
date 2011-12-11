@@ -14,11 +14,24 @@
 #include "Engine/ServiceManager.h"
 #include "GameService.h"
 #include "Engine/Clock.h"
+#include "Engine/Placeable.h"
 #include "InteractionComponent.h"
+#include "Ogre/OgreSceneNode.h"
+#include "Ogre/OgreAnimationState.h"
 
 namespace Game {
 	MinionComponent::MinionComponent(Engine::GameObject *gameObject) : GameComponent(gameObject) {
 		gameObject->props().Set("stakeholder", (Engine::GameObject*)NULL);
+		
+		Ogre::SceneNode *node = gameObject->getComponent<Engine::Placeable>()->sceneNode();
+		Ogre::Entity *entity = static_cast<Ogre::Entity*>(node->getAttachedObject(0)); // HACK
+		m_walkAnimation = entity->getAnimationState("walk");
+		m_walkAnimation->setTimePosition(0.0);
+		m_walkAnimation->setEnabled(true);
+	}
+	
+	MinionComponent::~MinionComponent() {
+		m_walkAnimation->setEnabled(false);
 	}
 	
 	void MinionComponent::tick() {
@@ -36,6 +49,8 @@ namespace Game {
 			if(interactionComponent)
 				interactionComponent->repay(gameObject());
 		}
+
+		m_walkAnimation->addTime(gameService->clock()->lastIncrement() * 0.1);
 
 		Engine::ObjectOverlayComponent *objectOverlayComponent = gameObject()->getComponent<Engine::ObjectOverlayComponent>();
 		if(!objectOverlayComponent)
