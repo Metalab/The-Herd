@@ -11,7 +11,7 @@
 
 #include "Engine/Service.h"
 #include "Engine/GameObject.h"
-#include <vector>
+#include <list>
 #include <Block.h>
 
 namespace Engine {
@@ -52,7 +52,7 @@ namespace Game {
 		void shutdown();
 		void tick();
 	protected:
-		std::vector<Engine::GameObject*> m_minions;
+		std::list<Engine::GameObject*> m_minions;
 		Engine::GameObject *m_player;
 		Engine::Clock *m_clock;
 		std::string m_playerName;

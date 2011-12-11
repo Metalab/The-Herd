@@ -231,7 +231,7 @@ namespace Game {
 		m_playerHud->GetElementById("moneyBar")->SetProperty("height", S.str().c_str());
 		
 		unsigned rank = 1;
-		for(std::vector<Engine::GameObject*>::iterator iter = m_minions.begin(); iter != m_minions.end(); ++iter) {
+		for(std::list<Engine::GameObject*>::iterator iter = m_minions.begin(); iter != m_minions.end(); ++iter) {
 			int minionMoney = (*iter)->getComponent<MinionComponent>()->money();
 			if(minionMoney > money)
 				++rank;
