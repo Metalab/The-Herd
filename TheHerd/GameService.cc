@@ -35,6 +35,10 @@ namespace Game {
 		
 		m_exchangeRate = kFoodExchangeStartup;
 		
+		Ogre::Entity *pGroundEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("ground", "ground.mesh");
+		Ogre::SceneNode *pGroundNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("ground");
+		pGroundNode->attachObject(pGroundEntity);
+		
 		int totalMoney = 0;
 		float totalLife = 0.0;
 		
