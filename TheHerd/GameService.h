@@ -74,6 +74,7 @@ namespace Game {
 		bool m_wasWalking;
 		
 		FMOD::Event *m_music;
+		FMOD::Event *m_endSound;
 		FMOD::Event *m_walk;
 	};
 }

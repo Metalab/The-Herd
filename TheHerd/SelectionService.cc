@@ -19,6 +19,8 @@
 #include <Rocket/Core.h>
 #include "InteractionComponent.h"
 #include "GameConstants.h"
+#include "Engine/AudioService.h"
+#include "fmod_event.hpp"
 
 namespace Game {
 	void SelectionService::startup() {
@@ -27,6 +29,10 @@ namespace Game {
 		
 		m_actionMenu = static_cast<Engine::RocketService*>(Engine::ServiceManager::getSingletonPtr()->getService("rocket"))->loadDocument("actionmenu.rml");
 		target = NULL;
+		
+		Engine::AudioService *audioService = static_cast<Engine::AudioService*>(Engine::ServiceManager::getSingletonPtr()->getService("audio"));
+		m_tradeEvent = audioService->getEvent("theherd/TheHerd/trade");
+		m_attackEvent = audioService->getEvent("theherd/TheHerd/attack");
 	}
 	
 	void SelectionService::shutdown() {
@@ -133,13 +139,15 @@ namespace Game {
 			InteractionComponent *interactionComponent = gameService->player()->getComponent<InteractionComponent>();
 			
 			// determine where the player has lifted the mouse
-			if(m_canTrade && m_actionMenu->GetElementById("trade")->IsPointWithinElement(mousepos))
+			if(m_canTrade && m_actionMenu->GetElementById("trade")->IsPointWithinElement(mousepos)) {
 				interactionComponent->trade(target);
-			else if((m_canAttack || m_canPolice) && m_actionMenu->GetElementById("attack")->IsPointWithinElement(mousepos)) {
+				m_tradeEvent->start();
+			} else if((m_canAttack || m_canPolice) && m_actionMenu->GetElementById("attack")->IsPointWithinElement(mousepos)) {
 				if(m_canAttack)
 					interactionComponent->attack(target);
 				else
 					interactionComponent->police(target);
+				m_attackEvent->start();
 			} else if(m_canOccupy && m_actionMenu->GetElementById("occupy")->IsPointWithinElement(mousepos))
 				interactionComponent->occupy(target);
 			else if(m_canRepay && m_actionMenu->GetElementById("repay")->IsPointWithinElement(mousepos))

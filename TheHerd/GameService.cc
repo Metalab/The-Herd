@@ -183,6 +183,7 @@ namespace Game {
 		m_music = audioService->getEvent("theherd/TheHerd/music");
 		m_music->start();
 		m_walk = audioService->getEvent("theherd/TheHerd/walk");
+		m_endSound = audioService->getEvent("theherd/TheHerd/end");
 	}
 	
 	void GameService::shutdown() {
@@ -257,6 +258,9 @@ namespace Game {
 			m_playerHud->Hide();
 			m_clock->setScale(0.0);
 			m_end = true;
+			
+			m_music->stop();
+			m_endSound->start();
 			
 			gameObjectService->setPaused(true);
 		}
@@ -343,6 +347,9 @@ namespace Game {
 			m_playerHud->Hide();
 			m_clock->setScale(0.0);
 			m_end = true;
+			
+			m_music->stop();
+			m_endSound->start();
 			
 			gameObjectService->setPaused(true);
 		}

@@ -60,14 +60,14 @@
 	sm->registerService("audio", audioService);
 	sm->registerService("rocket", new Engine::RocketService([[resources stringByAppendingPathComponent:@"media/ui"] fileSystemRepresentation]), 1);
 	sm->registerService("gameObject", gameObjectService, 2);
-	sm->registerService("selection", new Game::SelectionService(), 3);
 	sm->registerService("game", new Game::GameService(gameClock, [NSFullUserName() UTF8String], ^{
 		if(!namesList)
 			return std::string("<names error>");
 		else
 			return std::string([[namesList objectAtIndex:random() % [namesList count]] UTF8String]);
 	}), 100);
-	sm->registerService("eventlog", new Game::EventLogService(), 101);
+	sm->registerService("selection", new Game::SelectionService(), 101);
+	sm->registerService("eventlog", new Game::EventLogService(), 102);
 	
 	sm->startup();
 	

@@ -22,6 +22,10 @@ namespace Engine {
 	class GameObject;
 }
 
+namespace FMOD {
+	class Event;
+}
+
 namespace Game {
 	class SelectionService : public Engine::Service, public OIS::MouseListener {
 	public:
@@ -43,6 +47,9 @@ namespace Game {
 		bool m_canPolice;
 		Rocket::Core::ElementDocument *m_actionMenu;
 		Engine::GameObject *target;
+		
+		FMOD::Event *m_tradeEvent;
+		FMOD::Event *m_attackEvent;
 	};
 }
 
