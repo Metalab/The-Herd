@@ -62,6 +62,16 @@ namespace Engine {
 			}
 			return NULL;
 		}
+		template<typename T> void removeComponent() {
+			for(std::set<GameComponent*>::iterator iter = m_components.begin(); iter != m_components.end(); ++iter) {
+				T *component = dynamic_cast<T*>(*iter);
+				if(component) {
+					m_components.erase(iter);
+					delete component;
+					return;
+				}
+			}
+		}
 	private:
 		bool m_wantsUpdate;
 		std::set<GameComponent*> m_components;
