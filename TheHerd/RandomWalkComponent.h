@@ -27,6 +27,7 @@ namespace Game {
 		
 		void tick();
 	private:
+		Ogre::Vector2 m_realDirection;
 		Ogre::Vector2 m_direction;
 		Engine::Clock *m_clock;
 	};
