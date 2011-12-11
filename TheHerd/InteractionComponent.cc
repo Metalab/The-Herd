@@ -12,8 +12,28 @@
 #include "GameService.h"
 #include "EventLogService.h"
 #include "ServiceManager.h"
+#include "Ogre/OgreSceneNode.h"
+#include "Ogre/OgreEntity.h"
+#include "Ogre/OgreAnimationState.h"
+#include "Engine/Clock.h"
+#include "Engine/Placeable.h"
 
 namespace Game {
+	InteractionComponent::InteractionComponent(Engine::GameObject *gameObject) : GameComponent(gameObject) {
+		Ogre::SceneNode *node = gameObject->getComponent<Engine::Placeable>()->sceneNode();
+		Ogre::Entity *entity = static_cast<Ogre::Entity*>(node->getAttachedObject(0)); // HACK
+		m_tradeAnimation = entity->getAnimationState("trade");
+		m_tradeAnimation->setLoop(false);
+		m_tradeAnimation->setEnabled(false);
+	}
+	
+	void InteractionComponent::tick() {
+		if(!m_tradeAnimation->hasEnded()) {
+			GameService *gameService = (GameService*)Engine::ServiceManager::getSingletonPtr()->getService("game");
+			m_tradeAnimation->addTime(gameService->clock()->lastIncrement() * 0.001);
+		}
+	}
+	
 	void InteractionComponent::trade(Engine::GameObject *minion) {
 		MinionComponent *minionComponent = minion->getComponent<MinionComponent>();
 		GameService *gameService = (GameService*)Engine::ServiceManager::getSingletonPtr()->getService("game");
@@ -27,6 +47,9 @@ namespace Game {
 		minionComponent->changeMoney(kMoneyForFood);
 		gameObject()->props().Set("money", myMoney - kMoneyForFood);
 		gameObject()->props().Set("life", (float)MIN(myLife + gameService->exchangeRate(), 1.0));
+		
+		m_tradeAnimation->setTimePosition(0.0);
+		m_tradeAnimation->setEnabled(true);
 		
 		eventLogService->logInteraction(gameObject(), minion, "traded with");
 	}

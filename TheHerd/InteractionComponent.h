@@ -11,10 +11,14 @@
 
 #include "Engine/GameObject.h"
 
+namespace Ogre {
+	class AnimationState;
+}
+
 namespace Game {
 	class InteractionComponent : public Engine::GameComponent {
 	public:
-		InteractionComponent(Engine::GameObject *gameObject) : GameComponent(gameObject) {}
+		InteractionComponent(Engine::GameObject *gameObject);
 		virtual ~InteractionComponent() {}
 		
 		void trade(Engine::GameObject *minion);
@@ -23,7 +27,9 @@ namespace Game {
 		void repay(Engine::GameObject *minion);
 		void police(Engine::GameObject *minion);
 		
-		void tick() {}
+		void tick();
+	private:
+		Ogre::AnimationState *m_tradeAnimation;
 	};
 }
 
