@@ -266,5 +266,17 @@ namespace Game {
 		S.str("");
 		S << rank;
 		m_playerHud->GetElementById("rank")->SetInnerRML(S.str().c_str());
+		
+		Engine::GameObject *stakeholder = playerMinionComponent->stakeHolder();
+		if(stakeholder) {
+			unsigned count = playerMinionComponent->stakecount();
+			int stakeholderMoney = stakeholder->getComponent<MinionComponent>()->money();
+			S.str("");
+			S << count << "x " << stakeholder->name() << " ($" << stakeholderMoney << ")";
+			
+			m_playerHud->GetElementById("stakeholder")->SetInnerRML(S.str().c_str());
+			m_playerHud->GetElementById("stakeholder-info")->SetProperty("display", "block");
+		} else
+			m_playerHud->GetElementById("stakeholder-info")->SetProperty("display", "none");
 	}
 }

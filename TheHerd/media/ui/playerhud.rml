@@ -74,7 +74,7 @@
 		}
 		#ranking {
 			position: absolute;
-			bottom: 0;
+			bottom: 20px;
 			right: 60px;
 			width: 70px;
 			background-color: #ff0a;
@@ -85,6 +85,16 @@
 		}
 		#rank {
 			font-size: 40;
+		}
+		#stakeholder-info {
+			position: absolute;
+			bottom: 0;
+			right: 60px;
+			width: 200px;
+			background-color: #333a;
+			
+			font-size: 12;
+			text-align: left;
 		}
 		</style>
 	</head>
@@ -104,5 +114,6 @@
 	<div id="bankerlimit">Banker</div>
 	<div id="onepercentlimit">One Percent</div>
 	<div id="ranking"><span id="rank">99</span><br/>Ranking</div>
+	<div id="stakeholder-info">Stakeholder: <span id="stakeholder"></span></div>
 	</body>
 </rml>
