@@ -49,9 +49,8 @@ namespace Game {
 			std::ostringstream S;
 			S << "Minion (" << row << ", " << col << ")";
 			
-			Ogre::Entity *pMinionEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity(S.str(), "ogrehead.mesh");
+			Ogre::Entity *pMinionEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity(S.str(), "sheep_cute.mesh");
 			Ogre::SceneNode *pCubeNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode(S.str());
-			pCubeNode->setScale(0.1, 0.1, 0.1);
 			pCubeNode->attachObject(pMinionEntity);
 			
 			Engine::GameObject *minion = new Engine::GameObject();
@@ -89,9 +88,8 @@ namespace Game {
 			m_minions.push_back(minion);
 		}
 
-		Ogre::Entity *pMinionEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("player", "ogrehead.mesh");
+		Ogre::Entity *pMinionEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("player", "sheep_cute.mesh");
 		Ogre::SceneNode *pCubeNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("player");
-		pCubeNode->setScale(0.1, 0.1, 0.1);
 		pCubeNode->attachObject(pMinionEntity);
 		
 		m_player = new Engine::GameObject();
@@ -231,7 +229,7 @@ namespace Game {
 				position.z = (kFieldHeight * .5);
 			
 			placeable->setPosition(position);
-			placeable->sceneNode()->setDirection(-offset);
+			placeable->sceneNode()->setDirection(offset);
 			
 			OgreFramework::getSingletonPtr()->m_pCamera->setPosition(position + Ogre::Vector3(0.0, 40.0, 40.0));
 			

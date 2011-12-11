@@ -1,0 +1,208 @@
+
+material _missing_material_ 
+{
+    receive_shadows off
+    technique
+    {
+        pass
+        {
+            ambient 0.1 0.1 0.1 1.0
+            diffuse 0.8 0.0 0.0 1.0
+            specular 0.5 0.5 0.5 1.0 12.5
+            emissive 0.3 0.3 0.3 1.0
+        }
+    }
+}
+
+
+// blender material: sheep_white
+material sheep_white 
+{
+    receive_shadows on
+    technique b2ogre_1323615708.273113
+    {
+        pass b2ogre_1323615708.273143
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.691063642501831 0.691063642501831 0.691063642501831 1.0
+            specular 0.0 0.0 0.0 1.0 0.25
+            emissive 0.0 0.0 0.0 1.0
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+            texture_unit b2ogre_1323615708.273468
+            {
+                texture char_sheep_col.jpg
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op replace
+            }
+            texture_unit b2ogre_1323615708.296387
+            {
+                texture char_sheep_nor.jpg
+                tex_address_mode wrap
+                scale 1.666666931576241 1.428571574542002
+                colour_op replace
+            }
+        }
+    }
+}
+
+// blender material: sheep_eyes
+material sheep_eyes 
+{
+    receive_shadows on
+    technique b2ogre_1323615708.303888
+    {
+        pass b2ogre_1323615708.303909
+        {
+            ambient 1.0 1.0 1.0 1.0
+            diffuse 0.699999988079071 0.699999988079071 0.699999988079071 1.0
+            specular 0.4000000059604645 0.28286505166985165 0.25608621025213907 1.0 127.75
+            emissive 0.0 0.0 0.0 1.0
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+            texture_unit b2ogre_1323615708.304193
+            {
+                texture char_sheep_col.jpg
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op replace
+            }
+            texture_unit b2ogre_1323615708.304304
+            {
+                texture char_sheep_nor.jpg
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op replace
+            }
+        }
+    }
+}
+
+// blender material: sheep_face
+material sheep_face 
+{
+    receive_shadows on
+    technique b2ogre_1323615708.304418
+    {
+        pass b2ogre_1323615708.30443
+        {
+            ambient 1.0 0.7766854763031006 0.7766854763031006 1.0
+            diffuse 0.7879936695098877 0.6120232385271152 0.6120232385271152 1.0
+            specular 0.29506826400756836 0.21354806423187256 0.20149323344230652 1.0 2.0
+            emissive 0.0 0.0 0.0 1.0
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+            texture_unit b2ogre_1323615708.304677
+            {
+                texture char_sheep_col.jpg
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op replace
+            }
+            texture_unit b2ogre_1323615708.304769
+            {
+                texture char_sheep_nor.jpg
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op replace
+            }
+            texture_unit b2ogre_1323615708.304853
+            {
+                texture radialblend_01.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                scroll_anim 1.0 1.0 
+                colour_op add
+            }
+        }
+    }
+}
+
+// blender material: sheep_eyelids
+material sheep_eyelids 
+{
+    receive_shadows on
+    technique b2ogre_1323615708.307682
+    {
+        pass b2ogre_1323615708.307699
+        {
+            ambient 0.47686323523521423 0.14361461997032166 0.14361461997032166 1.0
+            diffuse 0.47686323523521423 0.14361461997032166 0.14361461997032166 1.0
+            specular 0.699999988079071 0.699999988079071 0.699999988079071 1.0 11.0
+            emissive 0.0 0.0 0.0 1.0
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+            texture_unit b2ogre_1323615708.307981
+            {
+                texture char_sheep_nor.jpg
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op replace
+            }
+            texture_unit b2ogre_1323615708.308081
+            {
+                texture radialblend_01.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op add
+            }
+        }
+    }
+}
