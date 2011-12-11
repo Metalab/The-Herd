@@ -39,6 +39,7 @@ namespace Game {
 		Ogre::Entity *pGroundEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("ground", "ground.mesh");
 		Ogre::SceneNode *pGroundNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("ground");
 		pGroundNode->attachObject(pGroundEntity);
+		pGroundEntity->setQueryFlags(0);
 		
 		for(unsigned i = 0; i < 10; ++i) {
 			std::ostringstream S;
@@ -50,6 +51,7 @@ namespace Game {
 			pMushroomNode->setScale(4.0, 4.0, 4.0);
 			pMushroomNode->setPosition(kFieldWidth * random()/(float)RAND_MAX - kFieldWidth * .5, 0.0, kFieldHeight * random()/(float)RAND_MAX - kFieldHeight * .5);
 			pMushroomNode->setOrientation(Ogre::Quaternion(Ogre::Radian(2.0*M_PI * random() / (float)RAND_MAX), Ogre::Vector3(0.0, 1.0, 0.0)));
+			pMushroomEntity->setQueryFlags(0);
 		}
 		for(unsigned i = 0; i < 10; ++i) {
 			std::ostringstream S;
@@ -61,6 +63,7 @@ namespace Game {
 			pMushroomNode->setScale(4.0, 4.0, 4.0);
 			pMushroomNode->setPosition(kFieldWidth * random()/(float)RAND_MAX - kFieldWidth * .5, 0.0, kFieldHeight * random()/(float)RAND_MAX - kFieldHeight * .5);
 			pMushroomNode->setOrientation(Ogre::Quaternion(Ogre::Radian(2.0*M_PI * random() / (float)RAND_MAX), Ogre::Vector3(0.0, 1.0, 0.0)));
+			pMushroomEntity->setQueryFlags(0);
 		}
 
 		for(unsigned i = 0; i < 10; ++i) {
@@ -73,6 +76,7 @@ namespace Game {
 			pMushroomNode->setScale(4.0, 4.0, 4.0);
 			pMushroomNode->setPosition(kFieldWidth * random()/(float)RAND_MAX - kFieldWidth * .5, 0.0, kFieldHeight * random()/(float)RAND_MAX - kFieldHeight * .5);
 			pMushroomNode->setOrientation(Ogre::Quaternion(Ogre::Radian(2.0*M_PI * random() / (float)RAND_MAX), Ogre::Vector3(0.0, 1.0, 0.0)));
+			pMushroomEntity->setQueryFlags(0);
 		}
 		for(unsigned i = 0; i < 10; ++i) {
 			std::ostringstream S;
@@ -84,6 +88,19 @@ namespace Game {
 			pMushroomNode->setScale(4.0, 4.0, 4.0);
 			pMushroomNode->setPosition(kFieldWidth * random()/(float)RAND_MAX - kFieldWidth * .5, 0.0, kFieldHeight * random()/(float)RAND_MAX - kFieldHeight * .5);
 			pMushroomNode->setOrientation(Ogre::Quaternion(Ogre::Radian(2.0*M_PI * random() / (float)RAND_MAX), Ogre::Vector3(0.0, 1.0, 0.0)));
+			pMushroomEntity->setQueryFlags(0);
+		}
+		for(unsigned i = 0; i < 50; ++i) {
+			std::ostringstream S;
+			S << "grass_" << i;
+			
+			Ogre::Entity *pGrassEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity(S.str(), "grass_002.mesh");
+			Ogre::SceneNode *pGrassNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode(S.str());
+			pGrassNode->attachObject(pGrassEntity);
+			pGrassNode->setScale(10.0, 10.0, 10.0);
+			pGrassNode->setPosition(kFieldWidth * random()/(float)RAND_MAX - kFieldWidth * .5, 2.0, kFieldHeight * random()/(float)RAND_MAX - kFieldHeight * .5);
+			pGrassNode->setOrientation(Ogre::Quaternion(Ogre::Radian(2.0*M_PI * random() / (float)RAND_MAX), Ogre::Vector3(0.0, 1.0, 0.0)));
+			pGrassEntity->setQueryFlags(0);
 		}
 		Ogre::Entity *pLogEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("log", "log_big_001.mesh");
 		Ogre::SceneNode *pLogNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("log");
@@ -91,6 +108,7 @@ namespace Game {
 		pLogNode->setScale(4.0, 4.0, 4.0);
 		pLogNode->setPosition(0.0, 3.0, -(kFieldHeight * .5 + 8.0));
 		pLogNode->setOrientation(Ogre::Quaternion(Ogre::Radian(M_PI_2), Ogre::Vector3(0.0, 0.0, 1.0)) * Ogre::Quaternion(Ogre::Radian(M_PI_4), Ogre::Vector3(1.0, 0.0, 0.0)));
+		pLogEntity->setQueryFlags(0);
 		
 		int totalMoney = 0;
 		float totalLife = 0.0;
@@ -105,6 +123,7 @@ namespace Game {
 			Ogre::Entity *pMinionEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity(S.str(), "sheep_cute.mesh");
 			Ogre::SceneNode *pCubeNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode(S.str());
 			pCubeNode->attachObject(pMinionEntity);
+			pMinionEntity->setQueryFlags(1);
 			
 			Engine::GameObject *minion = new Engine::GameObject();
 			Engine::Placeable *placeable = minion->addComponent<Engine::Placeable>();
@@ -144,6 +163,7 @@ namespace Game {
 		Ogre::Entity *pMinionEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("player", "sheep_cute.mesh");
 		Ogre::SceneNode *pCubeNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("player");
 		pCubeNode->attachObject(pMinionEntity);
+		pMinionEntity->setQueryFlags(0);
 		
 		m_player = new Engine::GameObject();
 		Engine::Placeable *placeable = m_player->addComponent<Engine::Placeable>();

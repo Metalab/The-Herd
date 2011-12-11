@@ -55,6 +55,7 @@ namespace Game {
 		of->m_pCamera->getCameraToViewportRay(e.state.X.abs / (float)width, e.state.Y.abs / (float)height, &ray);
 		Ogre::RaySceneQuery *query = of->m_pSceneMgr->createRayQuery(ray);
 		query->setSortByDistance(true, 1); // only get nearest result
+		query->setQueryMask(1);
 		Ogre::RaySceneQueryResult &result = query->execute();
 		
 		if(result.size() == 0)

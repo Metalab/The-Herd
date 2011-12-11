@@ -198,6 +198,7 @@ namespace Engine {
 		Ogre::SceneNode *sceneNode = gameObject->getComponent<Placeable>()->sceneNode();
 		
 		Ogre::SphereSceneQuery *query = OgreFramework::getSingletonPtr()->m_pSceneMgr->createSphereQuery(Ogre::Sphere(pos, radius));
+		query->setQueryMask(1);
 		Ogre::SceneQueryResult &queryResult = query->execute();
 		
 		//list<MovableObject*>
