@@ -141,8 +141,8 @@ namespace Engine {
 	
 	void OgreService::startup() {
 		try {
-			if(!OgreFramework::getSingletonPtr()->initOgre("Game v0.1", m_inputService, m_inputService))
-				return;
+			if(!OgreFramework::getSingletonPtr()->initOgre("The Herd", m_inputService, m_inputService))
+				exit(0);
 			
 			OgreFramework::getSingletonPtr()->m_pLog->logMessage("OgreService initialized!");
 
