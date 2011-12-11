@@ -28,6 +28,7 @@ namespace Game {
 		void addStake(Engine::GameObject *stakeholder);
 		Engine::GameObject *stakeHolder();
 		void buyOutStake();
+		void stakeholderDied();
 	};
 }
 

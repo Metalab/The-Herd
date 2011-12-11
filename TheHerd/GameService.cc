@@ -220,14 +220,27 @@ namespace Game {
 				deadMinions.push_back(iter);
 		}
 		
+		MinionComponent *playerMinionComponent = m_player->getComponent<MinionComponent>();
 		Engine::GameObjectService *gameObjectService = (Engine::GameObjectService*)Engine::ServiceManager::getSingletonPtr()->getService("gameObject");
 		for(std::vector<std::list<Engine::GameObject*>::iterator>::iterator iter = deadMinions.begin(); iter != deadMinions.end(); ++iter) {
+			// check whether this minion is a stakeholder for someone
+			for(std::list<Engine::GameObject*>::iterator iter2 = m_minions.begin(); iter2 != m_minions.end(); ++iter2) {
+				MinionComponent *minionComponent = (*iter2)->getComponent<MinionComponent>();
+				if(minionComponent) {
+					Engine::GameObject *stakeholder = minionComponent->stakeHolder();
+					if(stakeholder == **iter)
+						minionComponent->stakeholderDied();
+				}
+			}
+			if(playerMinionComponent->stakeHolder() == **iter)
+				playerMinionComponent->stakeholderDied();
+			
 			gameObjectService->removeGameObject(**iter);
 			m_minions.erase(*iter);
 		}
 		
 		// update HUD
-		float life = m_player->getComponent<MinionComponent>()->life();
+		float life = playerMinionComponent->life();
 		Rocket::Core::Element *lifeBar = m_playerHud->GetElementById("life");
 		
 		std::ostringstream S;
@@ -235,7 +248,7 @@ namespace Game {
 		lifeBar->SetProperty("height", S.str().c_str());
 		lifeBar->SetProperty("background-color", (life<.3)?"#f00a":(life<.6)?"#ff0a":"#0f0a");
 		
-		int money = m_player->getComponent<MinionComponent>()->money();
+		int money = playerMinionComponent->money();
 		
 		S.str("");
 		S << "$" << money;

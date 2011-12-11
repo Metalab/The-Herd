@@ -138,4 +138,10 @@ namespace Game {
 		
 		stakeholder->getComponent<MinionComponent>()->changeMoney(kMoneyForBuyOut);
 	}
+	
+	void MinionComponent::stakeholderDied() {
+		// it's our lucky day!
+		gameObject()->props().Set("stakeholder", (Engine::GameObject*)NULL);
+		gameObject()->props().Delete("stakecount");
+	}
 }
