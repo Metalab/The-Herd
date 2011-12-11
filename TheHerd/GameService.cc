@@ -229,5 +229,15 @@ namespace Game {
 		S.str("");
 		S << MIN(100.0, 100.0 * money / kMoneyThresholdPolice) << "%";
 		m_playerHud->GetElementById("moneyBar")->SetProperty("height", S.str().c_str());
+		
+		unsigned rank = 1;
+		for(std::vector<Engine::GameObject*>::iterator iter = m_minions.begin(); iter != m_minions.end(); ++iter) {
+			int minionMoney = (*iter)->getComponent<MinionComponent>()->money();
+			if(minionMoney > money)
+				++rank;
+		}
+		S.str("");
+		S << rank;
+		m_playerHud->GetElementById("rank")->SetInnerRML(S.str().c_str());
 	}
 }

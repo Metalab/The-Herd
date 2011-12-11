@@ -72,6 +72,20 @@
 			border-top-width: 2px;
 			border-top-color: #fffa;
 		}
+		#ranking {
+			position: absolute;
+			bottom: 0;
+			right: 60px;
+			width: 70px;
+			background-color: #ff0a;
+			padding-bottom: 5px;
+		
+			font-size: 12;
+			text-align: center;
+		}
+		#rank {
+			font-size: 40;
+		}
 		</style>
 	</head>
 	<body>
@@ -89,5 +103,6 @@
 	<div id="hobolimit">Hobo</div>
 	<div id="bankerlimit">Banker</div>
 	<div id="onepercentlimit">One Percent</div>
+	<div id="ranking"><span id="rank">99</span><br/>Ranking</div>
 	</body>
 </rml>
