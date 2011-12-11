@@ -50,7 +50,7 @@ namespace Game {
 				interactionComponent->repay(gameObject());
 		}
 
-		m_walkAnimation->addTime(gameService->clock()->lastIncrement() * 0.1);
+		m_walkAnimation->addTime(gameService->clock()->lastIncrement() * 0.001);
 
 		Engine::ObjectOverlayComponent *objectOverlayComponent = gameObject()->getComponent<Engine::ObjectOverlayComponent>();
 		if(!objectOverlayComponent)
