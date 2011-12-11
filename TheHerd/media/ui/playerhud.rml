@@ -114,6 +114,6 @@
 	<div id="bankerlimit">Banker</div>
 	<div id="onepercentlimit">One Percent</div>
 	<div id="ranking"><span id="rank">99</span><br/>Ranking</div>
-	<div id="stakeholder-info">Stakeholder: <span id="stakeholder"></span></div>
+	<div id="stakeholder-info">Debtor: <span id="stakeholder"></span></div>
 	</body>
 </rml>
