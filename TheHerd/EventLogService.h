@@ -33,13 +33,7 @@ namespace Game {
 		void shutdown();
 		void tick();
 	private:
-		struct LogEntry {
-			LogEntry(Engine::GameObject *_1, Engine::GameObject *_2, const std::string &_3) : subject(_1), object(_2), verb(_3) {}
-			Engine::GameObject *subject;
-			Engine::GameObject *object;
-			std::string verb;
-		};
-		std::deque<LogEntry> m_log;
+		std::deque<std::string> m_log;
 	};
 }
 
