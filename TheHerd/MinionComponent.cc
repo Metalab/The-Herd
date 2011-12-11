@@ -120,7 +120,15 @@ namespace Game {
 		gameObject()->props().Get("stakeholder", &stakeholder);
 		return stakeholder;
 	}
-	
+
+	unsigned MinionComponent::stakecount() {
+		if(!stakeHolder())
+			return 0;
+		unsigned stakecount;
+		gameObject()->props().Get("stakecount", &stakecount);
+		return stakecount;
+	}
+
 	void MinionComponent::buyOutStake() {
 		Engine::GameObject *stakeholder = stakeHolder();
 		if(!stakeholder) {

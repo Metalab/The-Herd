@@ -27,6 +27,7 @@ namespace Game {
 		
 		void addStake(Engine::GameObject *stakeholder);
 		Engine::GameObject *stakeHolder();
+		unsigned stakecount();
 		void buyOutStake();
 		void stakeholderDied();
 	};

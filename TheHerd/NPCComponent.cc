@@ -46,7 +46,7 @@ namespace Game {
 			if(myMoney > kMoneyThresholdOccupy) {
 				if(otherMoney < kMoneyThresholdOccupy && random() < (RAND_MAX/64)) {
 					Engine::GameObject *stakeholder = minionComponent->stakeHolder();
-					if((!stakeholder || stakeholder == gameObject()) && myMoney > kMoneyThresholdOccupy + kMoneyForStake/2) {
+					if((!stakeholder || (stakeholder == gameObject() && minionComponent->stakecount() < 4)) && myMoney > kMoneyThresholdOccupy + kMoneyForStake/2) {
 						interactionComponent->occupy(minion);
 						return;
 					} else {

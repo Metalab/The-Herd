@@ -100,7 +100,7 @@ namespace Game {
 		Engine::GameObject *stakeholder = targetMinionComponent->stakeHolder();
 		
 		m_canOccupy = myMoney > kMoneyThresholdOccupy && targetMoney <= kMoneyThresholdOccupy &&
-			(!stakeholder || stakeholder == gameService->player());
+			(!stakeholder || (stakeholder == gameService->player() && targetMinionComponent->stakecount() < 5));
 		m_actionMenu->GetElementById("occupy")->SetProperty("background-color", m_canOccupy?"#0f0d":"#aaad");
 		
 		m_canPolice = myMoney > kMoneyThresholdPolice && targetMoney <= kMoneyThresholdOccupy;
