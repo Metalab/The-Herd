@@ -28,7 +28,6 @@ OgreFramework::OgreFramework(const std::string &resourcePath)
 	m_pMouse			= 0;
     
     m_ResourcePath      = resourcePath + "/";
-    m_pTrayMgr          = 0;
     m_FrameEvent        = Ogre::FrameEvent();
 }
 
@@ -116,10 +115,6 @@ bool OgreFramework::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListen
     
 	m_pTimer = OGRE_NEW Ogre::Timer();
 	m_pTimer->reset();
-	
-	m_pTrayMgr = new OgreBites::SdkTrayManager("TrayMgr", m_pRenderWnd, m_pMouse, this);
-    m_pTrayMgr->showFrameStats(OgreBites::TL_BOTTOMRIGHT);
-    m_pTrayMgr->hideCursor();
     
 	m_pRenderWnd->setActive(true);
     
@@ -129,7 +124,6 @@ bool OgreFramework::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListen
 OgreFramework::~OgreFramework()
 {
     if(m_pInputMgr) OIS::InputManager::destroyInputSystem(m_pInputMgr);
-    if(m_pTrayMgr)  delete m_pTrayMgr;
     if(m_pRoot)     delete m_pRoot;
 }
 
@@ -160,21 +154,6 @@ bool OgreFramework::keyPressed(const OIS::KeyEvent &keyEventRef)
 			m_pCamera->setPolygonMode(PM_POINTS);
 			mode = 2;
 		}
-		return true;
-	}
-    
-	if(m_pKeyboard->isKeyDown(OIS::KC_O))
-	{
-		if(m_pTrayMgr->isLogoVisible())
-        {
-            m_pTrayMgr->hideLogo();
-            m_pTrayMgr->hideFrameStats();
-        }
-        else
-        {
-            m_pTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
-            m_pTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
-        }
 		return true;
 	}
     
@@ -210,5 +189,4 @@ void OgreFramework::updateOgre(double timeSinceLastFrame)
 {
     m_pSceneMgr->setSkyBoxEnabled(true);
 	m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
-    m_pTrayMgr->frameRenderingQueued(m_FrameEvent);
 }

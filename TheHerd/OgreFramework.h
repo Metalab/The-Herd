@@ -22,11 +22,9 @@
 #include <OISKeyboard.h>
 #include <OISMouse.h>
 
-#include <SdkTrays.h>
-
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
-class OgreFramework : public Ogre::Singleton<OgreFramework>, OIS::KeyListener, OIS::MouseListener, OgreBites::SdkTrayListener
+class OgreFramework : public Ogre::Singleton<OgreFramework>, OIS::KeyListener, OIS::MouseListener
 {
 public:
 	OgreFramework(const std::string &resourcePath);
@@ -62,7 +60,6 @@ private:
 	OgreFramework(const OgreFramework&);
 	OgreFramework& operator= (const OgreFramework&);
     
-	OgreBites::SdkTrayManager*  m_pTrayMgr;
     Ogre::FrameEvent            m_FrameEvent;
 	int                         m_iNumScreenShots;
     
