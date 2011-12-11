@@ -33,6 +33,8 @@ namespace Game {
 		Engine::AudioService *audioService = static_cast<Engine::AudioService*>(Engine::ServiceManager::getSingletonPtr()->getService("audio"));
 		m_tradeEvent = audioService->getEvent("theherd/TheHerd/trade");
 		m_attackEvent = audioService->getEvent("theherd/TheHerd/attack");
+		m_occupyEvent = audioService->getEvent("theherd/TheHerd/occupy");
+		m_repayEvent = audioService->getEvent("theherd/TheHerd/repay");
 	}
 	
 	void SelectionService::shutdown() {
@@ -148,10 +150,13 @@ namespace Game {
 				else
 					interactionComponent->police(target);
 				m_attackEvent->start();
-			} else if(m_canOccupy && m_actionMenu->GetElementById("occupy")->IsPointWithinElement(mousepos))
+			} else if(m_canOccupy && m_actionMenu->GetElementById("occupy")->IsPointWithinElement(mousepos)) {
 				interactionComponent->occupy(target);
-			else if(m_canRepay && m_actionMenu->GetElementById("repay")->IsPointWithinElement(mousepos))
+				m_occupyEvent->start();
+			} else if(m_canRepay && m_actionMenu->GetElementById("repay")->IsPointWithinElement(mousepos)) {
 				interactionComponent->repay(target);
+				m_repayEvent->start();
+ 			}
 			
 			m_actionMenu->Hide();
 			gameService->clock()->setScale(1.0);

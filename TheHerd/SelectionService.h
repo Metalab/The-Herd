@@ -50,6 +50,8 @@ namespace Game {
 		
 		FMOD::Event *m_tradeEvent;
 		FMOD::Event *m_attackEvent;
+		FMOD::Event *m_occupyEvent;
+		FMOD::Event *m_repayEvent;
 	};
 }
 
