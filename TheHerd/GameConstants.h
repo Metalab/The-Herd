@@ -10,7 +10,7 @@
 #define TheHerd_GameConstants_h
 
 namespace Game {
-	static const unsigned kMinionCount = 10;
+	static const unsigned kMinionCount = 20;
 	static const unsigned kFieldWidth = 50;
 	static const unsigned kFieldHeight = 50;
 	
