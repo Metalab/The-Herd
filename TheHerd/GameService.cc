@@ -106,10 +106,34 @@ namespace Game {
 		Ogre::SceneNode *pLogNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("log");
 		pLogNode->attachObject(pLogEntity);
 		pLogNode->setScale(4.0, 4.0, 4.0);
-		pLogNode->setPosition(0.0, 3.0, -(kFieldHeight * .5 + 8.0));
+		pLogNode->setPosition(0.0, 3.0, -(kFieldHeight * .5 + 9.0));
 		pLogNode->setOrientation(Ogre::Quaternion(Ogre::Radian(M_PI_2), Ogre::Vector3(0.0, 0.0, 1.0)) * Ogre::Quaternion(Ogre::Radian(M_PI_4), Ogre::Vector3(1.0, 0.0, 0.0)));
 		pLogEntity->setQueryFlags(0);
-		
+
+		pLogEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("log_2", "log_big_001.mesh");
+		pLogNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("log_2");
+		pLogNode->attachObject(pLogEntity);
+		pLogNode->setScale(4.0, 4.0, 4.0);
+		pLogNode->setPosition(0.0, 3.0, (kFieldHeight * .5 + 9.0));
+		pLogNode->setOrientation(Ogre::Quaternion(Ogre::Radian(-M_PI_2), Ogre::Vector3(0.0, 0.0, 1.0)) * Ogre::Quaternion(Ogre::Radian(M_PI_4), Ogre::Vector3(1.0, 0.0, 0.0)));
+		pLogEntity->setQueryFlags(0);
+
+		pLogEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("log_3", "log_big_001.mesh");
+		pLogNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("log_3");
+		pLogNode->attachObject(pLogEntity);
+		pLogNode->setScale(4.0, 4.0, 4.0);
+		pLogNode->setPosition((kFieldWidth * .5 + 10.0), 3.0, 0.0);
+		pLogNode->setOrientation(Ogre::Quaternion(Ogre::Radian(M_PI_2), Ogre::Vector3(0.0, 0.0, 1.0)) * Ogre::Quaternion(Ogre::Radian(M_PI_4), Ogre::Vector3(1.0, 0.0, 0.0)));
+		pLogEntity->setQueryFlags(0);
+
+		pLogEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("log_4", "log_big_001.mesh");
+		pLogNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("log_4");
+		pLogNode->attachObject(pLogEntity);
+		pLogNode->setScale(4.0, 4.0, 4.0);
+		pLogNode->setPosition(-(kFieldWidth * .5 + 10.0), 3.0, 0.0);
+		pLogNode->setOrientation(Ogre::Quaternion(Ogre::Radian(-M_PI_2), Ogre::Vector3(0.0, 0.0, 1.0)) * Ogre::Quaternion(Ogre::Radian(M_PI_4), Ogre::Vector3(1.0, 0.0, 0.0)));
+		pLogEntity->setQueryFlags(0);
+
 		int totalMoney = 0;
 		float totalLife = 0.0;
 		
