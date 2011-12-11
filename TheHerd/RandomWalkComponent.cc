@@ -39,7 +39,7 @@ namespace Game {
 			newPosition.z = position.z + m_direction.y;
 		}
 		
-		placeable->sceneNode()->setDirection(-m_direction.x, 0.0, -m_direction.y, Ogre::Node::TS_WORLD);
+		placeable->sceneNode()->setDirection(m_direction.x, 0.0, m_direction.y, Ogre::Node::TS_WORLD);
 		placeable->setPosition(newPosition);
 
 		// check for colissions with the border and other entities, and turn randomly
