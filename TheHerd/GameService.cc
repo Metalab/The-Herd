@@ -27,6 +27,7 @@
 #include "NPCComponent.h"
 #include <Rocket/Core.h>
 #include <fmod_event.hpp>
+#include "SelectionService.h"
 
 namespace Game {
 	void GameService::startup() {
@@ -267,6 +268,7 @@ namespace Game {
 			gameObjectService->setPaused(true);
 		}
 
+		SelectionService *selectionService = (SelectionService*)Engine::ServiceManager::getSingletonPtr()->getService("selection");
 		for(std::vector<std::list<Engine::GameObject*>::iterator>::iterator iter = deadMinions.begin(); iter != deadMinions.end(); ++iter) {
 			// check whether this minion is a stakeholder for someone
 			for(std::list<Engine::GameObject*>::iterator iter2 = m_minions.begin(); iter2 != m_minions.end(); ++iter2) {
@@ -279,6 +281,8 @@ namespace Game {
 			}
 			if(playerMinionComponent->stakeHolder() == **iter)
 				playerMinionComponent->stakeholderDied();
+			
+			selectionService->minionDied(**iter);
 			
 			gameObjectService->removeGameObject(**iter);
 			m_minions.erase(*iter);

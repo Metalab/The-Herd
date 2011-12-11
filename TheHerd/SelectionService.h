@@ -33,6 +33,8 @@ namespace Game {
 		void shutdown();
 		void tick();
 		
+		void minionDied(Engine::GameObject *minion);
+		
 		bool mouseMoved(const OIS::MouseEvent& e);
 		bool mousePressed(const OIS::MouseEvent& e, OIS::MouseButtonID id);
 		bool mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id);

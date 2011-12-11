@@ -131,6 +131,17 @@ namespace Game {
 		}
 	}
 	
+	void SelectionService::minionDied(Engine::GameObject *minion) {
+		if(target == minion) {
+			m_inMenu = false;
+			m_actionMenu->Hide();
+			GameService *gameService = (GameService*)Engine::ServiceManager::getSingletonPtr()->getService("game");
+			gameService->clock()->setScale(1.0);
+			
+			target = NULL;
+		}
+	}
+	
 	bool SelectionService::mouseReleased(const OIS::MouseEvent& e, OIS::MouseButtonID id) {
 		if(m_inMenu) {
 			m_inMenu = false;
