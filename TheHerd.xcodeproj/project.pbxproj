@@ -47,6 +47,7 @@
 		8148DE141493DCC400AADF66 /* EventLogService.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE131493DCC400AADF66 /* EventLogService.cc */; };
 		8148DE171493F6A800AADF66 /* SelectionService.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE161493F6A800AADF66 /* SelectionService.cc */; };
 		8148DE1A14940BA200AADF66 /* NPCComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE1914940BA100AADF66 /* NPCComponent.cc */; };
+		8148DE1D1494F07500AADF66 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 8148DE1B1494EAA000AADF66 /* audio */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -153,6 +154,7 @@
 		8148DE161493F6A800AADF66 /* SelectionService.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SelectionService.cc; sourceTree = "<group>"; };
 		8148DE1814940B4200AADF66 /* NPCComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPCComponent.h; sourceTree = "<group>"; };
 		8148DE1914940BA100AADF66 /* NPCComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NPCComponent.cc; sourceTree = "<group>"; };
+		8148DE1B1494EAA000AADF66 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +236,7 @@
 				8148DDA31492363300AADF66 /* ogre.cfg */,
 				8148DDA41492363300AADF66 /* plugins.cfg */,
 				8148DDA51492363300AADF66 /* resources.cfg */,
+				8148DE1B1494EAA000AADF66 /* audio */,
 				8148DD931492363300AADF66 /* media */,
 			);
 			name = Resources;
@@ -375,6 +378,7 @@
 				8148DD6F1492363200AADF66 /* Sources */,
 				8148DD701492363200AADF66 /* Frameworks */,
 				8148DD711492363200AADF66 /* ShellScript */,
+				8148DE1C1494F06C00AADF66 /* Resources */,
 				8148DDDE1492814D00AADF66 /* CopyFiles */,
 				8148DDF214928CF200AADF66 /* CopyFiles */,
 			);
@@ -412,6 +416,17 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8148DE1C1494F06C00AADF66 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8148DE1D1494F07500AADF66 /* audio in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		8148DD711492363200AADF66 /* ShellScript */ = {

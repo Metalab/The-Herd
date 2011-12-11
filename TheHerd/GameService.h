@@ -24,10 +24,14 @@ namespace Rocket {
 	}
 }
 
+namespace FMOD {
+	class Event;
+}
+
 namespace Game {
 	class GameService : public Engine::Service {
 	public:
-		GameService(Engine::Clock *clock, const std::string &playerName, std::string(^nameGenerator)(void)) : m_clock(clock), m_playerName(playerName), m_nameGenerator(Block_copy(nameGenerator)), m_end(false) {}
+		GameService(Engine::Clock *clock, const std::string &playerName, std::string(^nameGenerator)(void)) : m_clock(clock), m_playerName(playerName), m_nameGenerator(Block_copy(nameGenerator)), m_end(false), m_wasWalking(false) {}
 		virtual ~GameService() {
 			Block_release(m_nameGenerator);
 		}
@@ -67,6 +71,10 @@ namespace Game {
 		bool m_moveDown;
 		bool m_moveLeft;
 		bool m_moveRight;
+		bool m_wasWalking;
+		
+		FMOD::Event *m_music;
+		FMOD::Event *m_walk;
 	};
 }
 

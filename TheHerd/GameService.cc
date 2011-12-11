@@ -16,6 +16,7 @@
 #include "Engine/ServiceManager.h"
 #include "Engine/GameObjectService.h"
 #include "Engine/InputService.h"
+#include "Engine/AudioService.h"
 #include "Engine/Clock.h"
 #include "Engine/RocketService.h"
 #include <sstream>
@@ -25,6 +26,7 @@
 #include "MinionComponent.h"
 #include "NPCComponent.h"
 #include <Rocket/Core.h>
+#include <fmod_event.hpp>
 
 namespace Game {
 	void GameService::startup() {
@@ -173,9 +175,19 @@ namespace Game {
 		m_playerHud->GetElementById("bankerlimit")->SetProperty("bottom", S.str().c_str());
 		
 		m_playerHud->Show();
+		
+		// audio
+		
+		Engine::AudioService *audioService = ((Engine::AudioService*)Engine::ServiceManager::getSingletonPtr()->getService("audio"));
+		audioService->loadBank("theherd.fev");
+		m_music = audioService->getEvent("theherd/TheHerd/music");
+		m_music->start();
+		m_walk = audioService->getEvent("theherd/TheHerd/walk");
 	}
 	
 	void GameService::shutdown() {
+		m_walk->stop();
+		m_music->stop();
 		m_playerHud->RemoveReference();
 		m_minions.clear();
 	}
@@ -217,6 +229,14 @@ namespace Game {
 			placeable->sceneNode()->setDirection(-offset);
 			
 			OgreFramework::getSingletonPtr()->m_pCamera->setPosition(position + Ogre::Vector3(0.0, 40.0, 40.0));
+			
+			if(!m_wasWalking) {
+				m_walk->start();
+				m_wasWalking = true;
+			}
+		} else if(m_wasWalking) {
+			m_walk->stop();
+			m_wasWalking = false;
 		}
 		
 		// check for dead minions

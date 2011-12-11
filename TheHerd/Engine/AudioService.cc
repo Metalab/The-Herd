@@ -31,7 +31,7 @@ namespace Engine {
 			Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::LML_CRITICAL, S.str());
 			return;
 		}
-		result = m_eventsystem->setMediaPath(m_resourcePath.c_str());
+		result = m_eventsystem->setMediaPath((m_resourcePath + "/").c_str());
 		if(result != FMOD_OK) {
 			std::ostringstream S;
 			S << "eventsystem->setMediaPath(" << result << "): " << FMOD_ErrorString(result);
@@ -85,5 +85,18 @@ namespace Engine {
 			return NULL;
 		}
 		return event;
+	}
+	
+	FMOD::EventGroup *AudioService::getEventGroup(const std::string &name) {
+		FMOD::EventGroup *eventgroup;
+		FMOD_RESULT result = m_eventsystem->getGroup(name.c_str(), FMOD_EVENT_DEFAULT, &eventgroup);
+		if(result != FMOD_OK) {
+			std::ostringstream S;
+			S << "eventsystem->getGroup(" << result << "): " << FMOD_ErrorString(result);
+			
+			Ogre::LogManager::getSingletonPtr()->logMessage(Ogre::LML_CRITICAL, S.str());
+			return NULL;
+		}
+		return eventgroup;
 	}
 }

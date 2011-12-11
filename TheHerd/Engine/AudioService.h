@@ -15,6 +15,7 @@
 namespace FMOD {
 	class EventSystem;
 	class Event;
+	class EventGroup;
 }
 
 namespace Engine {
@@ -28,6 +29,7 @@ namespace Engine {
 		
 		void loadBank(const std::string &name);
 		FMOD::Event *getEvent(const std::string &name);
+		FMOD::EventGroup *getEventGroup(const std::string &name);
 	private:
 		std::string m_resourcePath;
 		FMOD::EventSystem *m_eventsystem;
