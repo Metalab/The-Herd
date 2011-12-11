@@ -1,0 +1,40 @@
+<rml>
+	<head>
+		<style>
+		body {
+			font-family: Delicious;
+			font-weight: normal;
+			font-style: normal;
+			font-size: 40;
+			color: white;
+			
+			top: 10%;
+			left: 10%;
+			width: 80%;
+			height: 80%;
+			text-align: center;
+			background-color: #000c;
+		}
+		h1 {
+			display: block;
+			font-size: 100;
+		}
+		p {
+			display: block;
+		}
+		#note {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			
+			font-size: 20;
+		}
+		</style>
+	</head>
+	<body>
+		<h1>You have lost!</h1>
+		<p>Somebody else took the money you deserved, and ran with it. Now the economy is dead and there is no way to survive.</p>
+		<div id="note">(Press ESC to go back to your real life)</div>
+	</body>
+</rml>

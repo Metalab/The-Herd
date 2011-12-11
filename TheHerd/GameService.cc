@@ -304,12 +304,12 @@ namespace Game {
 		m_playerHud->GetElementById("food")->SetInnerRML(S.str().c_str());
 		
 		if(m_exchangeRate < 0.0) {
-			// ### end condition reached
-			if(rank == 1) {
-				// ### win
-			} else {
-				// ### lose
-			}
+			// end condition reached
+			Rocket::Core::ElementDocument *enddoc = ((Engine::RocketService*)Engine::ServiceManager::getSingletonPtr()->getService("rocket"))->loadDocument((rank==1)?"win.rml":"lose.rml");
+			enddoc->Show();
+			enddoc->RemoveReference();
+			m_playerHud->Hide();
+			m_clock->setScale(0.0);
 		}
 	}
 }
