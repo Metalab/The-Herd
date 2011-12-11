@@ -50,13 +50,6 @@ material sheep_white
                 scale 1.0 1.0
                 colour_op replace
             }
-            texture_unit b2ogre_1323615708.296387
-            {
-                texture char_sheep_nor.jpg
-                tex_address_mode wrap
-                scale 1.666666931576241 1.428571574542002
-                colour_op replace
-            }
         }
     }
 }
@@ -92,13 +85,6 @@ material sheep_eyes
             texture_unit b2ogre_1323615708.304193
             {
                 texture char_sheep_col.jpg
-                tex_address_mode wrap
-                scale 1.0 1.0
-                colour_op replace
-            }
-            texture_unit b2ogre_1323615708.304304
-            {
-                texture char_sheep_nor.jpg
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op replace
@@ -142,21 +128,6 @@ material sheep_face
                 scale 1.0 1.0
                 colour_op replace
             }
-            texture_unit b2ogre_1323615708.304769
-            {
-                texture char_sheep_nor.jpg
-                tex_address_mode wrap
-                scale 1.0 1.0
-                colour_op replace
-            }
-            texture_unit b2ogre_1323615708.304853
-            {
-                texture radialblend_01.png
-                tex_address_mode wrap
-                scale 1.0 1.0
-                scroll_anim 1.0 1.0 
-                colour_op add
-            }
         }
     }
 }
@@ -195,13 +166,6 @@ material sheep_eyelids
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op replace
-            }
-            texture_unit b2ogre_1323615708.308081
-            {
-                texture radialblend_01.png
-                tex_address_mode wrap
-                scale 1.0 1.0
-                colour_op add
             }
         }
     }
