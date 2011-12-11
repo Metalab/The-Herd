@@ -64,7 +64,7 @@ namespace Game {
 					}
 				}
 			}
-			if(myMoney > kMoneyThresholdPolice) {
+			if(myMoney > kMoneyThresholdPolice && otherMoney < kMoneyThresholdOccupy) {
 				if(otherMoney > kMoneyThresholdAttack && random() < (RAND_MAX/8)) {
 					interactionComponent->police(minion);
 					return;

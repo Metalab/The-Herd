@@ -103,7 +103,7 @@ namespace Game {
 			(!stakeholder || stakeholder == gameService->player());
 		m_actionMenu->GetElementById("occupy")->SetProperty("background-color", m_canOccupy?"#0f0d":"#aaad");
 		
-		m_canPolice = myMoney > kMoneyThresholdPolice;
+		m_canPolice = myMoney > kMoneyThresholdPolice && targetMoney <= kMoneyThresholdOccupy;
 		m_canAttack = myMoney < kMoneyThresholdAttack;
 		if(m_canPolice || m_canAttack) {
 			Rocket::Core::Element *attackElem = m_actionMenu->GetElementById("attack");
