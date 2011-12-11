@@ -28,6 +28,13 @@
 			background-color: #ff0a;
 			border: 5px;
 		}
+		#rank1-info {
+			position: absolute;
+			top: 120px;
+			left: 10%;
+			width: 80%;
+			background-color: #aa0a;
+		}
 		#life {
 			position: absolute;
 			bottom: 0px;
@@ -96,6 +103,16 @@
 			font-size: 12;
 			text-align: left;
 		}
+		#food-info {
+			position: absolute;
+			left: 20px;
+			bottom: 0;
+			width: 100px;
+			background-color: #333a;
+
+			font-size: 12;
+			text-align: left;
+		}
 		</style>
 	</head>
 	<body>
@@ -108,6 +125,7 @@
 	<span id="log-1"></span><br/>
 	<span id="log-0"></span>
 	</div>
+	<div id="rank1-info">Richest person: <span id="rank1"></span></div>
 	<div id="life"></div>
 	<div id="moneybar"></div>
 	<div id="hobolimit">Hobo</div>
@@ -115,5 +133,6 @@
 	<div id="onepercentlimit">One Percent</div>
 	<div id="ranking"><span id="rank">99</span><br/>Ranking</div>
 	<div id="stakeholder-info">Debtor: <span id="stakeholder"></span></div>
+	<div id="food-info">Food Quality: <span id="food"></span></div>
 	</body>
 </rml>

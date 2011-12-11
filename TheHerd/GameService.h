@@ -27,7 +27,7 @@ namespace Rocket {
 namespace Game {
 	class GameService : public Engine::Service {
 	public:
-		GameService(Engine::Clock *clock, const std::string &playerName, std::string(^nameGenerator)(void)) : m_clock(clock), m_playerName(playerName), m_nameGenerator(Block_copy(nameGenerator)), m_exchangeRate(0.4) {}
+		GameService(Engine::Clock *clock, const std::string &playerName, std::string(^nameGenerator)(void)) : m_clock(clock), m_playerName(playerName), m_nameGenerator(Block_copy(nameGenerator)) {}
 		virtual ~GameService() {
 			Block_release(m_nameGenerator);
 		}

@@ -31,6 +31,8 @@ namespace Game {
 		unsigned rowSize = sqrt(kMinionCount);
 		Engine::GameObjectService *gameObjectService = (Engine::GameObjectService*)Engine::ServiceManager::getSingletonPtr()->getService("gameObject");
 		
+		m_exchangeRate = kFoodExchangeStartup;
+		
 		int totalMoney = 0;
 		float totalLife = 0.0;
 		
@@ -179,6 +181,11 @@ namespace Game {
 	}
 	
 	void GameService::tick() {
+		// ### check for player death
+		
+		// new exchange rate for food
+		m_exchangeRate = kFoodExchangeStartup - m_clock->offset() * kInflation;
+		
 		if(m_moveUp || m_moveDown || m_moveLeft || m_moveRight) {
 			Engine::Placeable *placeable = m_player->getComponent<Engine::Placeable>();
 			Ogre::Vector3 offset = Ogre::Vector3::ZERO;
@@ -258,14 +265,27 @@ namespace Game {
 		m_playerHud->GetElementById("moneyBar")->SetProperty("height", S.str().c_str());
 		
 		unsigned rank = 1;
+		int rank1money = 0;
+		Engine::GameObject *rank1 = NULL;
 		for(std::list<Engine::GameObject*>::iterator iter = m_minions.begin(); iter != m_minions.end(); ++iter) {
 			int minionMoney = (*iter)->getComponent<MinionComponent>()->money();
 			if(minionMoney > money)
 				++rank;
+			if(minionMoney > rank1money) {
+				rank1money = minionMoney;
+				rank1 = *iter;
+			}
 		}
 		S.str("");
 		S << rank;
 		m_playerHud->GetElementById("rank")->SetInnerRML(S.str().c_str());
+		
+		if(rank1) {
+			S.str("");
+			S << rank1->name() << " ($" << rank1money << ")";
+			m_playerHud->GetElementById("rank1")->SetInnerRML(S.str().c_str());
+		} else
+			m_playerHud->GetElementById("rank1")->SetInnerRML("YOU");
 		
 		Engine::GameObject *stakeholder = playerMinionComponent->stakeHolder();
 		if(stakeholder) {
@@ -278,5 +298,18 @@ namespace Game {
 			m_playerHud->GetElementById("stakeholder-info")->SetProperty("display", "block");
 		} else
 			m_playerHud->GetElementById("stakeholder-info")->SetProperty("display", "none");
+		
+		S.str("");
+		S << (int)(100.0 * m_exchangeRate / kFoodExchangeStartup) << "%";
+		m_playerHud->GetElementById("food")->SetInnerRML(S.str().c_str());
+		
+		if(m_exchangeRate < 0.0) {
+			// ### end condition reached
+			if(rank == 1) {
+				// ### win
+			} else {
+				// ### lose
+			}
+		}
 	}
 }
