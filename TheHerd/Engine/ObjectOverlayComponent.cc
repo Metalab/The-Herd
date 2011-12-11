@@ -16,8 +16,10 @@
 
 namespace Engine {
 	ObjectOverlayComponent::~ObjectOverlayComponent() {
-		if(m_overlay)
+		if(m_overlay) {
+			m_overlay->Close();
 			m_overlay->RemoveReference();
+		}
 	}
 	
 	void ObjectOverlayComponent::setDocumentName(const std::string &doc) {

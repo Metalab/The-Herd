@@ -26,6 +26,7 @@ namespace Engine {
 
 	ObjectTextDisplayComponent::~ObjectTextDisplayComponent() {
 		gameObject()->props().Delete("objectText_text");
+		m_overlay->Close();
 		m_overlay->RemoveReference();
 	}
 
