@@ -30,7 +30,7 @@
 		}
 		#rank1-info {
 			position: absolute;
-			top: 120px;
+			top: 110px;
 			left: 10%;
 			width: 80%;
 			background-color: #aa0a;
