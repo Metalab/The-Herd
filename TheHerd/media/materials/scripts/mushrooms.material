@@ -1,0 +1,55 @@
+
+material _missing_material_ 
+{
+    receive_shadows off
+    technique
+    {
+        pass
+        {
+            ambient 0.1 0.1 0.1 1.0
+            diffuse 0.8 0.0 0.0 1.0
+            specular 0.5 0.5 0.5 1.0 12.5
+            emissive 0.3 0.3 0.3 1.0
+        }
+    }
+}
+
+
+// blender material: mushrooms1
+material mushrooms1 
+{
+    receive_shadows on
+    technique b2ogre_1323625985.457644
+    {
+        pass b2ogre_1323625985.457708
+        {
+            ambient 0.8285320401191711 0.702696681022644 0.5551260709762573 1.0
+            diffuse 0.6628256419722085 0.5621573531949124 0.4441008633986243 1.0
+            specular 0.20000000298023224 0.20000000298023224 0.20000000298023224 1.0 31.75
+            emissive 0.0 0.0 0.0 1.0
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+            texture_unit b2ogre_1323625985.458059
+            {
+                texture prop_mushrooms_001_col.jpg
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op replace
+            }
+        }
+    }
+}

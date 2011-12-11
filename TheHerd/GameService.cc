@@ -40,6 +40,58 @@ namespace Game {
 		Ogre::SceneNode *pGroundNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("ground");
 		pGroundNode->attachObject(pGroundEntity);
 		
+		for(unsigned i = 0; i < 10; ++i) {
+			std::ostringstream S;
+			S << "mushroom_or_1_" << i;
+			
+			Ogre::Entity *pMushroomEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity(S.str(), "mushroom_or_001.mesh");
+			Ogre::SceneNode *pMushroomNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode(S.str());
+			pMushroomNode->attachObject(pMushroomEntity);
+			pMushroomNode->setScale(4.0, 4.0, 4.0);
+			pMushroomNode->setPosition(kFieldWidth * random()/(float)RAND_MAX - kFieldWidth * .5, 0.0, kFieldHeight * random()/(float)RAND_MAX - kFieldHeight * .5);
+			pMushroomNode->setOrientation(Ogre::Quaternion(Ogre::Radian(2.0*M_PI * random() / (float)RAND_MAX), Ogre::Vector3(0.0, 1.0, 0.0)));
+		}
+		for(unsigned i = 0; i < 10; ++i) {
+			std::ostringstream S;
+			S << "mushroom_or_2_" << i;
+			
+			Ogre::Entity *pMushroomEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity(S.str(), "mushroom_or_002.mesh");
+			Ogre::SceneNode *pMushroomNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode(S.str());
+			pMushroomNode->attachObject(pMushroomEntity);
+			pMushroomNode->setScale(4.0, 4.0, 4.0);
+			pMushroomNode->setPosition(kFieldWidth * random()/(float)RAND_MAX - kFieldWidth * .5, 0.0, kFieldHeight * random()/(float)RAND_MAX - kFieldHeight * .5);
+			pMushroomNode->setOrientation(Ogre::Quaternion(Ogre::Radian(2.0*M_PI * random() / (float)RAND_MAX), Ogre::Vector3(0.0, 1.0, 0.0)));
+		}
+
+		for(unsigned i = 0; i < 10; ++i) {
+			std::ostringstream S;
+			S << "mushroom_red_1_" << i;
+			
+			Ogre::Entity *pMushroomEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity(S.str(), "mushroom_red_001.mesh");
+			Ogre::SceneNode *pMushroomNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode(S.str());
+			pMushroomNode->attachObject(pMushroomEntity);
+			pMushroomNode->setScale(4.0, 4.0, 4.0);
+			pMushroomNode->setPosition(kFieldWidth * random()/(float)RAND_MAX - kFieldWidth * .5, 0.0, kFieldHeight * random()/(float)RAND_MAX - kFieldHeight * .5);
+			pMushroomNode->setOrientation(Ogre::Quaternion(Ogre::Radian(2.0*M_PI * random() / (float)RAND_MAX), Ogre::Vector3(0.0, 1.0, 0.0)));
+		}
+		for(unsigned i = 0; i < 10; ++i) {
+			std::ostringstream S;
+			S << "mushroom_red_2_" << i;
+			
+			Ogre::Entity *pMushroomEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity(S.str(), "mushroom_red_002.mesh");
+			Ogre::SceneNode *pMushroomNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode(S.str());
+			pMushroomNode->attachObject(pMushroomEntity);
+			pMushroomNode->setScale(4.0, 4.0, 4.0);
+			pMushroomNode->setPosition(kFieldWidth * random()/(float)RAND_MAX - kFieldWidth * .5, 0.0, kFieldHeight * random()/(float)RAND_MAX - kFieldHeight * .5);
+			pMushroomNode->setOrientation(Ogre::Quaternion(Ogre::Radian(2.0*M_PI * random() / (float)RAND_MAX), Ogre::Vector3(0.0, 1.0, 0.0)));
+		}
+		Ogre::Entity *pLogEntity = OgreFramework::getSingletonPtr()->m_pSceneMgr->createEntity("log", "log_big_001.mesh");
+		Ogre::SceneNode *pLogNode = OgreFramework::getSingletonPtr()->m_pSceneMgr->getRootSceneNode()->createChildSceneNode("log");
+		pLogNode->attachObject(pLogEntity);
+		pLogNode->setScale(4.0, 4.0, 4.0);
+		pLogNode->setPosition(0.0, 3.0, -(kFieldHeight * .5 + 8.0));
+		pLogNode->setOrientation(Ogre::Quaternion(Ogre::Radian(M_PI_2), Ogre::Vector3(0.0, 0.0, 1.0)) * Ogre::Quaternion(Ogre::Radian(M_PI_4), Ogre::Vector3(1.0, 0.0, 0.0)));
+		
 		int totalMoney = 0;
 		float totalLife = 0.0;
 		
