@@ -23,10 +23,45 @@
 			height: 5px;
 			background-color: #aaa4;
 		}
+		#stakes {
+			position: relative;
+			display: block;
+			width: 100%;
+			height: 5px;
+		}
+		.stake {
+			position: absolute;
+			display: block;
+			width: 18%;
+			height: 5px;
+			background-color: #00fa;
+		}
+		#stake-0 {
+			left: 0;
+		}
+		#stake-1 {
+			left: 20%;
+		}
+		#stake-2 {
+			left: 40%;
+		}
+		#stake-3 {
+			left: 60%;
+		}
+		#stake-4 {
+			left: 80%;
+		}
 		</style>
 	</head>
 	<body><span id="name"></span><br/>
 	<span id="money"></span>
 	<div id="lifemax"><div id="life"></div></div>
+	<div id="stakes">
+		<div id="stake-0" class="stake"></div>
+		<div id="stake-1" class="stake"></div>
+		<div id="stake-2" class="stake"></div>
+		<div id="stake-3" class="stake"></div>
+		<div id="stake-4" class="stake"></div>
+	</div>
 	</body>
 </rml>

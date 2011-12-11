@@ -29,14 +29,12 @@ namespace Game {
 		l -= kHunger * gameService->clock()->lastIncrement();
 		gameObject()->props().Set("life", l);
 		
+		Engine::GameObject *stakeholder = stakeHolder();
 		int m = money();
-		if(m > kMoneyThresholdOccupy) {
-			Engine::GameObject *stakeholder = stakeHolder();
-			if(stakeholder) {
-				InteractionComponent *interactionComponent = gameObject()->getComponent<InteractionComponent>();
-				if(interactionComponent)
-					interactionComponent->repay(gameObject());
-			}
+		if(m > kMoneyThresholdOccupy && stakeholder) {
+			InteractionComponent *interactionComponent = gameObject()->getComponent<InteractionComponent>();
+			if(interactionComponent)
+				interactionComponent->repay(gameObject());
 		}
 
 		Engine::ObjectOverlayComponent *objectOverlayComponent = gameObject()->getComponent<Engine::ObjectOverlayComponent>();
@@ -57,6 +55,27 @@ namespace Game {
 		lifeBar->SetProperty("width", S.str().c_str());
 		lifeBar->SetProperty("background-color", (l < .3)?"#f00a":(l < .6)?"#ff0a":"#0f0a");
 		lifeBar->SetProperty("width", S.str().c_str());
+
+		if(stakeholder) {
+			bool playerIsStakeholder = stakeholder == gameService->player();
+			unsigned count = stakecount();
+			for(unsigned i = 0; i < count; ++i) {
+				std::ostringstream S;
+				S << "stake-" << i;
+				doc->GetElementById(S.str().c_str())->SetProperty("background-color", playerIsStakeholder?"#0f0a":"#f00a");
+			}
+			for(unsigned i = count; i < 5; ++i) {
+				std::ostringstream S;
+				S << "stake-" << i;
+				doc->GetElementById(S.str().c_str())->SetProperty("background-color", "#0000");
+			}
+		} else {
+			for(unsigned i = 0; i < 5; ++i) {
+				std::ostringstream S;
+				S << "stake-" << i;
+				doc->GetElementById(S.str().c_str())->SetProperty("background-color", "#0000");
+			}
+		}
 	}
 	
 	float MinionComponent::life() {
