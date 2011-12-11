@@ -34,13 +34,15 @@ namespace Game {
 	void InteractionComponent::attack(Engine::GameObject *minion) {
 		MinionComponent *minionComponent = minion->getComponent<MinionComponent>();
 		EventLogService *eventLogService = (EventLogService*)Engine::ServiceManager::getSingletonPtr()->getService("eventlog");
-		int myMoney;
+		int myMoney, minionMoney = minionComponent->money();
 		float myLife;
 		gameObject()->props().Get("money", &myMoney);
 		gameObject()->props().Get("life", &myLife);
 		
-		minionComponent->changeMoney(kMoneyForAttack);
-		gameObject()->props().Set("money", myMoney + kMoneyForAttack);
+		int attackMoney = minionMoney * kMoneyFractionForAttack;
+		
+		minionComponent->changeMoney(-attackMoney);
+		gameObject()->props().Set("money", myMoney + attackMoney);
 		gameObject()->props().Set("life", (float)MAX(myLife - kLifeForAttack * (random() / (float)RAND_MAX), 0.0));
 		
 		eventLogService->logInteraction(gameObject(), minion, "attacked");

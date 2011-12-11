@@ -17,7 +17,7 @@ namespace Game {
 	static const int kMoneyForBuyOut = 150;
 	static const int kMoneyForStake = 100;
 	static const int kMoneyForFood = 50;
-	static const int kMoneyForAttack = 50;
+	static const float kMoneyFractionForAttack = 0.1;
 	static const float kMoneyTaxRatePerStake = 0.2;
 	
 	static const int kMoneyThresholdAttack = 100;

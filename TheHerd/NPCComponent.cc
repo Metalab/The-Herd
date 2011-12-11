@@ -38,7 +38,7 @@ namespace Game {
 			return;
 		}
 		if(myMoney < kMoneyThresholdAttack) {
-			if(otherMoney > kMoneyThresholdOccupy && random() < (RAND_MAX/16)) {
+			if(random() < (RAND_MAX/2)) {
 				interactionComponent->attack(minion);
 				return;
 			}
