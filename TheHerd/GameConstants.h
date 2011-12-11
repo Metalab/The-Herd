@@ -11,8 +11,8 @@
 
 namespace Game {
 	static const unsigned kMinionCount = 20;
-	static const unsigned kFieldWidth = 50;
-	static const unsigned kFieldHeight = 50;
+	static const unsigned kFieldWidth = 100;
+	static const unsigned kFieldHeight = 100;
 	
 	static const int kMoneyForBuyOut = 150;
 	static const int kMoneyForStake = 100;
