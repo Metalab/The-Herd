@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		812778D4149D3E9C0093EAC0 /* Ogre.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 81BF1DCA149D3A5D00533056 /* Ogre.framework */; };
 		8148DD781492363200AADF66 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8148DD771492363200AADF66 /* Carbon.framework */; };
 		8148DD7A1492363200AADF66 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8148DD791492363200AADF66 /* Cocoa.framework */; };
 		8148DD7C1492363200AADF66 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8148DD7B1492363200AADF66 /* IOKit.framework */; };
@@ -66,6 +67,7 @@
 				8148DDDF1492815200AADF66 /* RocketControlsOSX.framework in CopyFiles */,
 				8148DDE01492815200AADF66 /* RocketCoreOSX.framework in CopyFiles */,
 				8148DDE11492815200AADF66 /* RocketDebuggerOSX.framework in CopyFiles */,
+				812778D4149D3E9C0093EAC0 /* Ogre.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
