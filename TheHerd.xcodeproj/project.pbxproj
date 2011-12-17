@@ -410,7 +410,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "find \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}\" -name \\*.h -exec rm {} \\;";
+			shellScript = "find \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}\" -name \\*.h -exec rm {} \\;\nrm -rf \"${BUILT_PRODUCTS_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/audio/.fsbcache\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
