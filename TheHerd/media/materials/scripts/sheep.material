@@ -162,7 +162,7 @@ material sheep_eyelids
             transparent_sorting on
             texture_unit b2ogre_1323615708.307981
             {
-                texture char_sheep_nor.jpg
+                texture char_sheep_col.jpg
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op replace
