@@ -463,7 +463,7 @@
 					"\"/Users/am/Desktop/sgw/3rd party/ogre_src_v1-8-0RC1/Dependencies/lib/Release\"",
 					"\"/Users/am/Desktop/sgw/3rd party/ogre-build/lib/Release\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = "-lOIS";
 				SDKROOT = macosx;
 			};
@@ -489,7 +489,7 @@
 					"\"/Users/am/Desktop/sgw/3rd party/ogre_src_v1-8-0RC1/Dependencies/lib/Release\"",
 					"\"/Users/am/Desktop/sgw/3rd party/ogre-build/lib/Release\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = "-lOIS";
 				SDKROOT = macosx;
 			};
