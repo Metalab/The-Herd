@@ -1,0 +1,54 @@
+
+material _missing_material_ 
+{
+    receive_shadows off
+    technique
+    {
+        pass
+        {
+            ambient 0.1 0.1 0.1 1.0
+            diffuse 0.8 0.0 0.0 1.0
+            specular 0.5 0.5 0.5 1.0 12.5
+            emissive 0.3 0.3 0.3 1.0
+        }
+    }
+}
+
+
+// blender material: grass_006
+material grass_006 
+{
+    receive_shadows on
+    technique b2ogre_1323627635.095304
+    {
+        pass b2ogre_1323627635.095335
+        {
+            ambient 0.4000000059604645 0.4000000059604645 0.4000000059604645 1.0
+            diffuse 0.8272606730461121 0.8272606730461121 0.8272606730461121 1.0
+            specular 0.0 0.0 0.0 1.0 12.5
+            emissive 1.0 1.0 1.0 1.0
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend alpha_blend
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+            texture_unit b2ogre_1323627635.09563
+            {
+                texture plants_grass_006_col.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+            }
+        }
+    }
+}

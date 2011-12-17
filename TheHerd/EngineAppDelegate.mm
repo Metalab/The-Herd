@@ -73,7 +73,6 @@
 	
 	[self performSelector:@selector(tick) withObject:nil afterDelay:0.0];
 	
-	OgreFramework::getSingletonPtr()->m_pSceneMgr->setSkyBox(true, "Examples/SpaceSkyBox");
 	OgreFramework::getSingletonPtr()->m_pSceneMgr->createLight("Light")->setPosition(75,75,75);
 }
 

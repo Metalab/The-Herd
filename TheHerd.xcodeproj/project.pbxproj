@@ -10,12 +10,10 @@
 		8148DD781492363200AADF66 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8148DD771492363200AADF66 /* Carbon.framework */; };
 		8148DD7A1492363200AADF66 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8148DD791492363200AADF66 /* Cocoa.framework */; };
 		8148DD7C1492363200AADF66 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8148DD7B1492363200AADF66 /* IOKit.framework */; };
-		8148DD7E1492363200AADF66 /* Ogre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8148DD7D1492363200AADF66 /* Ogre.framework */; };
 		8148DD801492363200AADF66 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8148DD7F1492363200AADF66 /* OpenGL.framework */; };
 		8148DD821492363200AADF66 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8148DD811492363200AADF66 /* QuartzCore.framework */; };
 		8148DD8A1492363200AADF66 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8148DD891492363200AADF66 /* main.mm */; };
 		8148DD911492363200AADF66 /* OgreFramework.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8148DD901492363200AADF66 /* OgreFramework.cpp */; };
-		8148DDAC14923B6500AADF66 /* libOgreRTShaderSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8148DDAB14923B6500AADF66 /* libOgreRTShaderSystem.dylib */; };
 		8148DDB31492498100AADF66 /* ServiceManager.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DDB21492498100AADF66 /* ServiceManager.cc */; };
 		8148DDB71492517300AADF66 /* EngineAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8148DDB61492517300AADF66 /* EngineAppDelegate.mm */; };
 		8148DDBF1492575000AADF66 /* OgreService.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DDBD1492575000AADF66 /* OgreService.cc */; };
@@ -48,6 +46,14 @@
 		8148DE171493F6A800AADF66 /* SelectionService.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE161493F6A800AADF66 /* SelectionService.cc */; };
 		8148DE1A14940BA200AADF66 /* NPCComponent.cc in Sources */ = {isa = PBXBuildFile; fileRef = 8148DE1914940BA100AADF66 /* NPCComponent.cc */; };
 		8148DE1D1494F07500AADF66 /* audio in Resources */ = {isa = PBXBuildFile; fileRef = 8148DE1B1494EAA000AADF66 /* audio */; };
+		81B9842D149D3AF300BEEF89 /* media in Resources */ = {isa = PBXBuildFile; fileRef = 81B9842C149D3AF300BEEF89 /* media */; };
+		81B98430149D3B2D00BEEF89 /* resources.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 8148DDA51492363300AADF66 /* resources.cfg */; };
+		81B98431149D3B3000BEEF89 /* ogre.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 8148DDA31492363300AADF66 /* ogre.cfg */; };
+		81B98432149D3B3400BEEF89 /* plugins.cfg in Resources */ = {isa = PBXBuildFile; fileRef = 8148DDA41492363300AADF66 /* plugins.cfg */; };
+		81B98434149D3B6100BEEF89 /* RenderSystem_GL.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 81B98433149D3B5900BEEF89 /* RenderSystem_GL.dylib */; };
+		81B98436149D3B7D00BEEF89 /* libOgreRTShaderSystem.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 81BF1DCC149D3A6F00533056 /* libOgreRTShaderSystem.dylib */; };
+		81BF1DCB149D3A5D00533056 /* Ogre.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BF1DCA149D3A5D00533056 /* Ogre.framework */; };
+		81BF1DCD149D3A6F00533056 /* libOgreRTShaderSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BF1DCC149D3A6F00533056 /* libOgreRTShaderSystem.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -74,6 +80,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		81B9842E149D3B0600BEEF89 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				81B98434149D3B6100BEEF89 /* RenderSystem_GL.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81B98435149D3B7000BEEF89 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Components;
+			dstSubfolderSpec = 1;
+			files = (
+				81B98436149D3B7D00BEEF89 /* libOgreRTShaderSystem.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -81,7 +107,6 @@
 		8148DD771492363200AADF66 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		8148DD791492363200AADF66 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8148DD7B1492363200AADF66 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
-		8148DD7D1492363200AADF66 /* Ogre.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ogre.framework; path = /Library/Frameworks/Ogre.framework; sourceTree = "<absolute>"; };
 		8148DD7F1492363200AADF66 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		8148DD811492363200AADF66 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8148DD851492363200AADF66 /* TheHerd-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TheHerd-Info.plist"; sourceTree = "<group>"; };
@@ -90,20 +115,9 @@
 		8148DD891492363200AADF66 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		8148DD901492363200AADF66 /* OgreFramework.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OgreFramework.cpp; sourceTree = "<group>"; };
 		8148DD921492363200AADF66 /* OgreFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OgreFramework.h; sourceTree = "<group>"; };
-		8148DD961492363300AADF66 /* Examples.material */ = {isa = PBXFileReference; lastKnownFileType = text; path = Examples.material; sourceTree = "<group>"; };
-		8148DD971492363300AADF66 /* Ogre.material */ = {isa = PBXFileReference; lastKnownFileType = text; path = Ogre.material; sourceTree = "<group>"; };
-		8148DD991492363300AADF66 /* GreenSkin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GreenSkin.jpg; sourceTree = "<group>"; };
-		8148DD9A1492363300AADF66 /* spheremap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spheremap.png; sourceTree = "<group>"; };
-		8148DD9B1492363300AADF66 /* tusk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tusk.jpg; sourceTree = "<group>"; };
-		8148DD9D1492363300AADF66 /* ogrehead.mesh */ = {isa = PBXFileReference; lastKnownFileType = file; path = ogrehead.mesh; sourceTree = "<group>"; };
-		8148DD9F1492363300AADF66 /* cubemap.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = cubemap.zip; sourceTree = "<group>"; };
-		8148DDA01492363300AADF66 /* cubemapsJS.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = cubemapsJS.zip; sourceTree = "<group>"; };
-		8148DDA11492363300AADF66 /* SdkTrays.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = SdkTrays.zip; sourceTree = "<group>"; };
-		8148DDA21492363300AADF66 /* skybox.zip */ = {isa = PBXFileReference; lastKnownFileType = folder; name = skybox.zip; path = ..; sourceTree = "<group>"; };
 		8148DDA31492363300AADF66 /* ogre.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = ogre.cfg; sourceTree = "<group>"; };
 		8148DDA41492363300AADF66 /* plugins.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = plugins.cfg; sourceTree = "<group>"; };
 		8148DDA51492363300AADF66 /* resources.cfg */ = {isa = PBXFileReference; lastKnownFileType = text; path = resources.cfg; sourceTree = "<group>"; };
-		8148DDAB14923B6500AADF66 /* libOgreRTShaderSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOgreRTShaderSystem.dylib; path = "../3rd party/ogre-build/lib/Release/libOgreRTShaderSystem.dylib"; sourceTree = SOURCE_ROOT; };
 		8148DDAE149248F200AADF66 /* Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
 		8148DDB11492497300AADF66 /* ServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceManager.h; sourceTree = "<group>"; };
 		8148DDB21492498100AADF66 /* ServiceManager.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ServiceManager.cc; sourceTree = "<group>"; };
@@ -155,6 +169,10 @@
 		8148DE1814940B4200AADF66 /* NPCComponent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NPCComponent.h; sourceTree = "<group>"; };
 		8148DE1914940BA100AADF66 /* NPCComponent.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NPCComponent.cc; sourceTree = "<group>"; };
 		8148DE1B1494EAA000AADF66 /* audio */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audio; sourceTree = "<group>"; };
+		81B9842C149D3AF300BEEF89 /* media */ = {isa = PBXFileReference; lastKnownFileType = folder; path = media; sourceTree = "<group>"; };
+		81B98433149D3B5900BEEF89 /* RenderSystem_GL.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = RenderSystem_GL.dylib; sourceTree = "<group>"; };
+		81BF1DCA149D3A5D00533056 /* Ogre.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Ogre.framework; sourceTree = "<group>"; };
+		81BF1DCC149D3A6F00533056 /* libOgreRTShaderSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libOgreRTShaderSystem.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,12 +186,12 @@
 				8148DD781492363200AADF66 /* Carbon.framework in Frameworks */,
 				8148DD7A1492363200AADF66 /* Cocoa.framework in Frameworks */,
 				8148DD7C1492363200AADF66 /* IOKit.framework in Frameworks */,
-				8148DD7E1492363200AADF66 /* Ogre.framework in Frameworks */,
 				8148DD801492363200AADF66 /* OpenGL.framework in Frameworks */,
 				8148DD821492363200AADF66 /* QuartzCore.framework in Frameworks */,
-				8148DDAC14923B6500AADF66 /* libOgreRTShaderSystem.dylib in Frameworks */,
 				8148DDC31492637D00AADF66 /* libfmodex.dylib in Frameworks */,
 				8148DDC81492652800AADF66 /* libfmodevent.dylib in Frameworks */,
+				81BF1DCB149D3A5D00533056 /* Ogre.framework in Frameworks */,
+				81BF1DCD149D3A6F00533056 /* libOgreRTShaderSystem.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,11 +223,12 @@
 				8148DDDA1492813A00AADF66 /* RocketDebuggerOSX.framework */,
 				8148DDC71492652800AADF66 /* libfmodevent.dylib */,
 				8148DDC21492637D00AADF66 /* libfmodex.dylib */,
-				8148DDAB14923B6500AADF66 /* libOgreRTShaderSystem.dylib */,
+				81B98433149D3B5900BEEF89 /* RenderSystem_GL.dylib */,
+				81BF1DCC149D3A6F00533056 /* libOgreRTShaderSystem.dylib */,
+				81BF1DCA149D3A5D00533056 /* Ogre.framework */,
 				8148DD771492363200AADF66 /* Carbon.framework */,
 				8148DD791492363200AADF66 /* Cocoa.framework */,
 				8148DD7B1492363200AADF66 /* IOKit.framework */,
-				8148DD7D1492363200AADF66 /* Ogre.framework */,
 				8148DD7F1492363200AADF66 /* OpenGL.framework */,
 				8148DD811492363200AADF66 /* QuartzCore.framework */,
 			);
@@ -236,8 +255,8 @@
 				8148DDA31492363300AADF66 /* ogre.cfg */,
 				8148DDA41492363300AADF66 /* plugins.cfg */,
 				8148DDA51492363300AADF66 /* resources.cfg */,
+				81B9842C149D3AF300BEEF89 /* media */,
 				8148DE1B1494EAA000AADF66 /* audio */,
-				8148DD931492363300AADF66 /* media */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -266,63 +285,6 @@
 				8148DE1914940BA100AADF66 /* NPCComponent.cc */,
 			);
 			name = "Basic Ogre Framework";
-			sourceTree = "<group>";
-		};
-		8148DD931492363300AADF66 /* media */ = {
-			isa = PBXGroup;
-			children = (
-				8148DD941492363300AADF66 /* materials */,
-				8148DD9C1492363300AADF66 /* models */,
-				8148DD9E1492363300AADF66 /* packs */,
-			);
-			path = media;
-			sourceTree = "<group>";
-		};
-		8148DD941492363300AADF66 /* materials */ = {
-			isa = PBXGroup;
-			children = (
-				8148DD951492363300AADF66 /* scripts */,
-				8148DD981492363300AADF66 /* textures */,
-			);
-			path = materials;
-			sourceTree = "<group>";
-		};
-		8148DD951492363300AADF66 /* scripts */ = {
-			isa = PBXGroup;
-			children = (
-				8148DD961492363300AADF66 /* Examples.material */,
-				8148DD971492363300AADF66 /* Ogre.material */,
-			);
-			path = scripts;
-			sourceTree = "<group>";
-		};
-		8148DD981492363300AADF66 /* textures */ = {
-			isa = PBXGroup;
-			children = (
-				8148DD991492363300AADF66 /* GreenSkin.jpg */,
-				8148DD9A1492363300AADF66 /* spheremap.png */,
-				8148DD9B1492363300AADF66 /* tusk.jpg */,
-			);
-			path = textures;
-			sourceTree = "<group>";
-		};
-		8148DD9C1492363300AADF66 /* models */ = {
-			isa = PBXGroup;
-			children = (
-				8148DD9D1492363300AADF66 /* ogrehead.mesh */,
-			);
-			path = models;
-			sourceTree = "<group>";
-		};
-		8148DD9E1492363300AADF66 /* packs */ = {
-			isa = PBXGroup;
-			children = (
-				8148DD9F1492363300AADF66 /* cubemap.zip */,
-				8148DDA01492363300AADF66 /* cubemapsJS.zip */,
-				8148DDA11492363300AADF66 /* SdkTrays.zip */,
-				8148DDA21492363300AADF66 /* skybox.zip */,
-			);
-			path = packs;
 			sourceTree = "<group>";
 		};
 		8148DDAD149248BF00AADF66 /* Engine */ = {
@@ -377,10 +339,11 @@
 			buildPhases = (
 				8148DD6F1492363200AADF66 /* Sources */,
 				8148DD701492363200AADF66 /* Frameworks */,
-				8148DD711492363200AADF66 /* ShellScript */,
 				8148DE1C1494F06C00AADF66 /* Resources */,
 				8148DDDE1492814D00AADF66 /* CopyFiles */,
 				8148DDF214928CF200AADF66 /* CopyFiles */,
+				81B9842E149D3B0600BEEF89 /* CopyFiles */,
+				81B98435149D3B7000BEEF89 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -423,26 +386,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8148DE1D1494F07500AADF66 /* audio in Resources */,
+				81B9842D149D3AF300BEEF89 /* media in Resources */,
+				81B98432149D3B3400BEEF89 /* plugins.cfg in Resources */,
+				81B98431149D3B3000BEEF89 /* ogre.cfg in Resources */,
+				81B98430149D3B2D00BEEF89 /* resources.cfg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		8148DD711492363200AADF66 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "# This shell script simply copies resources into their respective locations\n\nditto \"/Users/am/Desktop/sgw/3rd party/ogre-build/lib/Release/RenderSystem_GL.dylib\" \"${BUILT_PRODUCTS_DIR}/TheHerd.app/Contents/Plugins/\"\nditto \"$PROJECT_DIR/$PROJECT_NAME/media/\" \"$BUILT_PRODUCTS_DIR/TheHerd.app/Contents/Resources/media/\"\nditto \"$PROJECT_DIR/$PROJECT_NAME/\"*.cfg \"$BUILT_PRODUCTS_DIR/TheHerd.app/Contents/Resources/\"\nditto \"/Users/am/Desktop/sgw/3rd party/ogre-build/lib/Release/libOgreRTShaderSystem.dylib\" \"${BUILT_PRODUCTS_DIR}/TheHerd.app/Contents/Components/\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8148DD6F1492363200AADF66 /* Sources */ = {
@@ -550,6 +501,7 @@
 					"$(inherited)",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 					"\"$(SRCROOT)/libRocket\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TheHerd/TheHerd-Prefix.pch";
@@ -571,6 +523,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/fmod/lib\"",
 					"\"$(SRCROOT)/TheHerd/fmod/lib\"",
+					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -586,6 +539,7 @@
 					"$(inherited)",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 					"\"$(SRCROOT)/libRocket\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TheHerd/TheHerd-Prefix.pch";
@@ -607,6 +561,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/fmod/lib\"",
 					"\"$(SRCROOT)/TheHerd/fmod/lib\"",
+					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
