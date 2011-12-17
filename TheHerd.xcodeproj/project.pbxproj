@@ -346,6 +346,7 @@
 				8148DDF214928CF200AADF66 /* CopyFiles */,
 				81B9842E149D3B0600BEEF89 /* CopyFiles */,
 				81B98435149D3B7000BEEF89 /* CopyFiles */,
+				812778D5149D45CF0093EAC0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -396,6 +397,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		812778D5149D45CF0093EAC0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "find \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}\" -name \\*.h -exec rm {} \\;";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8148DD6F1492363200AADF66 /* Sources */ = {
