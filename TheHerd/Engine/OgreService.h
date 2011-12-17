@@ -28,7 +28,7 @@ namespace Engine {
 	
 	class OgreService : public Engine::Service {
 	public:
-		OgreService(InputService *inputService, Clock *clock) : m_inputService(inputService), m_clock(clock) {}
+		OgreService(InputService *inputService, Clock *clock, const std::string &configPath) : m_inputService(inputService), m_clock(clock), m_configPath(configPath) {}
 		virtual ~OgreService() {}
 		
 		void startup();
@@ -40,6 +40,7 @@ namespace Engine {
 	private:
 		InputService *m_inputService;
 		Clock *m_clock;
+		std::string m_configPath;
 		
 #ifdef USE_RTSHADER_SYSTEM
 		Ogre::RTShader::ShaderGenerator*			mShaderGenerator;			// The Shader generator instance.

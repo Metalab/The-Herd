@@ -55,8 +55,19 @@
 	
 	srandomdev();
 	
+	NSURL *url = [[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:YES error:&error];
+	if(!url) {
+		[NSApp presentError:error];
+		[NSApp terminate:nil];
+	}
+	url = [url URLByAppendingPathComponent:@"TheHerd"];
+	if(![[NSFileManager defaultManager] createDirectoryAtPath:[url path] withIntermediateDirectories:YES attributes:nil error:&error]) {
+		[NSApp presentError:error];
+		[NSApp terminate:nil];
+	}
+	
 	sm->registerService("input", inputService, -1);
-	sm->registerService("ogre", new Engine::OgreService(inputService, gameClock));
+	sm->registerService("ogre", new Engine::OgreService(inputService, gameClock, [[[url URLByAppendingPathComponent:@"ogre.cfg"] path] fileSystemRepresentation]));
 	sm->registerService("audio", audioService);
 	sm->registerService("rocket", new Engine::RocketService([[resources stringByAppendingPathComponent:@"media/ui"] fileSystemRepresentation]), 1);
 	sm->registerService("gameObject", gameObjectService, 2);

@@ -30,7 +30,7 @@ public:
 	OgreFramework(const std::string &resourcePath);
 	~OgreFramework();
     
-	bool initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener = 0, OIS::MouseListener *pMouseListener = 0);
+	bool initOgre(Ogre::String wndTitle, Ogre::String configPath, OIS::KeyListener *pKeyListener = 0, OIS::MouseListener *pMouseListener = 0);
 	void updateOgre(double timeSinceLastFrame);
     
 	bool keyPressed(const OIS::KeyEvent &keyEventRef);

@@ -32,18 +32,22 @@ OgreFramework::OgreFramework(const std::string &resourcePath)
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
-bool OgreFramework::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListener, OIS::MouseListener *pMouseListener)
+bool OgreFramework::initOgre(Ogre::String wndTitle, Ogre::String configPath, OIS::KeyListener *pKeyListener, OIS::MouseListener *pMouseListener)
 {
     new Ogre::LogManager();
 
-	m_pLog = Ogre::LogManager::getSingleton().createLog("OgreLogfile.log", true, true, false);
+	m_pLog = Ogre::LogManager::getSingleton().createLog("/tmp/OgreLogfile.log", true, true, false);
+#ifdef DEBUG
 	m_pLog->setDebugOutputEnabled(true);
+#else
+	m_pLog->setDebugOutputEnabled(false);
+#endif
     
     String pluginsPath;
     // only use plugins.cfg if not static
     pluginsPath = m_ResourcePath + "plugins.cfg";
     
-    m_pRoot = new Ogre::Root(pluginsPath);//, Ogre::macBundlePath() + "/ogre.cfg");
+    m_pRoot = new Ogre::Root(pluginsPath, configPath);
     
 	if(!m_pRoot->showConfigDialog())
 		return false;
