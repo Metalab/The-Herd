@@ -537,7 +537,7 @@
 					"\"/Users/am/Desktop/sgw/3rd party/ogre_src_v1-8-0RC1/Components/RTShaderSystem/include\"",
 				);
 				INFOPLIST_FILE = "TheHerd/TheHerd-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks/ @loader_path/";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/fmod/lib\"",
@@ -575,7 +575,7 @@
 					"\"/Users/am/Desktop/sgw/3rd party/ogre_src_v1-8-0RC1/Components/RTShaderSystem/include\"",
 				);
 				INFOPLIST_FILE = "TheHerd/TheHerd-Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks/ @loader_path/";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/fmod/lib\"",
